@@ -3,8 +3,8 @@
 import React, { Suspense, useState, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
-import { Search, ArrowRight, Sparkles, AlertCircle, ShieldCheck } from "lucide-react";
-import { getClientProducts, getClientProductById } from "@/lib/seed-data";
+import { Search, ArrowRight, Sparkles, CheckCircle2, PackageCheck } from "lucide-react";
+import { getClientProducts } from "@/lib/seed-data";
 import { Product } from "@/types";
 
 function SearchContent() {
@@ -16,83 +16,89 @@ function SearchContent() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [results, setResults] = useState<Product[]>([]);
-  const [importedProduct, setImportedProduct] = useState<Product | null>(null);
+  const [resolvedProduct, setResolvedProduct] = useState<Product | null>(null);
 
   useEffect(() => {
+    let isMounted = true;
     setIsLoading(true);
 
-    if (queryUrl) {
-      // URL paste resolver: extract offer identifier without exposing provider names
-      const matchOffer = queryUrl.match(/offer\/(\d+)\.html/) || queryUrl.match(/offerId=(\d+)/) || queryUrl.match(/id=(\d+)/);
-      const offerId = matchOffer ? matchOffer[1] : `${Date.now()}`;
+    async function loadSearchData() {
+      try {
+        if (queryUrl) {
+          // Dynamic URL Resolver: query backend API to match catalog or resolve 1688 listing
+          const res = await fetch(`/api/products/resolve?url=${encodeURIComponent(queryUrl)}`);
+          if (res.ok) {
+            const data = await res.json();
+            if (data.success && data.product) {
+              if (!isMounted) return;
+              setResolvedProduct(data.product);
+              // If already matched in catalog, seamlessly redirect directly to the Product Detail Page
+              if (data.redirectUrl) {
+                router.replace(data.redirectUrl);
+                return;
+              }
+            }
+          }
+        } else {
+          // Fetch full database catalog for search / browse
+          const res = await fetch("/api/products");
+          let catalog: Product[] = [];
+          if (res.ok) {
+            const data = await res.json();
+            if (data.success && Array.isArray(data.products) && data.products.length > 0) {
+              catalog = data.products;
+            }
+          }
+          if (catalog.length === 0) {
+            catalog = getClientProducts();
+          }
 
-      // Check if product already exists in memory
-      const existing = getClientProductById(offerId);
-      if (existing) {
-        router.push(`/product/${existing.id}`);
-        return;
+          if (queryText) {
+            const q = queryText.toLowerCase().trim();
+            const filtered = catalog.filter(
+              (p) =>
+                (p.titleEn && p.titleEn.toLowerCase().includes(q)) ||
+                (p.titleCn && p.titleCn.includes(queryText)) ||
+                (p.category && p.category.toLowerCase().includes(q)) ||
+                (p.shopName && p.shopName.toLowerCase().includes(q)) ||
+                (p.sourceOfferId && p.sourceOfferId.includes(q)) ||
+                (p.id && p.id.toLowerCase().includes(q))
+            );
+            if (isMounted) setResults(filtered.length > 0 ? filtered : catalog);
+          } else {
+            if (isMounted) setResults(catalog);
+          }
+        }
+      } catch (err) {
+        console.error("Search resolver error:", err);
+        if (isMounted) setResults(getClientProducts());
+      } finally {
+        if (isMounted) setIsLoading(false);
       }
-
-      // Auto-import / parse simulated factory listing
-      const newImport: Product = {
-        id: `prod-${offerId}`,
-        sourcePlatform: "FACTORY_DIRECT",
-        sourceOfferId: offerId,
-        url: queryUrl,
-        titleCn: "工厂直供商品 (自动化实时解析)",
-        titleEn: `Direct Factory Wholesale Item #${offerId}`,
-        titleBn: `আমদানিকৃত পাইকারি পণ্য #${offerId}`,
-        description: "Direct procurement listing from verified manufacturer wholesale suppliers in China.",
-        images: [
-          "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800",
-          "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800"
-        ],
-        priceTiers: [
-          { range: "2–9 pcs", minQty: 2, priceRmb: 45.0 },
-          { range: "10–49 pcs", minQty: 10, priceRmb: 39.0 },
-          { range: "50+ pcs", minQty: 50, priceRmb: 34.0 }
-        ],
-        basePriceRmb: 45.0,
-        skus: [
-          { id: "sku-auto-1", name: "Standard Model", nameCn: "标准版", priceRmb: 45.0, stock: 5000 },
-          { id: "sku-auto-2", name: "Pro Upgrade", nameCn: "升级版", priceRmb: 52.0, stock: 3200 }
-        ],
-        category: "electronics",
-        shopName: "Guangdong Verified Manufacturing Plant",
-        location: "Guangdong, China",
-        estimatedWeightKg: 0.4,
-        minOrderQty: 2
-      };
-
-      setImportedProduct(newImport);
-      setIsLoading(false);
-    } else if (queryText) {
-      // Keyword search
-      const all = getClientProducts();
-      const filtered = all.filter(
-        (p) =>
-          p.titleEn.toLowerCase().includes(queryText.toLowerCase()) ||
-          p.category.toLowerCase().includes(queryText.toLowerCase()) ||
-          p.shopName.toLowerCase().includes(queryText.toLowerCase())
-      );
-      setResults(filtered.length > 0 ? filtered : all);
-      setIsLoading(false);
-    } else {
-      setResults(getClientProducts());
-      setIsLoading(false);
     }
+
+    loadSearchData();
+
+    return () => {
+      isMounted = false;
+    };
   }, [queryUrl, queryText, router]);
 
   if (isLoading) {
     return (
       <div className="py-24 text-center space-y-3 font-mono">
         <div className="w-10 h-10 border-4 border-cargo-900 border-t-freight-amber rounded-full animate-spin mx-auto"></div>
-        <p className="text-xs font-semibold text-slate-600">Resolving factory catalog data...</p>
+        <p className="text-xs font-semibold text-slate-600">Resolving verified factory catalog listing...</p>
       </div>
     );
   }
 
-  if (importedProduct) {
+  if (resolvedProduct) {
+    const tierPrice = resolvedProduct.priceTiers && resolvedProduct.priceTiers.length > 0
+      ? resolvedProduct.priceTiers[0].priceRmb
+      : resolvedProduct.basePriceRmb;
+    const bdtPrice = Math.round(tierPrice * 17.5 * 1.12);
+
     return (
       <div className="max-w-3xl mx-auto px-4 py-14 text-center space-y-6">
         <div className="w-16 h-16 bg-cargo-900 text-freight-amber rounded-3xl flex items-center justify-center mx-auto shadow-cargo">
@@ -100,38 +106,45 @@ function SearchContent() {
         </div>
 
         <div>
-          <span className="text-xs bg-emerald-100 text-qc-emeraldDark font-mono font-bold px-3 py-1 rounded-full">
+          <span className="inline-flex items-center gap-1.5 text-xs bg-emerald-50 text-qc-emeraldDark border border-emerald-200/60 font-mono font-bold px-3 py-1 rounded-full">
+            <CheckCircle2 className="w-3.5 h-3.5 text-qc-emerald" />
             Verified Factory Listing Resolved
           </span>
           <h2 className="text-2xl sm:text-3xl font-black text-cargo-900 mt-3 tracking-tight">
-            {importedProduct.titleEn}
+            {resolvedProduct.titleEn}
           </h2>
           <p className="text-xs text-slate-500 mt-1 font-mono">
-            Lot Reference: #{importedProduct.sourceOfferId}
+            Lot Reference: #{resolvedProduct.sourceOfferId}
           </p>
         </div>
 
         <div className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-xs max-w-md mx-auto flex gap-4 items-center text-left">
-          <img
-            src={importedProduct.images[0]}
-            alt="Product"
-            className="w-20 h-20 rounded-xl object-cover border border-slate-200 flex-shrink-0"
-          />
+          {resolvedProduct.images && resolvedProduct.images[0] ? (
+            <img
+              src={resolvedProduct.images[0]}
+              alt={resolvedProduct.titleEn}
+              className="w-20 h-20 rounded-xl object-cover border border-slate-200 flex-shrink-0"
+            />
+          ) : (
+            <div className="w-20 h-20 rounded-xl bg-slate-100 flex items-center justify-center flex-shrink-0 text-slate-400">
+              <PackageCheck className="w-8 h-8" />
+            </div>
+          )}
           <div>
             <div className="text-xs font-bold text-slate-500 font-mono">
               Factory Wholesale Tier:
             </div>
             <div className="text-lg font-black text-cargo-900 font-mono mt-0.5 tabular-nums">
-              ৳{Math.round(importedProduct.priceTiers[2]?.priceRmb * 17.5 * 1.12).toLocaleString()} BDT
+              ৳{bdtPrice.toLocaleString()} BDT
             </div>
             <div className="text-[11px] text-slate-400 mt-1 font-mono">
-              Supplier: {importedProduct.shopName}
+              Supplier: {resolvedProduct.shopName || "Guangdong Verified Factory"}
             </div>
           </div>
         </div>
 
         <Link
-          href={`/product/${importedProduct.id}`}
+          href={`/product/${resolvedProduct.id}`}
           className="inline-flex items-center gap-2 bg-freight-amber hover:bg-freight-amberHover active:scale-[0.98] text-cargo-950 font-black py-4 px-8 rounded-xl text-sm transition shadow-amber-glow"
         >
           <span>View Tier Pricing & Select Quantity</span>
@@ -156,11 +169,17 @@ function SearchContent() {
         {results.map((product) => (
           <div key={product.id} className="bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-xs hover:shadow-cargo transition flex flex-col justify-between group">
             <div className="aspect-square bg-slate-100 overflow-hidden relative">
-              <img 
-                src={product.images[0]} 
-                alt={product.titleEn} 
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-300" 
-              />
+              {product.images && product.images[0] ? (
+                <img 
+                  src={product.images[0]} 
+                  alt={product.titleEn} 
+                  className="w-full h-full object-cover group-hover:scale-105 transition duration-300" 
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-slate-400">
+                  <PackageCheck className="w-12 h-12" />
+                </div>
+              )}
               <span className="absolute top-2 left-2 bg-cargo-950 text-freight-amber font-mono font-bold text-[10px] px-2 py-0.5 rounded shadow-xs">
                 Direct Factory
               </span>
