@@ -1,0 +1,119 @@
+[
+  {
+    "id": "ord-8910",
+    "orderNumber": "SKB-2026-8910",
+    "createdAt": "2026-10-02T10:30:00Z",
+    "status": "QC_VERIFIED",
+    "shippingMethod": "AIR",
+    "cargoType": "GENERAL",
+    "customer": {
+      "name": "Tanvir Ahmed",
+      "phone": "+880 1712-345678",
+      "district": "Dhaka",
+      "thana": "Mirpur 10",
+      "fullAddress": "House 24, Road 5, Block B, Mirpur-10, Dhaka",
+      "notes": "Please pack with extra bubble wrap"
+    },
+    "items": [
+      {
+        "id": "item-1",
+        "productId": "prod-whl-002",
+        "productTitle": "Large Capacity Waterproof Business Laptop Backpack with USB Port",
+        "productImage": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800",
+        "sourcePlatform": "1688",
+        "sourceOfferId": "651982736192",
+        "skuId": "sku-bag-blk",
+        "skuName": "Executive Black (沉稳黑)",
+        "skuNameCn": "沉稳黑",
+        "unitPriceRmb": 42,
+        "unitPriceBdt": 825,
+        "quantity": 5,
+        "chinaOrderNumber": "FAC-ORD-92817482910",
+        "chinaDomesticCourier": "顺丰速运 (SF Express)",
+        "chinaTrackingNumber": "SF14829104819"
+      }
+    ],
+    "pricing": {
+      "exchangeRateUsed": 17.5,
+      "productTotalRmb": 210,
+      "productTotalBdt": 4125,
+      "advancePercentage": 50,
+      "advanceAmountBdt": 2063,
+      "stage2ProductBalanceBdt": 2062,
+      "estimatedWeightKg": 4.25,
+      "actualWeightKg": 4.1,
+      "intlShippingRatePerKg": 750,
+      "intlShippingCostBdt": 3075,
+      "localCourierFeeBdt": 70,
+      "totalOrderBdt": 7270,
+      "stage2TotalPayableBdt": 5207
+    },
+    "tracking": {
+      "chinaDomesticCourier": "顺丰速运 (SF Express)",
+      "chinaTrackingNumber": "SF14829104819",
+      "chinaReceivedAt": "2026-10-03T14:20:00Z",
+      "qcPhotos": [
+        "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop&q=80",
+        "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&auto=format&fit=crop&q=80"
+      ],
+      "qcNotes": "Quality inspection passed. All 5 pcs black backpacks verified in original factory polybags. No tears or zipper defects.",
+      "weightGrossKg": 4.1,
+      "dimensionsCm": {
+        "length": 48,
+        "width": 36,
+        "height": 28
+      },
+      "batchId": "AIR-CAN-DAC-0842",
+      "airFlightOrVesselNumber": "CZ-392 (Guangzhou -> Dhaka)",
+      "shippedFromChinaAt": "2026-10-04T08:00:00Z"
+    }
+  },
+  {
+    "id": "ord-8911",
+    "orderNumber": "SKB-2026-8911",
+    "createdAt": "2026-10-04T12:00:00Z",
+    "status": "STAGE1_PAID",
+    "shippingMethod": "AIR",
+    "cargoType": "SENSITIVE",
+    "customer": {
+      "name": "Rahim Chowdhury",
+      "phone": "+880 1819-876543",
+      "district": "Chittagong",
+      "thana": "Panchlaish",
+      "fullAddress": "Flat 4A, Green Garden Heights, Nasirabad, Chittagong"
+    },
+    "items": [
+      {
+        "id": "item-2",
+        "productId": "prod-whl-001",
+        "productTitle": "2026 ANC Active Noise Cancelling TWS Bluetooth Wireless Earbuds",
+        "productImage": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800",
+        "sourcePlatform": "1688",
+        "sourceOfferId": "782910481920",
+        "skuId": "sku-earbud-blk",
+        "skuName": "Matte Black (黑色)",
+        "skuNameCn": "黑色",
+        "unitPriceRmb": 33.5,
+        "unitPriceBdt": 658,
+        "quantity": 10
+      }
+    ],
+    "pricing": {
+      "exchangeRateUsed": 17.5,
+      "productTotalRmb": 335,
+      "productTotalBdt": 6580,
+      "advancePercentage": 50,
+      "advanceAmountBdt": 3290,
+      "stage2ProductBalanceBdt": 3290,
+      "estimatedWeightKg": 1.8,
+      "intlShippingRatePerKg": 950,
+      "intlShippingCostBdt": 1710,
+      "localCourierFeeBdt": 130,
+      "totalOrderBdt": 8420,
+      "stage2TotalPayableBdt": 5130
+    },
+    "tracking": {
+      "qcPhotos": []
+    }
+  }
+]

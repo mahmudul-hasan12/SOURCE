@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "SkySourcing 1688 & Taobao One-Click Importer",
+  "version": "1.0.0",
+  "description": "Seamlessly extract and import products, pricing tiers, and SKUs from 1688.com & Taobao directly to your cross-border sourcing store.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "SkySourcing Importer"
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://*.1688.com/*",
+    "*://*.taobao.com/*",
+    "*://*.tmall.com/*",
+    "http://localhost:*/*",
+    "http://127.0.0.1:*/*",
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.1688.com/offer/*",
+        "*://*.1688.com/offer_detail/*",
+        "*://item.taobao.com/item.htm*",
+        "*://detail.tmall.com/item.htm*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

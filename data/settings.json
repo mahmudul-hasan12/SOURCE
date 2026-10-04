@@ -1,0 +1,13 @@
+{
+  "exchangeRateRmbToBdt": 17.5,
+  "defaultProfitMarginPercent": 12,
+  "advancePaymentPercent": 50,
+  "airRatePerKgGeneral": 750,
+  "airRatePerKgSensitive": 950,
+  "seaRatePerKg": 220,
+  "seaRatePerCbm": 25000,
+  "localCourierDhaka": 70,
+  "localCourierOutsideDhaka": 130,
+  "chinaWarehouseAddressCn": "广东省广州市白云区石门街道石沙路 SkySourcing China Hub (仓储部)",
+  "chinaWarehouseContact": "+86 138-0000-8888 (WeChat / Phone)"
+}

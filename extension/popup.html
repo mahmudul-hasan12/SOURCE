@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkySourcing Rich Importer</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { width: 400px; background: #070c18; color: #f8fafc; padding: 16px; font-size: 13px; }
+    .header { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #1e293b; padding-bottom: 12px; margin-bottom: 12px; }
+    .brand { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 14px; color: #f59e0b; }
+    .badge-hub { background: #0b132b; color: #38bdf8; border: 1px solid #1e3a8a; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 9999px; text-transform: uppercase; }
+    .card { background: #0b132b; border: 1px solid #1e293b; border-radius: 12px; padding: 12px; margin-bottom: 12px; }
+    .product-preview { display: flex; gap: 12px; }
+    .product-img { width: 75px; height: 75px; border-radius: 8px; object-fit: cover; background: #1e293b; flex-shrink: 0; border: 1px solid #334155; }
+    .product-info { flex: 1; overflow: hidden; }
+    .product-title-en { font-weight: 700; font-size: 12px; line-height: 1.35; color: #ffffff; margin-bottom: 4px; }
+    .product-title-cn { font-size: 10px; color: #94a3b8; line-clamp: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-bottom: 6px; }
+    .price-row { display: flex; align-items: baseline; gap: 6px; font-family: monospace; }
+    .rmb-price { color: #f59e0b; font-weight: 700; font-size: 13px; }
+    .bdt-price { color: #10b981; font-weight: 800; font-size: 14px; }
+    
+    /* Media & Specs badges */
+    .badge-strip { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; padding-top: 8px; border-top: 1px solid #1e293b; }
+    .tag-badge { font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px; font-family: monospace; }
+    .badge-gallery { background: #1e293b; color: #93c5fd; }
+    .badge-desc { background: #1e293b; color: #fde047; }
+    .badge-specs { background: #1e293b; color: #86efac; }
+
+    /* Translated Attributes Preview Box */
+    .specs-preview { max-height: 110px; overflow-y: auto; background: #070c18; border: 1px solid #1e293b; border-radius: 8px; padding: 8px; margin-top: 8px; font-size: 11px; }
+    .spec-item { display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px solid #111827; }
+    .spec-k { color: #94a3b8; font-weight: 500; }
+    .spec-v { color: #e2e8f0; font-weight: 600; text-align: right; max-width: 60%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+    label { display: block; font-size: 11px; color: #94a3b8; margin-bottom: 4px; font-weight: 600; }
+    input, select { width: 100%; background: #070c18; border: 1px solid #334155; border-radius: 8px; color: white; padding: 7px 10px; font-size: 12px; outline: none; }
+    input:focus, select:focus { border-color: #f59e0b; }
+    
+    .btn-primary { width: 100%; background: #f59e0b; border: none; color: #070c18; padding: 12px; border-radius: 10px; font-weight: 800; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: transform 0.1s, background-color 0.2s; }
+    .btn-primary:hover { background: #d97706; }
+    .btn-primary:active { transform: scale(0.98); }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+    
+    .status-msg { margin-top: 10px; padding: 10px 12px; border-radius: 8px; font-size: 12px; display: none; text-align: center; }
+    .status-success { background: #064e3b; color: #6ee7b7; border: 1px solid #059669; }
+    .status-error { background: #450a0a; color: #fca5a5; border: 1px solid #dc2626; }
+    .status-loading { background: #1e293b; color: #93c5fd; border: 1px solid #3b82f6; }
+    
+    .footer-links { margin-top: 12px; display: flex; justify-content: space-between; font-size: 11px; color: #64748b; }
+    .footer-links a { color: #f59e0b; text-decoration: none; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="brand">
+      <span>⚡ SkySourcing BD</span>
+      <span class="badge-hub">Direct Factory</span>
+    </div>
+    <span id="platform-badge" style="color: #94a3b8; font-size: 11px;">Detecting...</span>
+  </div>
+
+  <div id="no-product" style="display: none;" class="card">
+    <p style="color: #94a3b8; text-align: center; padding: 14px 0;">
+      Please open a product page on <b>1688.com</b>, <b>taobao.com</b>, or <b>tmall.com</b> to import items with photos and translated specs.
+    </p>
+  </div>
+
+  <div id="product-card" class="card" style="display: none;">
+    <div class="product-preview">
+      <img id="p-img" class="product-img" src="" alt="Thumbnail" />
+      <div class="product-info">
+        <div id="p-title-en" class="product-title-en">Translating title to English...</div>
+        <div id="p-title-cn" class="product-title-cn">Loading factory name...</div>
+        <div class="price-row">
+          <span id="p-rmb" class="rmb-price">¥0.00</span>
+          <span>➜</span>
+          <span id="p-bdt" class="bdt-price">৳0.00 BDT</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Media & Technical Specs Count Badges -->
+    <div class="badge-strip">
+      <span id="badge-gallery" class="tag-badge badge-gallery">📸 0 Gallery</span>
+      <span id="badge-desc" class="tag-badge badge-desc">📐 0 Detail Photos</span>
+      <span id="badge-specs" class="tag-badge badge-specs">⚙️ 0 Specs</span>
+    </div>
+
+    <!-- Live Specs Preview Box -->
+    <div id="specs-box" class="specs-preview" style="display: none;"></div>
+  </div>
+
+  <div id="import-form" class="card" style="display: none;">
+    <div style="margin-bottom: 10px;">
+      <label>English Product Title (Editable)</label>
+      <input type="text" id="cfg-title-en" placeholder="Translated title in English" />
+    </div>
+
+    <div class="field-grid">
+      <div>
+        <label>Factory Price (¥ RMB)</label>
+        <input type="number" id="cfg-price-rmb" step="0.1" value="17.0" />
+      </div>
+      <div>
+        <label>Exchange Rate (RMB ➜ BDT)</label>
+        <input type="number" id="cfg-exchange" step="0.1" value="17.5" />
+      </div>
+    </div>
+
+    <div class="field-grid">
+      <div>
+        <label>Sourcing Commission (%)</label>
+        <input type="number" id="cfg-margin" step="1" value="12" />
+      </div>
+      <div>
+        <label>Est. Unit Weight (kg)</label>
+        <input type="number" id="cfg-weight" step="0.05" value="0.45" />
+      </div>
+    </div>
+
+    <div style="margin-bottom: 10px;">
+      <label>Category</label>
+      <select id="cfg-category">
+        <option value="Industrial & Building">Industrial & Building</option>
+        <option value="Electronics & Audio">Electronics & Audio</option>
+        <option value="Machinery & Hardware">Machinery & Hardware</option>
+        <option value="Textiles & Apparel">Textiles & Apparel</option>
+        <option value="Home & Office">Home & Office</option>
+        <option value="General Wholesale">General Wholesale</option>
+      </select>
+    </div>
+
+    <div style="margin-bottom: 12px;">
+      <label>Store Ingestion Endpoint</label>
+      <input type="text" id="cfg-api-url" value="http://localhost:3000/api/extension/import" />
+    </div>
+
+    <button id="btn-import" class="btn-primary">
+      <span>⚡ Import with Description Photos & Specs</span>
+    </button>
+  </div>
+
+  <div id="status-box" class="status-msg"></div>
+
+  <div class="footer-links">
+    <span>White-Labeled Import</span>
+    <a href="http://localhost:3000/admin" target="_blank">Open Store Admin ↗</a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
