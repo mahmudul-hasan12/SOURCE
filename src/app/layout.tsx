@@ -4,6 +4,7 @@ import { Navbar } from "@/components/Navbar";
 import { CategoryBar } from "@/components/CategoryBar";
 import { Footer } from "@/components/Footer";
 import { MobileBottomNav } from "@/components/MobileBottomNav";
+import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 
 export const metadata: Metadata = {
   title: "SkySourcing BD - Direct Global Factory Wholesale Sourcing in Bangladesh",
@@ -25,6 +26,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <MobileBottomNav />
+        <FloatingWhatsApp />
       </body>
     </html>
   );

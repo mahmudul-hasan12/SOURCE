@@ -15,14 +15,13 @@ import {
 } from "lucide-react";
 
 const CATEGORIES = [
-  { id: "all", name: "All Factory Goods", icon: Grid, href: "/" },
-  { id: "electronics", name: "Electronics & Audio", icon: Headphones, href: "/search?q=electronics" },
-  { id: "bags", name: "Bags & Luggage", icon: Briefcase, href: "/search?q=bag" },
-  { id: "shoes", name: "Footwear & Sneakers", icon: Footprints, href: "/search?q=shoes" },
-  { id: "smartwatches", name: "Smart Devices", icon: Watch, href: "/search?q=watch" },
-  { id: "fashion", name: "Apparel & Textiles", icon: Shirt, href: "/search?q=fashion" },
-  { id: "industrial", name: "Hardware & Tools", icon: Wrench, href: "/search?q=industrial" },
-  { id: "home", name: "Home & Lifestyle", icon: Home, href: "/search?q=home" },
+  { id: "all", name: "সব পণ্য (All)", icon: Grid, href: "/" },
+  { id: "fashion", name: "পোশাক (Apparel)", icon: Shirt, href: "/search?q=garments" },
+  { id: "electronics", name: "ইলেকট্রনিক্স (Gadgets)", icon: Headphones, href: "/search?q=electronics" },
+  { id: "bags", name: "ব্যাগ ও লাগেজ (Bags)", icon: Briefcase, href: "/search?q=bag" },
+  { id: "shoes", name: "জুতো (Shoes)", icon: Footprints, href: "/search?q=shoes" },
+  { id: "industrial", name: "যন্ত্রপাতি (Tools)", icon: Wrench, href: "/search?q=industrial" },
+  { id: "home", name: "হোম ডেকর (Home)", icon: Home, href: "/search?q=home" },
 ];
 
 export function CategoryBar() {

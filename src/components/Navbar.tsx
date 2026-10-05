@@ -14,7 +14,8 @@ import {
   ArrowRight,
   Sparkles,
   Command,
-  Settings
+  Settings,
+  MessageCircle
 } from "lucide-react";
 import { QuickCartDrawer } from "./QuickCartDrawer";
 
@@ -85,12 +86,23 @@ export function Navbar() {
 
               <Link 
                 href="/warehouse" 
-                className="flex items-center gap-1.5 bg-cargo-800 hover:bg-cargo-700 text-amber-300 border border-cargo-600 px-3 py-1 rounded-md font-medium transition btn-tactile"
+                className="hidden sm:flex items-center gap-1.5 bg-cargo-800 hover:bg-cargo-700 text-amber-300 border border-cargo-600 px-3 py-1 rounded-md font-medium transition btn-tactile"
                 title="Private China Sourcing & Quality Control Desk"
               >
                 <Package className="w-3.5 h-3.5 text-freight-amber" />
-                <span>China Warehouse Desk</span>
+                <span>China Warehouse</span>
               </Link>
+
+              <a 
+                href="https://wa.me/8801700000000?text=Hello%20SkySourcing%20BD,%20I%20want%20to%20source%20products%20from%20China"
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 bg-emerald-950/90 hover:bg-emerald-900 text-emerald-400 border border-emerald-700/60 px-2.5 py-1 rounded-md font-medium transition text-xs btn-tactile"
+                title="Chat with China Sourcing Agent on WhatsApp"
+              >
+                <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+                <span>WhatsApp</span>
+              </a>
 
               <Link 
                 href="/admin" 
