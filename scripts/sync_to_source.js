@@ -35,7 +35,7 @@ console.log('Files copied successfully!');
 console.log('Running git commands in SOURCE...');
 try {
   execSync(`"${gitPath}" config user.name "mahmudul-hasan12"`, { cwd: destDir, stdio: 'inherit' });
-  execSync(`"${gitPath}" config user.email "tawhidtopon@gmail.com"`, { cwd: destDir, stdio: 'inherit' });
+  execSync(`"${gitPath}" config user.email "riode520@gmail.com"`, { cwd: destDir, stdio: 'inherit' });
   execSync(`"${gitPath}" add .`, { cwd: destDir, stdio: 'inherit' });
   try {
     execSync(`"${gitPath}" commit -m "Deploy full SkySourcing BD codebase to Vercel"`, { cwd: destDir, stdio: 'inherit' });
