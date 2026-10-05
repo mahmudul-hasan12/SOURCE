@@ -165,7 +165,7 @@ function SearchContent() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
         {results.map((product) => (
           <div key={product.id} className="bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-xs hover:shadow-cargo transition flex flex-col justify-between group">
             <Link 
@@ -190,28 +190,30 @@ function SearchContent() {
                   <PackageCheck className="w-12 h-12" />
                 </div>
               )}
-              <span className="absolute top-2 left-2 bg-cargo-950 text-freight-amber font-mono font-bold text-[10px] px-2 py-0.5 rounded shadow-xs">
+              <span className="absolute top-2 left-2 bg-cargo-950 text-freight-amber font-mono font-bold text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded shadow-xs">
                 Direct Factory
               </span>
             </Link>
-            <div className="p-4 space-y-2">
+            <div className="p-2.5 sm:p-4 space-y-2 flex-1 flex flex-col justify-between">
               <Link href={`/product/${product.id}`} className="block">
-                <h3 className="font-bold text-xs text-cargo-900 line-clamp-2 leading-snug hover:text-transit-air transition cursor-pointer">
+                <h3 className="font-bold text-xs sm:text-sm text-cargo-900 line-clamp-2 leading-tight sm:leading-snug hover:text-transit-air transition cursor-pointer">
                   {product.titleEn}
                 </h3>
               </Link>
-              <div className="flex justify-between items-baseline font-mono">
-                <span className="text-cargo-900 font-black text-sm tabular-nums">
-                  ৳{Math.round(product.basePriceRmb * 19.6).toLocaleString()}
-                </span>
-                <span className="text-[11px] text-slate-400">¥{product.basePriceRmb} RMB</span>
+              <div className="space-y-2">
+                <div className="flex justify-between items-baseline font-mono">
+                  <span className="text-cargo-900 font-black text-xs sm:text-sm tabular-nums">
+                    ৳{Math.round(product.basePriceRmb * 19.6).toLocaleString()}
+                  </span>
+                  <span className="text-[10px] sm:text-[11px] text-slate-400">¥{product.basePriceRmb}</span>
+                </div>
+                <Link
+                  href={`/product/${product.id}`}
+                  className="w-full bg-cargo-900 hover:bg-cargo-800 active:scale-[0.98] text-white text-[11px] sm:text-xs font-bold py-2 sm:py-2.5 rounded-xl text-center block transition shadow-xs btn-tactile min-h-[38px] sm:min-h-[42px] flex items-center justify-center"
+                >
+                  Inspect Tiers
+                </Link>
               </div>
-              <Link
-                href={`/product/${product.id}`}
-                className="w-full bg-cargo-900 hover:bg-cargo-800 active:scale-[0.98] text-white text-xs font-bold py-2.5 rounded-xl text-center block transition shadow-xs"
-              >
-                Inspect Wholesale Tiers
-              </Link>
             </div>
           </div>
         ))}

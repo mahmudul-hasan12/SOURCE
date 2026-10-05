@@ -8,6 +8,11 @@ import { Home, Search, ShoppingCart, Package, Truck } from "lucide-react";
 export function MobileBottomNav() {
   const pathname = usePathname();
 
+  // On product detail pages, yield to the dedicated checkout action bar to prevent double bar clutter
+  if (pathname?.startsWith("/product/")) {
+    return null;
+  }
+
   const links = [
     { name: "Home", href: "/", icon: Home },
     { name: "Search", href: "/search", icon: Search },

@@ -1,38 +1,46 @@
 const https = require('https');
 
-function fetchUrl(url) {
-  return new Promise((resolve, reject) => {
-    https.get(url, {
+async function testFetch(targetUrl) {
+  console.log(`Testing fetch for: ${targetUrl}`);
+  return new Promise((resolve) => {
+    const req = https.get(targetUrl, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-      }
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+        'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8'
+      },
+      timeout: 8000
     }, (res) => {
+      console.log('Status:', res.statusCode);
+      console.log('Location:', res.headers.location);
       let data = '';
       res.on('data', chunk => data += chunk);
-      res.on('end', () => resolve({ status: res.statusCode, headers: res.headers, data }));
-    }).on('error', reject);
+      res.on('end', () => {
+        console.log('Data length:', data.length);
+        const titleMatch = data.match(/<title>([^<]+)<\/title>/i);
+        console.log('Title:', titleMatch ? titleMatch[1] : 'No title tag');
+        
+        // Search for og:image or cbu01 / alicdn images or window.__INIT_DATA
+        const ogImage = data.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i);
+        console.log('OG Image:', ogImage ? ogImage[1] : 'None');
+
+        const images = [...data.matchAll(/https:\/\/[^"'\s]+\.(?:cbu01\.alicdn\.com|alicdn\.com)[^"'\s]*\.(?:jpg|png|jpeg)/gi)].map(m => m[0]);
+        console.log('Found Alicdn images:', images.slice(0, 3));
+
+        resolve({ status: res.statusCode, location: res.headers.location, dataLength: data.length });
+      });
+    });
+
+    req.on('error', (e) => {
+      console.error('Fetch error:', e.message);
+      resolve(null);
+    });
   });
 }
 
 async function run() {
-  console.log("Checking 1688 offer page response...");
-  const offerId = '982144879342';
-  
-  // Test desc URL pattern
-  const descUrl = `https://desc.1688.com/open/getDesc.htm?offerId=${offerId}`;
-  console.log("Testing descUrl:", descUrl);
-  try {
-    const descRes = await fetchUrl(descUrl);
-    console.log("descUrl status:", descRes.status, "location:", descRes.headers.location);
-    if (descRes.headers.location) {
-      const redirected = await fetchUrl(descRes.headers.location);
-      console.log("Redirected status:", redirected.status, "length:", redirected.data.length);
-      const imgs = redirected.data.match(/https?:[^"'\s>]+\.(?:jpg|png|webp)/gi) || [];
-      console.log("Found images after redirect:", imgs.length, imgs.slice(0, 5));
-    }
-  } catch (e) {
-    console.error("Error fetching descUrl:", e.message);
-  }
+  await testFetch('https://detail.1688.com/offer/895199300568.html');
+  await testFetch('https://m.1688.com/offer/895199300568.html');
 }
 
 run();

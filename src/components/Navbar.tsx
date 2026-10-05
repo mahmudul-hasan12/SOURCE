@@ -58,7 +58,7 @@ export function Navbar() {
               <div className="flex items-center gap-2 bg-cargo-900/90 px-3 py-0.5 rounded-full border border-cargo-700/60 shadow-xs">
                 <span className="w-2 h-2 rounded-full bg-qc-emerald animate-pulse"></span>
                 <span className="text-freight-amber font-mono font-semibold tabular-nums text-[11px]">
-                  LIVE RMB: 1.00 = ৳17.50 BDT
+                  LIVE RMB: 1.00 = ৳19.60 BDT
                 </span>
               </div>
               
@@ -104,31 +104,31 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Main Header & Omnibar */}
-        <div className="max-w-7xl mx-auto px-4 py-3 sm:py-3.5">
-          <div className="flex items-center justify-between gap-4 md:gap-8">
+        {/* Main Header Row */}
+        <div className="max-w-7xl mx-auto px-4 py-2.5 sm:py-3.5">
+          <div className="flex items-center justify-between gap-3 sm:gap-6">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group btn-tactile">
-              <div className="bg-cargo-900 border border-cargo-700 text-white font-black text-lg w-10 h-10 rounded-xl flex items-center justify-center shadow-md group-hover:border-freight-amber transition">
+            <Link href="/" className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0 group btn-tactile">
+              <div className="bg-cargo-900 border border-cargo-700 text-white font-black text-base sm:text-lg w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shadow-md group-hover:border-freight-amber transition">
                 <span className="text-freight-amber">S</span>B
               </div>
               <div>
-                <div className="flex items-center gap-1.5">
-                  <span className="font-extrabold text-xl tracking-tight text-cargo-900">
+                <div className="flex items-center gap-1 sm:gap-1.5">
+                  <span className="font-extrabold text-lg sm:text-xl tracking-tight text-cargo-900">
                     Sky<span className="text-transit-air">Sourcing</span>
                   </span>
-                  <span className="bg-cargo-900 text-freight-amber font-mono text-[10px] font-bold px-1.5 py-0.5 rounded tracking-wider border border-cargo-700">
+                  <span className="bg-cargo-900 text-freight-amber font-mono text-[9px] sm:text-[10px] font-bold px-1.5 py-0.5 rounded tracking-wider border border-cargo-700">
                     BD
                   </span>
                 </div>
-                <span className="text-[10px] text-slate-500 block leading-none font-medium mt-0.5">
+                <span className="text-[9px] sm:text-[10px] text-slate-500 block leading-none font-medium mt-0.5 hidden xs:block">
                   Direct Factory Wholesale • 50% Advance
                 </span>
               </div>
             </Link>
 
-            {/* Modern Command Omnibar */}
-            <div className="flex-1 max-w-2xl">
+            {/* Desktop Command Omnibar (>= 768px) */}
+            <div className="hidden md:block flex-1 max-w-2xl">
               <form onSubmit={handleSearch} className="relative">
                 <div className="flex items-center bg-slate-50/90 border border-slate-300/80 rounded-xl overflow-hidden focus-within:border-freight-amber focus-within:ring-2 focus-within:ring-freight-amber/20 focus-within:bg-white transition-all shadow-xs">
                   <input
@@ -136,7 +136,7 @@ export function Navbar() {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Paste factory link or search wholesale goods (English / বাংলা)..."
+                    placeholder="Paste 1688 / Taobao link or search wholesale goods..."
                     className="w-full py-2.5 pl-4 pr-24 text-sm text-slate-800 placeholder-slate-400 bg-transparent focus:outline-none"
                   />
                   
@@ -147,22 +147,23 @@ export function Navbar() {
                   </div>
 
                   <button
-                    type="button"
-                    title="Upload photo for Visual Factory Search"
-                    onClick={() => alert("Upload a product photo to match verified Chinese manufacturer listings!")}
-                    className="p-2 text-slate-400 hover:text-cargo-900 transition flex items-center btn-tactile"
-                  >
-                    <Camera className="w-4 h-4" />
-                  </button>
-
-                  <button
                     type="submit"
                     className="bg-cargo-900 hover:bg-cargo-800 active:scale-[0.98] text-white px-5 py-2.5 font-bold text-sm flex items-center gap-1.5 transition flex-shrink-0 border-l border-cargo-800 btn-tactile"
                   >
                     <Search className="w-4 h-4 text-freight-amber" />
-                    <span className="hidden sm:inline">Search</span>
+                    <span>Search</span>
                   </button>
                 </div>
+
+                {/* Real-time Link Detection Alert */}
+                {(searchQuery.includes("1688.com") || searchQuery.includes("taobao.com") || searchQuery.includes("tmall.com")) && (
+                  <div className="flex items-center gap-2 text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-lg border border-emerald-200 mt-1 shadow-xs animate-pulse">
+                    <span className="w-2 h-2 rounded-full bg-qc-emerald" />
+                    <span>
+                      {searchQuery.includes("1688.com") ? "1688 Direct Factory Link Detected" : "Taobao / Tmall Listing Detected"} • Press Enter to Auto-Resolve
+                    </span>
+                  </div>
+                )}
               </form>
 
               <div className="flex items-center gap-2 mt-1.5 text-[11px] text-slate-500 overflow-x-auto whitespace-nowrap">
@@ -178,11 +179,11 @@ export function Navbar() {
             </div>
 
             {/* Right Action: Quick Cart Drawer Trigger */}
-            <div className="flex items-center gap-3 flex-shrink-0">
+            <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
               <button
                 type="button"
                 onClick={() => setIsCartDrawerOpen(true)}
-                className="flex items-center gap-2.5 bg-slate-50 hover:bg-slate-100/90 border border-slate-200/90 px-3.5 py-2 rounded-xl transition shadow-xs group btn-tactile text-left"
+                className="flex items-center gap-2 bg-slate-50 hover:bg-slate-100/90 border border-slate-200/90 px-3 py-2 rounded-xl transition shadow-xs group btn-tactile text-left"
               >
                 <div className="relative">
                   <ShoppingCart className="w-5 h-5 text-cargo-900 group-hover:scale-105 transition" />
@@ -196,6 +197,56 @@ export function Navbar() {
                 </div>
               </button>
             </div>
+          </div>
+
+          {/* Dedicated Full-Width Search Omnibar on Mobile (< 768px) */}
+          <div className="md:hidden mt-2 pt-1 border-t border-slate-100">
+            <form onSubmit={handleSearch} className="space-y-1.5">
+              <div className="flex items-center bg-slate-50 border border-slate-300 rounded-xl overflow-hidden focus-within:border-freight-amber focus-within:ring-2 focus-within:ring-freight-amber/20 focus-within:bg-white transition-all shadow-xs p-0.5">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Paste 1688 / Taobao link or search..."
+                  className="flex-1 py-2 px-3 text-xs text-slate-800 placeholder-slate-400 bg-transparent focus:outline-none"
+                />
+                
+                {/* One-tap Paste button from clipboard */}
+                <button
+                  type="button"
+                  title="Paste link from clipboard"
+                  onClick={async () => {
+                    try {
+                      if (navigator.clipboard) {
+                        const clip = await navigator.clipboard.readText();
+                        if (clip) setSearchQuery(clip.trim());
+                      }
+                    } catch (e) {}
+                  }}
+                  className="px-2 py-1 bg-slate-200/80 hover:bg-slate-300 text-cargo-900 rounded text-[10px] font-mono font-semibold transition mr-1 btn-tactile"
+                >
+                  Paste
+                </button>
+
+                <button
+                  type="submit"
+                  className="bg-cargo-900 hover:bg-cargo-800 active:scale-[0.98] text-white px-3.5 py-2 font-bold text-xs flex items-center gap-1 transition rounded-lg btn-tactile"
+                >
+                  <Search className="w-3.5 h-3.5 text-freight-amber" />
+                  <span>Inspect</span>
+                </button>
+              </div>
+
+              {/* Mobile Real-Time Link Detection Alert */}
+              {(searchQuery.includes("1688.com") || searchQuery.includes("taobao.com") || searchQuery.includes("tmall.com")) && (
+                <div className="flex items-center gap-1.5 text-[10px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200 animate-pulse">
+                  <span className="w-2 h-2 rounded-full bg-qc-emerald" />
+                  <span>
+                    {searchQuery.includes("1688.com") ? "1688 Direct Factory Link" : "Taobao / Tmall Link"} • Tap Inspect
+                  </span>
+                </div>
+              )}
+            </form>
           </div>
         </div>
       </header>

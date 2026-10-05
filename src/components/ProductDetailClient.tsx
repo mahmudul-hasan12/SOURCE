@@ -355,7 +355,7 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
           </div>
 
           {/* Wholesale Tiered Pricing Matrix */}
-          <div className="bg-cargo-50 border border-cargo-100 rounded-2xl p-4.5 space-y-2">
+          <div id="wholesale-quantity-matrix" className="bg-cargo-50 border border-cargo-100 rounded-2xl p-4.5 space-y-2 scroll-mt-20">
             <div className="text-xs font-bold text-cargo-900 uppercase tracking-wider flex items-center justify-between">
               <span className="flex items-center gap-1.5">
                 <Layers className="w-4 h-4 text-freight-amber" />
@@ -840,20 +840,38 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
       )}
 
       {/* Fixed Bottom Mobile Order Bar (< 768px ergonomics) */}
-      <div className="fixed bottom-14 left-0 right-0 z-40 md:hidden bg-white/95 backdrop-blur-md border-t border-slate-200 p-3 shadow-cargo flex items-center justify-between gap-3">
-        <div>
-          <span className="text-[10px] text-slate-500 font-mono block">50% Advance:</span>
-          <span className="text-base font-black text-cargo-900 font-mono tabular-nums">
+      <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white/95 backdrop-blur-md border-t border-slate-200 px-4 py-3 shadow-cargo flex items-center justify-between gap-3 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))]">
+        <div className="min-w-0">
+          <div className="text-[10px] text-slate-500 font-mono flex items-center gap-1.5">
+            <span>50% Advance</span>
+            <span className="text-qc-emerald font-semibold">• {quantity} pcs</span>
+          </div>
+          <div className="text-base font-black text-cargo-900 font-mono tabular-nums leading-tight">
             ৳{paymentBreakdown.advanceAmountBdt.toLocaleString()}
-          </span>
+          </div>
+          <div className="text-[10px] text-slate-400 font-mono tabular-nums">
+            Total: ৳{totalPriceBdt.toLocaleString()}
+          </div>
         </div>
-        <button
-          onClick={handleCheckout}
-          className="bg-freight-amber hover:bg-freight-amberHover text-cargo-950 font-black px-5 py-3 rounded-xl text-xs transition shadow-sm flex items-center gap-1.5 btn-tactile"
-        >
-          <span>Order 50%</span>
-          <ArrowRight className="w-3.5 h-3.5 text-cargo-950" />
-        </button>
+        <div className="flex items-center gap-2 flex-shrink-0">
+          <button
+            type="button"
+            onClick={() => {
+              const el = document.getElementById("wholesale-quantity-matrix");
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="px-3 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-cargo-900 text-xs font-bold font-mono hover:bg-slate-100 active:scale-95 transition min-h-[44px]"
+          >
+            Qty: {quantity}
+          </button>
+          <button
+            onClick={handleCheckout}
+            className="bg-freight-amber hover:bg-freight-amberHover active:scale-[0.98] text-cargo-950 font-black px-5 py-2.5 rounded-xl text-xs transition shadow-xs flex items-center gap-1.5 btn-tactile min-h-[44px]"
+          >
+            <span>Order 50%</span>
+            <ArrowRight className="w-3.5 h-3.5 text-cargo-950" />
+          </button>
+        </div>
       </div>
 
       {/* Quick Edit & Sync Listing Modal */}

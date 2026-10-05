@@ -70,7 +70,7 @@ export default async function HomePage() {
               </div>
 
               {/* 2-Line Headline */}
-              <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-[1.08] text-white">
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.12] text-white">
                 Direct-from-Factory Sourcing at{" "}
                 <span className="text-freight-amber underline decoration-freight-amber/35 decoration-4 underline-offset-4">
                   Wholesale Rates
@@ -78,12 +78,12 @@ export default async function HomePage() {
               </h1>
 
               {/* Strict 18-word subtext */}
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl">
+              <p className="text-slate-300 text-xs sm:text-base leading-relaxed max-w-xl">
                 Verified Chinese manufacturers, pre-shipment Guangzhou QC inspection, customs-cleared air and sea freight, door delivery across Bangladesh.
               </p>
 
               {/* Universal Sourcing Omnibar */}
-              <div className="bg-cargo-900/95 border border-cargo-700/90 rounded-2xl p-4 sm:p-5 shadow-cargo space-y-3">
+              <div className="bg-cargo-900/95 border border-cargo-700/90 rounded-2xl p-3 sm:p-5 shadow-cargo space-y-3">
                 <form action="/search" method="GET" className="space-y-3">
                   <div className="flex items-center bg-cargo-950/90 border border-cargo-700 rounded-xl overflow-hidden focus-within:border-freight-amber focus-within:ring-2 focus-within:ring-freight-amber/20 transition p-1.5">
                     <input
@@ -237,7 +237,7 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
           {products.map((product) => {
             const firstTier = (product.priceTiers && product.priceTiers[0]) || { minQty: 1, priceRmb: product.basePriceRmb || 40, range: "1+ pcs" };
             const bestTier = (product.priceTiers && product.priceTiers[product.priceTiers.length - 1]) || firstTier;
@@ -264,60 +264,60 @@ export default async function HomePage() {
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                   />
-                  <div className="absolute top-3 left-3 flex flex-col gap-1 items-start">
-                    <span className="bg-cargo-950 text-freight-amber font-mono font-bold text-[10px] px-2 py-0.5 rounded shadow-xs border border-cargo-800">
+                  <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex flex-col gap-1 items-start">
+                    <span className="bg-cargo-950 text-freight-amber font-mono font-bold text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded shadow-xs border border-cargo-800">
                       Direct Factory
                     </span>
                     {product.isSensitiveCargo && (
-                      <span className="bg-amber-600 text-white font-bold text-[10px] px-1.5 py-0.5 rounded shadow-xs">
+                      <span className="bg-amber-600 text-white font-bold text-[9px] sm:text-[10px] px-1.5 py-0.5 rounded shadow-xs">
                         Battery Safe
                       </span>
                     )}
                   </div>
-                  <span className="absolute bottom-3 right-3 bg-cargo-900/90 text-white text-[11px] font-mono font-medium px-2 py-0.5 rounded tabular-nums">
+                  <span className="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 bg-cargo-900/90 text-white text-[9px] sm:text-[11px] font-mono font-medium px-1.5 sm:px-2 py-0.5 rounded tabular-nums">
                     MOQ: {product.minOrderQty} pcs
                   </span>
                 </Link>
 
                 {/* Content */}
-                <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
+                <div className="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
                   <div>
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block font-mono">
+                    <span className="text-[9px] sm:text-[10px] font-bold text-slate-400 uppercase tracking-wider block font-mono">
                       {product.location} Hub
                     </span>
                     <Link href={`/product/${product.id}`} className="block">
-                      <h3 className="font-bold text-slate-900 text-sm line-clamp-2 leading-snug group-hover:text-transit-air transition mt-0.5 cursor-pointer">
+                      <h3 className="font-bold text-slate-900 text-xs sm:text-sm line-clamp-2 leading-tight sm:leading-snug group-hover:text-transit-air transition mt-0.5 cursor-pointer">
                         {product.titleEn}
                       </h3>
                     </Link>
-                    <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
+                    <p className="text-[10px] sm:text-[11px] text-slate-500 line-clamp-1 mt-0.5">
                       {product.shopName}
                     </p>
                   </div>
 
                   {/* Pricing Tiers Table */}
-                  <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-3 space-y-1.5 font-mono">
-                    <div className="flex justify-between items-baseline text-xs">
-                      <span className="text-slate-500 font-sans text-[11px]">Wholesale Tier:</span>
+                  <div className="bg-slate-50 border border-slate-200/80 rounded-xl p-2 sm:p-3 space-y-1 sm:space-y-1.5 font-mono">
+                    <div className="flex justify-between items-baseline text-[10px] sm:text-xs">
+                      <span className="text-slate-500 font-sans text-[10px] sm:text-[11px]">Wholesale Tier:</span>
                       <div className="text-right">
-                        <span className="text-cargo-900 font-black text-base tabular-nums">৳{lowestBdt}</span>
+                        <span className="text-cargo-900 font-black text-sm sm:text-base tabular-nums">৳{lowestBdt}</span>
                         {startingBdt !== lowestBdt && (
-                          <span className="text-slate-400 text-xs ml-1 font-normal tabular-nums">~ ৳{startingBdt}</span>
+                          <span className="text-slate-400 text-[10px] sm:text-xs ml-1 font-normal tabular-nums hidden xs:inline">~ ৳{startingBdt}</span>
                         )}
                       </div>
                     </div>
-                    <div className="text-[10px] text-slate-400 flex justify-between pt-1 border-t border-slate-200">
-                      <span>¥{Number(lowestRmb).toFixed(1)} ~ ¥{Number(highestRmb).toFixed(1)}</span>
-                      <span className="text-qc-emerald font-bold">50% Advance: ৳{Math.round(lowestBdt * 0.5)}</span>
+                    <div className="text-[9px] sm:text-[10px] text-slate-400 flex justify-between pt-1 border-t border-slate-200">
+                      <span className="truncate mr-1">¥{Number(lowestRmb).toFixed(1)} ~ ¥{Number(highestRmb).toFixed(1)}</span>
+                      <span className="text-qc-emerald font-bold whitespace-nowrap">50%: ৳{Math.round(lowestBdt * 0.5)}</span>
                     </div>
                   </div>
 
                   {/* Action Link with Emil Kowalski tactility */}
                   <Link
                     href={`/product/${product.id}`}
-                    className="w-full bg-cargo-900 hover:bg-cargo-800 text-white font-bold py-2.5 rounded-xl text-xs text-center transition flex items-center justify-center gap-1.5 shadow-xs btn-tactile"
+                    className="w-full bg-cargo-900 hover:bg-cargo-800 text-white font-bold py-2 sm:py-2.5 rounded-xl text-[11px] sm:text-xs text-center transition flex items-center justify-center gap-1 sm:gap-1.5 shadow-xs btn-tactile min-h-[38px] sm:min-h-[42px]"
                   >
-                    <span>Inspect Tier Pricing</span>
+                    <span>Inspect Tiers</span>
                     <ArrowRight className="w-3.5 h-3.5 text-freight-amber" />
                   </Link>
                 </div>
