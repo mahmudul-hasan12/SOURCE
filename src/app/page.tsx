@@ -13,20 +13,7 @@ import {
 import { StorageService } from "@/lib/db";
 import { calculateTierPriceBdt } from "@/lib/pricing";
 import { LiveCalculator } from "@/components/LiveCalculator";
-import nextDynamic from "next/dynamic";
-
-const FreightGlobe3D = nextDynamic(
-  () => import("@/components/FreightGlobe3D").then((mod) => mod.FreightGlobe3D),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="rounded-2xl bg-cargo-900/90 border border-cargo-800 p-6 h-[420px] flex flex-col items-center justify-center text-xs text-slate-400 font-mono">
-        <div className="w-8 h-8 rounded-full border-2 border-freight-amber border-t-transparent animate-spin mb-3" />
-        <span>Loading Guangzhou ➜ Dhaka Corridor...</span>
-      </div>
-    ),
-  }
-);
+import { FreightGlobeWrapper } from "@/components/FreightGlobeWrapper";
 
 export default async function HomePage() {
   const rawProducts = await StorageService.getProducts();
@@ -147,7 +134,7 @@ export default async function HomePage() {
             {/* Right Column (5 cols): 3D Globe + Daily Corridor Ticker */}
             <div className="lg:col-span-5 space-y-4 flex flex-col justify-center">
               <div className="rounded-2xl border border-cargo-750 bg-cargo-900/60 p-2 shadow-cargo">
-                <FreightGlobe3D />
+                <FreightGlobeWrapper />
               </div>
 
               {/* Flight & Freight Tariff Card */}

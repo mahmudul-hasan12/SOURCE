@@ -13,7 +13,8 @@ import {
   Layers,
   ArrowRight,
   Sparkles,
-  Command
+  Command,
+  Settings
 } from "lucide-react";
 import { QuickCartDrawer } from "./QuickCartDrawer";
 
