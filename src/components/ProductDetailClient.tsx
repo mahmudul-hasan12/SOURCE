@@ -15,7 +15,10 @@ import {
   ArrowRight, 
   ArrowUpRight, 
   Edit3, 
-  X
+  X,
+  Maximize2,
+  Camera,
+  ChevronDown
 } from "lucide-react";
 import { DEFAULT_SETTINGS, calculateTierPriceBdt, calculateShippingFee, calculateTwoStagePayment } from "@/lib/pricing";
 import { getClientProductById } from "@/lib/seed-data";

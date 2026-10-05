@@ -57,16 +57,18 @@ async function tryFetchUpstream(targetUrl: string): Promise<{
     const rawTitle = titleMatch ? titleMatch[1].replace(/【|】|_1688| - 1688.*|_厂家.*|批发价格.*|阿里巴巴.*/g, "").trim() : "";
 
     // Extract images from Alicdn (cbu01 & alicdn)
-    const alicdnImages = [
-      ...new Set(
-        [...html.matchAll(/https:\/\/[^"'\s]+\.(?:cbu01\.alicdn\.com|alicdn\.com)[^"'\s]*\.(?:jpg|png|jpeg)/gi)]
+    const matchesImg = Array.from(html.matchAll(/https:\/\/[^"'\s]+\.(?:cbu01\.alicdn\.com|alicdn\.com)[^"'\s]*\.(?:jpg|png|jpeg)/gi));
+    const alicdnImages = Array.from(
+      new Set(
+        matchesImg
           .map((m) => m[0])
           .filter((url) => !url.includes("-tps-") && !url.includes("tfs/") && !url.includes("badge") && !url.includes("spacer"))
-      ),
-    ].slice(0, 5);
+      )
+    ).slice(0, 5);
 
     // Extract price if available
-    const priceMatches = [...html.matchAll(/(?:¥|￥|&yen;|price['":\s]+)([0-9]+(?:\.[0-9]+)?)/gi)].map((m) => parseFloat(m[1]));
+    const matchesPrice = Array.from(html.matchAll(/(?:¥|￥|&yen;|price['":\s]+)([0-9]+(?:\.[0-9]+)?)/gi));
+    const priceMatches = matchesPrice.map((m) => parseFloat(m[1]));
     const validPrices = priceMatches.filter((p) => p >= 1 && p < 100000);
     const foundPrice = validPrices.length > 0 ? validPrices[0] : undefined;
 
