@@ -2,19 +2,13 @@ import React from "react";
 import Link from "next/link";
 import { 
   Search, 
-  Sparkles, 
   ArrowRight, 
   ShieldCheck, 
   Percent, 
   Plane, 
   Ship, 
   Package, 
-  Download,
-  CheckCircle2,
-  Sliders,
-  ExternalLink,
-  Layers,
-  ArrowUpRight
+  Layers
 } from "lucide-react";
 import { StorageService } from "@/lib/db";
 import { calculateTierPriceBdt } from "@/lib/pricing";

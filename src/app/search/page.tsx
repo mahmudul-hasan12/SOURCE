@@ -3,7 +3,7 @@
 import React, { Suspense, useState, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
-import { Search, ArrowRight, Sparkles, CheckCircle2, PackageCheck } from "lucide-react";
+import { ArrowRight, Sparkles, CheckCircle2, PackageCheck } from "lucide-react";
 import { getClientProducts } from "@/lib/seed-data";
 import { Product } from "@/types";
 

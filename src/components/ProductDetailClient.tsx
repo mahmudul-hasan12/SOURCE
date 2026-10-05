@@ -8,22 +8,14 @@ import {
   Plane, 
   Ship, 
   ShieldCheck, 
-  ShoppingCart, 
   CheckCircle2, 
-  AlertCircle,
-  Truck,
-  Sparkles,
-  Layers,
-  Info,
-  Clock,
-  Scale,
-  Camera,
-  ArrowRight,
-  ArrowUpRight,
-  Edit3,
-  X,
-  Maximize2,
-  ChevronDown
+  Sparkles, 
+  Layers, 
+  Clock, 
+  ArrowRight, 
+  ArrowUpRight, 
+  Edit3, 
+  X
 } from "lucide-react";
 import { DEFAULT_SETTINGS, calculateTierPriceBdt, calculateShippingFee, calculateTwoStagePayment } from "@/lib/pricing";
 import { getClientProductById } from "@/lib/seed-data";

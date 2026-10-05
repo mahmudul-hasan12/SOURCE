@@ -9,10 +9,8 @@ import {
   Plane, 
   Ship, 
   ShieldCheck, 
-  Camera, 
   Package,
   Layers,
-  Settings,
   ArrowRight,
   Sparkles,
   Command
