@@ -47,7 +47,15 @@ const config: Config = {
           "monospace"
         ],
       },
+      screens: {
+        xs: "480px",
+      },
+      backdropBlur: {
+        xs: "2px",
+      },
       boxShadow: {
+        'xs': '0 1px 2px 0 rgba(0, 0, 0, 0.05)',
+        '2xs': '0 1px 1px 0 rgba(0, 0, 0, 0.05)',
         'cargo': '0 4px 20px -2px rgba(11, 19, 43, 0.08), 0 2px 6px -1px rgba(11, 19, 43, 0.04)',
         'cargo-lg': '0 10px 30px -4px rgba(11, 19, 43, 0.12), 0 4px 12px -2px rgba(11, 19, 43, 0.06)',
         'amber-glow': '0 0 20px -3px rgba(245, 158, 11, 0.35)',
