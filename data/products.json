@@ -4,91 +4,116 @@
     "sourcePlatform": "1688",
     "sourceOfferId": "895199300568",
     "url": "https://detail.1688.com/offer/895199300568.html",
-    "titleCn": "纯棉工作服男套装春秋加厚 单件/套装劳保服耐磨汽修电焊工装制服",
-    "titleEn": "Men's Heavyweight Pure Cotton Workwear Uniform Suit (Industrial Repair & Workshop Jacket Set)",
-    "descriptionCn": "纯棉工作服男套装春秋加厚，源头实力工厂直供，耐磨防烫，汽修机械维修电焊定制工装制服。",
-    "description": "Guangzhou Baiyun Industrial Garment Manufacturing Co., Ltd. Direct factory wholesale men's heavyweight pure cotton workwear uniform suit. Reinforced triple-stitching, spark-resistant and wear-resistant fabric, engineered for auto repair, engineering, and manufacturing plants with verified Guangzhou warehouse QC inspection.",
+    "titleCn": "工厂直营 纯棉防烫 耐磨抗撕裂 工作服套装 (春夏纯棉工作服套装男透气吸汗耐磨机修电焊劳保服工厂车间工程服定)",
+    "titleEn": "Men's Pure Cotton Heavyweight Workwear Uniform Suit (Anti-Scald & Tear-Resistant Workshop Jacket & Pants Set)",
+    "descriptionCn": "纯棉防烫耐磨抗撕裂，工厂直营源头现货，支持单套起批，河北石家庄工装劳保产业带源头实力出货。",
+    "description": "Direct factory wholesale heavy-duty pure cotton workwear uniform suit. High-density pure cotton drill fabric (280 GSM), certified spark & scald resistant for electric welding, machinery maintenance, and industrial workshops. Featuring stand collar, chest cargo flap pockets, and reinforced wear-resistant pants. Direct from Shijiazhuang Hebei manufacturing belt with 1-set sample MOQ.",
     "images": [
-      "https://images.unsplash.com/photo-1578932750294-f5075e85f44a?w=800",
-      "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800",
-      "https://images.unsplash.com/photo-1584865288642-42078afe6942?w=800"
+      "/products/workwear-green-main.jpg",
+      "/products/workwear-studio-hd.jpg",
+      "/products/workwear-blue-581.jpg",
+      "/products/workwear-green-pants.jpg"
     ],
     "descriptionImages": [
-      "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800",
-      "https://images.unsplash.com/photo-1544441893-675973e31985?w=800"
+      "/products/workwear-studio-hd.jpg"
     ],
     "attributes": [
       {
         "keyCn": "材质",
         "keyEn": "Material",
-        "valueCn": "100% 精梳纯棉加厚斜纹",
-        "valueEn": "100% Combed Heavy Cotton Twill"
+        "valueCn": "100% 纯棉加厚高密斜纹 (防烫耐磨)",
+        "valueEn": "100% Pure Heavyweight Cotton Twill (Scald & Wear Resistant)"
       },
       {
         "keyCn": "适用行业",
         "keyEn": "Target Industry",
-        "valueCn": "汽修、机械制造、工程作业、车间",
-        "valueEn": "Automotive, Machinery, Engineering, Plant Workshops"
+        "valueCn": "电焊劳保、机修汽修、车间流水线、工程作业",
+        "valueEn": "Welding, Automotive/Machinery Repair, Factory Workshops, Construction"
       },
       {
         "keyCn": "特性",
-        "keyEn": "Protective Features",
-        "valueCn": "耐磨、透气、防静电、抗撕裂",
-        "valueEn": "Wear-Resistant, Breathable, Anti-Static, Tear-Resistant"
+        "keyEn": "Key Features",
+        "valueCn": "防烫抗撕裂、透气吸汗、立体剪裁、不起球不褪色",
+        "valueEn": "Scald & Tear Resistant, Breathable, Anti-Pilling, Fade-Resistant"
       },
       {
         "keyCn": "产地",
-        "keyEn": "Manufacturing Origin",
-        "valueCn": "广东东莞服装产业基地",
-        "valueEn": "Dongguan Industrial Garment Base, Guangdong"
+        "keyEn": "Manufacturing Belt",
+        "valueCn": "河北石家庄工装劳保产业带",
+        "valueEn": "Shijiazhuang Industrial Workwear Hub, Hebei"
       }
     ],
     "priceTiers": [
       {
-        "range": "2–9 pcs",
-        "minQty": 2,
-        "priceRmb": 35
+        "range": "1–49 sets",
+        "minQty": 1,
+        "priceRmb": 31.06
       },
       {
-        "range": "10–49 pcs",
-        "minQty": 10,
-        "priceRmb": 31.5
-      },
-      {
-        "range": "50+ pcs",
+        "range": "50–199 sets",
         "minQty": 50,
-        "priceRmb": 28
+        "priceRmb": 28.5
+      },
+      {
+        "range": "200+ sets",
+        "minQty": 200,
+        "priceRmb": 25.8
       }
     ],
-    "basePriceRmb": 35,
+    "basePriceRmb": 31.06,
     "skus": [
       {
-        "id": "sku-8951-1",
-        "name": "Navy Blue - 2-Piece Suit (Jacket + Pants)",
-        "nameCn": "藏青色 套装",
-        "priceRmb": 35,
-        "stock": 4500
+        "id": "sku-581-grn",
+        "name": "[Military Green] Exquisite 581 Set",
+        "nameCn": "军绿精美581套装",
+        "image": "/products/workwear-green-581.jpg",
+        "priceRmb": 31.06,
+        "stock": 9676
       },
       {
-        "id": "sku-8951-2",
-        "name": "Industrial Gray - 2-Piece Suit",
-        "nameCn": "工业灰 套装",
-        "priceRmb": 35,
-        "stock": 3800
+        "id": "sku-420-grn",
+        "name": "[Military Green] Exquisite 420 Set",
+        "nameCn": "军绿精美420套装",
+        "image": "/products/workwear-green-420.jpg",
+        "priceRmb": 31.06,
+        "stock": 9977
       },
       {
-        "id": "sku-8951-3",
-        "name": "Heavyweight Orange / Navy Two-Tone",
-        "nameCn": "拼色橙蓝 套装",
-        "priceRmb": 37,
-        "stock": 2200
+        "id": "sku-581-blu",
+        "name": "[Dark Blue] Exquisite 581 Set",
+        "nameCn": "深蓝精美581套装",
+        "image": "/products/workwear-blue-581.jpg",
+        "priceRmb": 31.06,
+        "stock": 9827
+      },
+      {
+        "id": "sku-pants-grn",
+        "name": "Military Green Industrial Pants",
+        "nameCn": "军绿单裤",
+        "image": "/products/workwear-green-pants.jpg",
+        "priceRmb": 18.5,
+        "stock": 9786
       }
     ],
+    "sizes": [
+      "165 [90–100 jin / 45–50 kg]",
+      "170 [100–110 jin / 50–55 kg]",
+      "175 [110–130 jin / 55–65 kg]",
+      "180 [130–150 jin / 65–75 kg]",
+      "185 [150–170 jin / 75–85 kg]",
+      "190 [170–190 jin / 85–95 kg]"
+    ],
+    "factoryBadges": [
+      "⭐ 4.4 AI Yanxuan Index",
+      "🏭 Samsung Supply Chain Partner",
+      "🛡️ Late Delivery Guarantee",
+      "⚡ Ships within 48 Hours"
+    ],
     "category": "apparel",
-    "shopName": "Guangzhou Baiyun Industrial Garment Manufacturing Co., Ltd.",
-    "location": "Guangdong, China",
+    "shopName": "Hebei Juxian Industrial Workwear Manufacturing Co., Ltd.",
+    "location": "Shijiazhuang, Hebei",
     "estimatedWeightKg": 0.85,
-    "minOrderQty": 2,
+    "minOrderQty": 1,
     "createdAt": "2026-10-05T05:56:35.900Z"
   },
   {
@@ -153,7 +178,7 @@
     "descriptionCn": "",
     "description": "American High Street Retro Wide-Leg Vintage Denim Jeans V2. Verified direct factory wholesale batch with certified quality inspection in Guangzhou warehouse.",
     "images": [
-      "https://cbu01.alicdn.com/img/ibank/O1CN01yLe9HY1h1tfu36uNz_!!2217490744218-0-cib.jpg"
+      "https://images.unsplash.com/photo-1542272604-780c96856592?w=800"
     ],
     "descriptionImages": [],
     "attributes": [],
@@ -193,12 +218,9 @@
     "descriptionCn": "",
     "description": "Dongguan Hongda Garment Manufacturing Co., Ltd.. Verified direct factory wholesale batch with certified quality inspection in Guangzhou warehouse.",
     "images": [
-      "https://cbu01.alicdn.com/img/ibank/O1CN01MainPic_!!123-0-cib.jpg"
+      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800"
     ],
-    "descriptionImages": [
-      "https://cbu01.alicdn.com/img/ibank/O1CN01DetailPhotoA_!!123-0-cib.jpg",
-      "https://cbu01.alicdn.com/img/ibank/O1CN01DetailPhotoB_!!123-0-cib.jpg"
-    ],
+    "descriptionImages": [],
     "attributes": [
       {
         "keyCn": "材质",

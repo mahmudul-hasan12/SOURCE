@@ -252,12 +252,16 @@ export default async function HomePage() {
                 className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs hover:shadow-cargo transition-all duration-300 hover:-translate-y-1 group flex flex-col"
               >
                 {/* Image & Badges */}
-                <div className="relative aspect-square overflow-hidden bg-slate-100">
+                <Link 
+                  href={`/product/${product.id}`}
+                  className="relative aspect-square overflow-hidden bg-slate-100 block cursor-pointer"
+                >
                   <img
                     src={product.images[0]}
                     alt={product.titleEn}
                     loading="lazy"
                     decoding="async"
+                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
                   />
                   <div className="absolute top-3 left-3 flex flex-col gap-1 items-start">
@@ -273,7 +277,7 @@ export default async function HomePage() {
                   <span className="absolute bottom-3 right-3 bg-cargo-900/90 text-white text-[11px] font-mono font-medium px-2 py-0.5 rounded tabular-nums">
                     MOQ: {product.minOrderQty} pcs
                   </span>
-                </div>
+                </Link>
 
                 {/* Content */}
                 <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
@@ -281,9 +285,11 @@ export default async function HomePage() {
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block font-mono">
                       {product.location} Hub
                     </span>
-                    <h3 className="font-bold text-slate-900 text-sm line-clamp-2 leading-snug group-hover:text-transit-air transition mt-0.5">
-                      {product.titleEn}
-                    </h3>
+                    <Link href={`/product/${product.id}`} className="block">
+                      <h3 className="font-bold text-slate-900 text-sm line-clamp-2 leading-snug group-hover:text-transit-air transition mt-0.5 cursor-pointer">
+                        {product.titleEn}
+                      </h3>
+                    </Link>
                     <p className="text-[11px] text-slate-500 line-clamp-1 mt-0.5">
                       {product.shopName}
                     </p>

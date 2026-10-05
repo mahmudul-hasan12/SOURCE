@@ -43,7 +43,8 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
 
   const [selectedImage, setSelectedImage] = useState(fallbackProduct?.images[0] || "");
   const [selectedSku, setSelectedSku] = useState(fallbackProduct?.skus[0] || null);
-  const [quantity, setQuantity] = useState(fallbackProduct?.minOrderQty || 2);
+  const [selectedSize, setSelectedSize] = useState<string>((fallbackProduct as any)?.sizes?.[0] || "");
+  const [quantity, setQuantity] = useState(fallbackProduct?.minOrderQty || 1);
   const [shippingMethod, setShippingMethod] = useState<"AIR" | "SEA">("AIR");
   const [isQcModalOpen, setIsQcModalOpen] = useState(false);
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
@@ -103,6 +104,9 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
           }
           if (data.product.skus?.length > 0 && !selectedSku) {
             setSelectedSku(data.product.skus[0]);
+          }
+          if (data.product.sizes?.length > 0 && !selectedSize) {
+            setSelectedSize(data.product.sizes[0]);
           }
           if (data.product.minOrderQty && quantity < data.product.minOrderQty) {
             setQuantity(data.product.minOrderQty);
@@ -166,6 +170,7 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
     const checkoutItem = {
       product,
       sku: selectedSku,
+      size: selectedSize,
       quantity,
       shippingMethod,
       unitPriceBdt,
@@ -231,12 +236,22 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Gallery & Verified Inspection Badge (5 cols) */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="aspect-square bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-sm relative group">
+          <div 
+            onClick={() => setLightboxImage(selectedImage || product.images[0])}
+            className="aspect-square bg-white border border-slate-200/90 rounded-3xl overflow-hidden shadow-sm relative group cursor-zoom-in"
+          >
             <img
               src={selectedImage || product.images[0]}
               alt={product.titleEn}
               fetchPriority="high"
               decoding="async"
+              referrerPolicy="no-referrer"
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (!target.src.includes('fallback-product.jpg')) {
+                  target.src = '/products/fallback-product.jpg';
+                }
+              }}
               className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
             />
             <div className="absolute top-3 left-3 flex flex-col gap-1 items-start">
@@ -248,6 +263,10 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
                   Battery Certified
                 </span>
               )}
+            </div>
+            <div className="absolute top-3 right-3 bg-cargo-950/80 backdrop-blur-xs text-white text-[11px] font-mono font-medium px-2.5 py-1 rounded-md opacity-0 group-hover:opacity-100 transition shadow-xs flex items-center gap-1.5 pointer-events-none">
+              <Maximize2 className="w-3.5 h-3.5 text-freight-amber" />
+              <span>Click to Zoom</span>
             </div>
             <div className="absolute bottom-3 right-3 bg-cargo-900/90 backdrop-blur-xs text-white text-xs font-mono font-semibold px-2.5 py-1 rounded-md tabular-nums">
               Est. {product.estimatedWeightKg} kg/unit
@@ -321,6 +340,18 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
             <h1 className="text-2xl sm:text-3xl font-black text-cargo-900 leading-snug tracking-tight">
               {product.titleEn}
             </h1>
+            {((product as any).factoryBadges && (product as any).factoryBadges.length > 0) && (
+              <div className="flex flex-wrap gap-1.5 pt-2">
+                {(product as any).factoryBadges.map((badge: string, bIdx: number) => (
+                  <span 
+                    key={bIdx} 
+                    className="inline-flex items-center text-[11px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200/80 px-2.5 py-1 rounded-lg font-mono shadow-2xs"
+                  >
+                    {badge}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Wholesale Tiered Pricing Matrix */}
@@ -386,6 +417,40 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
               })}
             </div>
           </div>
+
+          {/* 1688 Size Matrix Selector */}
+          {((product as any).sizes && (product as any).sizes.length > 0) && (
+            <div className="space-y-2">
+              <div className="flex justify-between items-center text-xs">
+                <label className="font-bold text-cargo-900">Select Body Size / Weight Spec:</label>
+                <span className="text-transit-air font-semibold font-mono">{selectedSize || (product as any).sizes[0]}</span>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {(product as any).sizes.map((sizeStr: string, idx: number) => {
+                  const isSelected = (selectedSize || (product as any).sizes[0]) === sizeStr;
+                  const [sizeCode, ...rest] = sizeStr.split(' ');
+                  const specLabel = rest.join(' ');
+                  return (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setSelectedSize(sizeStr)}
+                      className={`p-2 rounded-xl border text-xs font-mono transition text-left btn-tactile ${
+                        isSelected
+                          ? "bg-cargo-900 text-white border-cargo-900 shadow-xs font-bold"
+                          : "bg-white text-slate-700 border-slate-200 hover:border-slate-300"
+                      }`}
+                    >
+                      <div className="font-bold text-xs">{sizeCode}</div>
+                      <div className={`text-[10px] ${isSelected ? 'text-slate-300' : 'text-slate-400'}`}>
+                        {specLabel}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
           {/* Quantity Selector with MOQ */}
           <div className="space-y-2">
@@ -686,20 +751,45 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
         })()}
       </div>
 
-      {/* Lightbox Modal for Full-Resolution Blueprint Viewing */}
+      {/* Lightbox Modal for Full-Resolution Viewing */}
       {lightboxImage && (
         <div 
           onClick={() => setLightboxImage(null)}
-          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 cursor-zoom-out"
+          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center p-4 cursor-zoom-out"
         >
-          <div className="relative max-w-4xl max-h-[90vh] overflow-auto rounded-2xl bg-cargo-950 border border-cargo-800 p-2 shadow-2xl">
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-4xl max-h-[85vh] flex flex-col items-center justify-center cursor-default"
+          >
             <button
               onClick={() => setLightboxImage(null)}
-              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-cargo-900/90 text-white hover:bg-rose-600 transition"
+              className="absolute -top-12 right-0 z-10 p-2 rounded-full bg-cargo-900/90 border border-slate-700 text-white hover:bg-rose-600 transition"
             >
               <X className="w-5 h-5" />
             </button>
-            <img src={lightboxImage} alt="Expanded Inspection Diagram" className="w-full h-auto rounded-xl" />
+            <img 
+              src={lightboxImage} 
+              alt="Expanded Factory Inspection View" 
+              className="max-h-[75vh] w-auto max-w-full rounded-2xl border border-slate-700/60 shadow-2xl object-contain bg-cargo-950" 
+            />
+            {product.images && product.images.length > 1 && (
+              <div className="flex items-center gap-2 mt-3 overflow-x-auto p-1 max-w-md">
+                {product.images.map((img, i) => (
+                  <button
+                    key={i}
+                    onClick={() => {
+                      setLightboxImage(img);
+                      setSelectedImage(img);
+                    }}
+                    className={`w-12 h-12 rounded-xl overflow-hidden border-2 flex-shrink-0 transition ${
+                      lightboxImage === img ? "border-freight-amber ring-2 ring-freight-amber/30 scale-105" : "border-slate-700 opacity-60 hover:opacity-100"
+                    }`}
+                  >
+                    <img src={img} alt="" className="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}

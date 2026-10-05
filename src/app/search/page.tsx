@@ -168,11 +168,21 @@ function SearchContent() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {results.map((product) => (
           <div key={product.id} className="bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-xs hover:shadow-cargo transition flex flex-col justify-between group">
-            <div className="aspect-square bg-slate-100 overflow-hidden relative">
+            <Link 
+              href={`/product/${product.id}`}
+              className="aspect-square bg-slate-100 overflow-hidden relative block cursor-pointer"
+            >
               {product.images && product.images[0] ? (
                 <img 
                   src={product.images[0]} 
                   alt={product.titleEn} 
+                  referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (!target.src.includes('fallback-product.jpg')) {
+                      target.src = '/products/fallback-product.jpg';
+                    }
+                  }}
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-300" 
                 />
               ) : (
@@ -183,12 +193,16 @@ function SearchContent() {
               <span className="absolute top-2 left-2 bg-cargo-950 text-freight-amber font-mono font-bold text-[10px] px-2 py-0.5 rounded shadow-xs">
                 Direct Factory
               </span>
-            </div>
+            </Link>
             <div className="p-4 space-y-2">
-              <h3 className="font-bold text-xs text-cargo-900 line-clamp-2 leading-snug">{product.titleEn}</h3>
+              <Link href={`/product/${product.id}`} className="block">
+                <h3 className="font-bold text-xs text-cargo-900 line-clamp-2 leading-snug hover:text-transit-air transition cursor-pointer">
+                  {product.titleEn}
+                </h3>
+              </Link>
               <div className="flex justify-between items-baseline font-mono">
                 <span className="text-cargo-900 font-black text-sm tabular-nums">
-                  ৳{Math.round(product.basePriceRmb * 17.5 * 1.12).toLocaleString()}
+                  ৳{Math.round(product.basePriceRmb * 19.6).toLocaleString()}
                 </span>
                 <span className="text-[11px] text-slate-400">¥{product.basePriceRmb} RMB</span>
               </div>
