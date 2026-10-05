@@ -9,6 +9,7 @@ import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 export const metadata: Metadata = {
   title: "SkySourcing BD - Direct Global Factory Wholesale Sourcing in Bangladesh",
   description: "Source millions of products directly from verified manufacturers and factories in China. Quality inspection, air & sea cargo, and doorstep delivery across Bangladesh.",
+  referrer: "no-referrer",
 };
 
 export default function RootLayout({

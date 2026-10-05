@@ -177,12 +177,20 @@ export class StorageService {
   }
 
   static async getProductById(id: string): Promise<Product | null> {
+    const cleanId = id ? id.replace(/^prod-/, "") : "";
     const db = await getMongoDb();
     if (db) {
       try {
         const col = db.collection<Product>("products");
         const doc = await col.findOne(
-          { $or: [{ id }, { sourceOfferId: id }] as any },
+          {
+            $or: [
+              { id },
+              { id: `prod-${cleanId}` },
+              { sourceOfferId: id },
+              { sourceOfferId: cleanId },
+            ] as any,
+          },
           { projection: { _id: 0 } }
         );
         if (doc) return doc as Product;
@@ -191,7 +199,15 @@ export class StorageService {
       }
     }
     const local = getLocalProducts();
-    return local.find((p) => p.id === id || p.sourceOfferId === id) || null;
+    return (
+      local.find(
+        (p) =>
+          p.id === id ||
+          p.id === `prod-${cleanId}` ||
+          p.sourceOfferId === id ||
+          p.sourceOfferId === cleanId
+      ) || null
+    );
   }
 
   static async saveProduct(product: Product): Promise<Product> {

@@ -45,6 +45,7 @@ export interface Product {
   location: string;
   estimatedWeightKg: number;
   minOrderQty: number;
+  sizes?: string[];
   isSensitiveCargo?: boolean; // battery, liquid, powder, magnet
   createdAt?: string;
 }

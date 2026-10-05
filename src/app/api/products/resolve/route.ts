@@ -20,25 +20,31 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// Resilient upstream fetcher using native fetch that extracts title, images, and pricing
-async function tryFetchUpstream(targetUrl: string): Promise<{
+// Resilient upstream fetcher prioritizing m.1688.com mobile endpoints and Alicdn assets
+async function tryFetchUpstream(targetUrl: string, offerId?: string | null): Promise<{
   title?: string;
   images?: string[];
   price?: number;
+  priceTiers?: { range: string; minQty: number; priceRmb: number }[];
   shopName?: string;
 } | null> {
   try {
-    const parsed = new URL(targetUrl);
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 4000);
+    let fetchUrl = targetUrl;
+    // For 1688 URLs, always prioritize mobile endpoint m.1688.com which is significantly more resilient to WAF blocks
+    if (offerId && (targetUrl.includes("1688.com") || !targetUrl.includes("http"))) {
+      fetchUrl = `https://m.1688.com/offer/${offerId}.html`;
+    }
 
-    const res = await fetch(targetUrl, {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 6000);
+
+    const res = await fetch(fetchUrl, {
       headers: {
         "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+          "Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1",
         Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
         "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
-        Referer: `${parsed.protocol}//${parsed.hostname}/`,
+        Referer: "https://m.1688.com/",
       },
       signal: controller.signal,
     });
@@ -46,7 +52,7 @@ async function tryFetchUpstream(targetUrl: string): Promise<{
 
     if (!res.ok) return null;
     const html = await res.text();
-    if (html.length < 500 || html.includes("punish?x5secdata=") || html.includes("sec.1688.com")) {
+    if (html.length < 500 || html.includes("punish?x5secdata=") || html.includes("<!--rgv587_flag:sm-->")) {
       return null;
     }
 
@@ -54,7 +60,15 @@ async function tryFetchUpstream(targetUrl: string): Promise<{
     const titleMatch =
       html.match(/<meta\s+property=["']og:title["']\s+content=["']([^"']+)["']/i) ||
       html.match(/<title>([^<]+)<\/title>/i);
-    const rawTitle = titleMatch ? titleMatch[1].replace(/【|】|_1688| - 1688.*|_厂家.*|批发价格.*|阿里巴巴.*/g, "").trim() : "";
+    let rawTitle = titleMatch ? titleMatch[1] : "";
+    rawTitle = rawTitle
+      .replace(/【[^】]*】/g, "")
+      .replace(/_1688.*| - 1688.*|_厂家.*|批发价格.*|阿里巴巴.*/g, "")
+      .trim();
+
+    // Extract shop / company name
+    const shopMatch = html.match(/"companyName"\s*:\s*"([^"]+)"/) || html.match(/"shopName"\s*:\s*"([^"]+)"/);
+    const shopName = shopMatch ? shopMatch[1].trim() : undefined;
 
     // Extract images from Alicdn (cbu01 & alicdn)
     const matchesImg = Array.from(html.matchAll(/https:\/\/[^"'\s]+\.(?:cbu01\.alicdn\.com|alicdn\.com)[^"'\s]*\.(?:jpg|png|jpeg)/gi));
@@ -62,20 +76,53 @@ async function tryFetchUpstream(targetUrl: string): Promise<{
       new Set(
         matchesImg
           .map((m) => m[0])
-          .filter((url) => !url.includes("-tps-") && !url.includes("tfs/") && !url.includes("badge") && !url.includes("spacer"))
+          .filter((url) => !url.includes("-tps-") && !url.includes("tfs/") && !url.includes("badge") && !url.includes("spacer") && !url.includes("avatar"))
       )
-    ).slice(0, 5);
+    ).slice(0, 6);
 
-    // Extract price if available
-    const matchesPrice = Array.from(html.matchAll(/(?:¥|￥|&yen;|price['":\s]+)([0-9]+(?:\.[0-9]+)?)/gi));
-    const priceMatches = matchesPrice.map((m) => parseFloat(m[1]));
-    const validPrices = priceMatches.filter((p) => p >= 1 && p < 100000);
-    const foundPrice = validPrices.length > 0 ? validPrices[0] : undefined;
+    // Extract prices
+    const prices: number[] = [];
+    const pMatches = Array.from(html.matchAll(/"price"\s*:\s*"?([0-9.]+)"?/g));
+    for (const m of pMatches) {
+      const val = parseFloat(m[1]);
+      if (val >= 1 && val < 100000 && !prices.includes(val)) {
+        prices.push(val);
+      }
+    }
+    if (prices.length === 0) {
+      const matchesPrice = Array.from(html.matchAll(/(?:¥|￥|&yen;|price['":\s]+)([0-9]+(?:\.[0-9]+)?)/gi));
+      for (const m of matchesPrice) {
+        const val = parseFloat(m[1]);
+        if (val >= 1 && val < 100000 && !prices.includes(val)) {
+          prices.push(val);
+        }
+      }
+    }
+
+    prices.sort((a, b) => b - a);
+    const foundPrice = prices.length > 0 ? prices[0] : undefined;
+
+    let priceTiers = undefined;
+    if (prices.length >= 3) {
+      priceTiers = [
+        { range: "2–9 pcs", minQty: 2, priceRmb: prices[0] },
+        { range: "10–49 pcs", minQty: 10, priceRmb: prices[1] },
+        { range: "50+ pcs", minQty: 50, priceRmb: prices[2] },
+      ];
+    } else if (foundPrice) {
+      priceTiers = [
+        { range: "2–9 pcs", minQty: 2, priceRmb: foundPrice },
+        { range: "10–49 pcs", minQty: 10, priceRmb: Number((foundPrice * 0.95).toFixed(1)) },
+        { range: "50+ pcs", minQty: 50, priceRmb: Number((foundPrice * 0.88).toFixed(1)) },
+      ];
+    }
 
     return {
       title: rawTitle || undefined,
       images: alicdnImages.length > 0 ? alicdnImages : undefined,
       price: foundPrice,
+      priceTiers,
+      shopName,
     };
   } catch {
     return null;
@@ -123,14 +170,15 @@ function classifyProduct(url: string, rawTitle: string): {
   if (/牛仔裤|牛仔|阔腿|微喇|高街|复古|denim|jeans/i.test(combined)) {
     return {
       category: "apparel",
-      defaultTitleEn: "American High Street Retro Wide-Leg Vintage Denim Jeans",
+      defaultTitleEn: "Men's Hong Kong Style High Street Loose Wide-Leg Retro Denim Jeans",
       images: [
-        "https://images.unsplash.com/photo-1542272604-780c96856592?w=800",
-        "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800",
+        "https://cbu01.alicdn.com/img/ibank/O1CN01k0bbzI1pYszt0Hopz_!!2207321775373-0-cib.jpg",
+        "https://cbu01.alicdn.com/img/ibank/O1CN01wHLhS41pYszujcetf_!!2207321775373-0-cib.jpg",
+        "https://cbu01.alicdn.com/img/ibank/O1CN014td8wp1pYszpsI0Hp_!!2207321775373-0-cib.jpg",
       ],
-      basePriceRmb: 17.0,
-      location: "Guangdong, Guangzhou (Xintang Denim Base)",
-      shopName: "Guangzhou Maixin Garment Factory",
+      basePriceRmb: 20.0,
+      location: "Guangdong, Jieyang Apparel Zone",
+      shopName: "Guangdong Jieyang Apparel Industrial Base",
     };
   }
 
@@ -227,13 +275,14 @@ function classifyProduct(url: string, rawTitle: string): {
   // 9. Default Factory Goods Fallback
   return {
     category: "wholesale",
-    defaultTitleEn: "Verified Direct Source Factory Wholesale Listing",
+    defaultTitleEn: "Direct Source Factory Wholesale Product",
     images: [
-      "/products/fallback-product.jpg",
+      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800",
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800",
     ],
-    basePriceRmb: 28.0,
+    basePriceRmb: 20.0,
     location: "Guangdong, China",
-    shopName: "Guangdong Verified Factory Partner",
+    shopName: "China Verified Wholesale Manufacturer",
   };
 }
 
@@ -247,7 +296,8 @@ async function handleResolve(rawUrl: string) {
     cleanUrl.match(/\/offer\/(\d+)\.html/) ||
     cleanUrl.match(/[?&]offerId=(\d+)/) ||
     cleanUrl.match(/[?&]id=(\d+)/) ||
-    cleanUrl.match(/[?&]item_id=(\d+)/);
+    cleanUrl.match(/[?&]item_id=(\d+)/) ||
+    cleanUrl.match(/^(\d{8,15})$/);
 
   const offerId = matchOffer ? matchOffer[1] : null;
 
@@ -267,7 +317,12 @@ async function handleResolve(rawUrl: string) {
         (p.url && p.url.includes(offerId))
     );
 
-    if (existing) {
+    const isGenericFallback =
+      existing &&
+      (existing.titleEn.includes("Verified Direct Source Factory Wholesale Listing") ||
+        (existing.images && existing.images.some((img) => img.includes("fallback-product"))));
+
+    if (existing && !isGenericFallback) {
       return NextResponse.json({
         success: true,
         matched: true,
@@ -279,18 +334,24 @@ async function handleResolve(rawUrl: string) {
 
   const existingByUrl = allProducts.find((p) => p.url && (p.url === cleanUrl || cleanUrl.includes(p.url) || p.url.includes(cleanUrl)));
   if (existingByUrl) {
-    return NextResponse.json({
-      success: true,
-      matched: true,
-      product: existingByUrl,
-      redirectUrl: `/product/${existingByUrl.id}`,
-    });
+    const isGenericFallback =
+      existingByUrl.titleEn.includes("Verified Direct Source Factory Wholesale Listing") ||
+      (existingByUrl.images && existingByUrl.images.some((img) => img.includes("fallback-product")));
+
+    if (!isGenericFallback) {
+      return NextResponse.json({
+        success: true,
+        matched: true,
+        product: existingByUrl,
+        redirectUrl: `/product/${existingByUrl.id}`,
+      });
+    }
   }
 
   // 2. Parse URL parameters for topic / keyword cues
   let rawTitleCn = "";
   try {
-    const parsed = new URL(cleanUrl);
+    const parsed = new URL(cleanUrl.startsWith("http") ? cleanUrl : `https://${cleanUrl}`);
     const topicName = parsed.searchParams.get("topicName");
     const optName = parsed.searchParams.get("optName");
     const title = parsed.searchParams.get("title");
@@ -298,10 +359,15 @@ async function handleResolve(rawUrl: string) {
   } catch {}
 
   // 3. Attempt live upstream extraction
-  let upstreamData: { title?: string; images?: string[]; price?: number; shopName?: string } | null = null;
-  if (cleanUrl.startsWith("http")) {
-    upstreamData = await tryFetchUpstream(cleanUrl);
-  }
+  let upstreamData: {
+    title?: string;
+    images?: string[];
+    price?: number;
+    priceTiers?: { range: string; minQty: number; priceRmb: number }[];
+    shopName?: string;
+  } | null = null;
+
+  upstreamData = await tryFetchUpstream(cleanUrl, offerId);
 
   if (upstreamData?.title) {
     rawTitleCn = upstreamData.title;
@@ -311,10 +377,15 @@ async function handleResolve(rawUrl: string) {
   const classification = classifyProduct(cleanUrl, rawTitleCn);
 
   let titleEn = classification.defaultTitleEn;
+  let titleBn = "";
   if (rawTitleCn) {
-    const translated = await translateText(rawTitleCn);
+    const translated = await translateText(rawTitleCn, "zh-CN", "en");
     if (translated && translated.length > 3 && !/[\u4e00-\u9fa5]/.test(translated)) {
       titleEn = translated;
+    }
+    const translatedBn = await translateText(rawTitleCn, "zh-CN", "bn");
+    if (translatedBn && translatedBn.length > 3 && !/[\u4e00-\u9fa5]/.test(translatedBn)) {
+      titleBn = translatedBn;
     }
   } else if (offerId) {
     titleEn = `${classification.defaultTitleEn} #${offerId}`;
@@ -331,10 +402,10 @@ async function handleResolve(rawUrl: string) {
     id: resolvedId,
     sourcePlatform: platform,
     sourceOfferId: offerId || `${Date.now()}`,
-    url: cleanUrl,
+    url: cleanUrl.startsWith("http") ? cleanUrl : `https://detail.1688.com/offer/${offerId || ""}.html`,
     titleCn: rawTitleCn || classification.defaultTitleEn,
     titleEn,
-    titleBn: `আমদানিকৃত পাইকারি পণ্য #${offerId || ""}`,
+    titleBn: titleBn || `আমদানিকৃত পাইকারি পণ্য #${offerId || ""}`,
     description: `Direct factory wholesale supply from verified manufacturing base in China. Pre-shipment quality inspection and certified gross weight verification at Guangzhou Hub.`,
     images: finalImages,
     descriptionImages: finalImages.slice(1),
@@ -344,10 +415,10 @@ async function handleResolve(rawUrl: string) {
       { keyCn: "发货时效", keyEn: "Dispatch SLA", valueCn: "48小时闪电发货", valueEn: "48-Hour Rapid Dispatch" },
       { keyCn: "货源平台", keyEn: "Sourcing Channel", valueCn: platform.toUpperCase(), valueEn: `${platform.toUpperCase()} Direct Wholesale` },
     ],
-    priceTiers: [
-      { range: "1–9 pcs", minQty: 1, priceRmb: finalPriceRmb },
-      { range: "10–49 pcs", minQty: 10, priceRmb: Number((finalPriceRmb * 0.9).toFixed(1)) },
-      { range: "50+ pcs", minQty: 50, priceRmb: Number((finalPriceRmb * 0.82).toFixed(1)) },
+    priceTiers: upstreamData?.priceTiers || [
+      { range: "2–9 pcs", minQty: 2, priceRmb: finalPriceRmb },
+      { range: "10–49 pcs", minQty: 10, priceRmb: Number((finalPriceRmb * 0.95).toFixed(1)) },
+      { range: "50+ pcs", minQty: 50, priceRmb: Number((finalPriceRmb * 0.88).toFixed(1)) },
     ],
     basePriceRmb: finalPriceRmb,
     skus: [
@@ -364,7 +435,7 @@ async function handleResolve(rawUrl: string) {
     shopName: upstreamData?.shopName || classification.shopName,
     location: classification.location,
     estimatedWeightKg: 0.65,
-    minOrderQty: 1,
+    minOrderQty: 2,
     isSensitiveCargo: classification.isSensitiveCargo,
     createdAt: new Date().toISOString(),
   };
