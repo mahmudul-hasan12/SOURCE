@@ -33,8 +33,8 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
   const [isLoading, setIsLoading] = useState(!fallbackProduct);
   const settings = DEFAULT_SETTINGS;
 
-  const [selectedImage, setSelectedImage] = useState(fallbackProduct?.images[0] || "");
-  const [selectedSku, setSelectedSku] = useState(fallbackProduct?.skus[0] || null);
+  const [selectedImage, setSelectedImage] = useState(fallbackProduct?.images?.[0] || "");
+  const [selectedSku, setSelectedSku] = useState(fallbackProduct?.skus?.[0] || null);
   const [selectedSize, setSelectedSize] = useState<string>((fallbackProduct as any)?.sizes?.[0] || "");
   const [quantity, setQuantity] = useState(fallbackProduct?.minOrderQty || 1);
   const [shippingMethod, setShippingMethod] = useState<"AIR" | "SEA">("AIR");
@@ -44,7 +44,7 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editTitle, setEditTitle] = useState(fallbackProduct?.titleEn || "");
   const [editPrice, setEditPrice] = useState(fallbackProduct?.basePriceRmb || 25);
-  const [editImage, setEditImage] = useState(fallbackProduct?.images[0] || "");
+  const [editImage, setEditImage] = useState(fallbackProduct?.images?.[0] || "");
   const [isSavingEdit, setIsSavingEdit] = useState(false);
 
   const handleSaveEdit = async () => {
@@ -267,7 +267,7 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
 
           {/* Thumbnails */}
           <div className="flex gap-2 overflow-x-auto pb-1">
-            {product.images.map((img, idx) => (
+            {(product.images || []).map((img, idx) => (
               <button
                 key={idx}
                 onClick={() => setSelectedImage(img)}
@@ -357,9 +357,9 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
             </div>
 
             <div className="grid grid-cols-3 gap-2.5 text-center font-mono">
-              {product.priceTiers.map((tier, idx) => {
-                const { unitPriceBdt: tierBdt } = calculateTierPriceBdt(product.priceTiers, tier.minQty);
-                const isActive = quantity >= tier.minQty && (idx === product.priceTiers.length - 1 || quantity < product.priceTiers[idx + 1].minQty);
+              {(product.priceTiers || []).map((tier, idx) => {
+                const { unitPriceBdt: tierBdt } = calculateTierPriceBdt(product.priceTiers || [], tier.minQty);
+                const isActive = quantity >= tier.minQty && (idx === (product.priceTiers || []).length - 1 || quantity < (product.priceTiers || [])[idx + 1]?.minQty);
                 return (
                   <div
                     key={idx}
@@ -379,36 +379,38 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
           </div>
 
           {/* SKU Variant Selector */}
-          <div className="space-y-2.5">
-            <label className="text-xs font-bold text-cargo-900 flex justify-between">
-              <span>Select Factory Variant / Specification:</span>
-              <span className="text-transit-air font-semibold">{selectedSku?.name || "Standard Model"}</span>
-            </label>
-            <div className="flex flex-wrap gap-2">
-              {product.skus.map((sku) => {
-                const isSelected = selectedSku?.id === sku.id;
-                return (
-                  <button
-                    key={sku.id}
-                    onClick={() => {
-                      setSelectedSku(sku);
-                      if (sku.image) setSelectedImage(sku.image);
-                    }}
-                    className={`flex items-center gap-2 p-1.5 pr-3 rounded-xl border text-xs font-medium transition btn-tactile ${
-                      isSelected
-                        ? "border-cargo-900 bg-cargo-900 text-white shadow-xs"
-                        : "border-slate-200 hover:border-slate-300 bg-white text-slate-700"
-                    }`}
-                  >
-                    {sku.image && (
-                      <img src={sku.image} alt={sku.name} className="w-8 h-8 rounded-lg object-cover" />
-                    )}
-                    <span>{sku.name}</span>
-                  </button>
-                );
-              })}
+          {Boolean(product.skus && product.skus.length > 0) && (
+            <div className="space-y-2.5">
+              <label className="text-xs font-bold text-cargo-900 flex justify-between">
+                <span>Select Factory Variant / Specification:</span>
+                <span className="text-transit-air font-semibold">{selectedSku?.name || "Standard Model"}</span>
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {(product.skus || []).map((sku) => {
+                  const isSelected = selectedSku?.id === sku.id;
+                  return (
+                    <button
+                      key={sku.id}
+                      onClick={() => {
+                        setSelectedSku(sku);
+                        if (sku.image) setSelectedImage(sku.image);
+                      }}
+                      className={`flex items-center gap-2 p-1.5 pr-3 rounded-xl border text-xs font-medium transition btn-tactile ${
+                        isSelected
+                          ? "border-cargo-900 bg-cargo-900 text-white shadow-xs"
+                          : "border-slate-200 hover:border-slate-300 bg-white text-slate-700"
+                      }`}
+                    >
+                      {sku.image && (
+                        <img src={sku.image} alt={sku.name} className="w-8 h-8 rounded-lg object-cover" />
+                      )}
+                      <span>{sku.name}</span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* 1688 Size Matrix Selector */}
           {((product as any).sizes && (product as any).sizes.length > 0) && (
@@ -478,7 +480,7 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
 
               {/* Quick Preset Buttons */}
               <div className="flex gap-1.5 font-mono">
-                {[product.minOrderQty, 10, 50, 100].map((preset) => (
+                {[product.minOrderQty || 1, 10, 50, 100].map((preset) => (
                   <button
                     key={preset}
                     onClick={() => setQuantity(preset)}
@@ -639,12 +641,12 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
                 </p>
               </div>
               <span className="text-xs font-mono font-semibold text-qc-emerald bg-emerald-50 px-3 py-1 rounded-xl border border-emerald-200 self-start sm:self-auto">
-                {product.attributes.length} Verified Parameters
+                {(product.attributes || []).length} Verified Parameters
               </span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
-              {product.attributes.map((attr, idx) => (
+              {(product.attributes || []).map((attr, idx) => (
                 <div
                   key={idx}
                   className="p-3.5 rounded-2xl bg-slate-50/80 border border-slate-200/70 hover:border-slate-300 transition flex items-start justify-between gap-4"

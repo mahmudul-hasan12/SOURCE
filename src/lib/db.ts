@@ -12,6 +12,8 @@ const PRODUCTS_FILE = path.join(DATA_DIR, "products.json");
 const ORDERS_FILE = path.join(DATA_DIR, "orders.json");
 const SETTINGS_FILE = path.join(DATA_DIR, "settings.json");
 
+const FALLBACK_MONGODB_URI = "mongodb+srv://riode520_db_user:Exmipf7swFA3aGPy@cluster0.all666i.mongodb.net/skysourcing?retryWrites=true&w=majority&appName=Cluster0";
+
 // Connection pooling for serverless / Next.js
 declare global {
   // eslint-disable-next-line no-var
@@ -21,7 +23,7 @@ declare global {
 let cachedDb: Db | null = null;
 
 async function getMongoDb(): Promise<Db | null> {
-  const uri = process.env.MONGODB_URI;
+  const uri = process.env.MONGODB_URI || FALLBACK_MONGODB_URI;
   if (!uri) return null;
 
   if (cachedDb) return cachedDb;
@@ -59,83 +61,96 @@ async function getMongoDb(): Promise<Db | null> {
 }
 
 function ensureDirectoryExists() {
-  if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR, { recursive: true });
+  try {
+    if (!fs.existsSync(DATA_DIR)) {
+      fs.mkdirSync(DATA_DIR, { recursive: true });
+    }
+  } catch {
+    // Read-only filesystem in serverless environments (e.g. Vercel)
   }
 }
 
 // Local filesystem helpers
 function getLocalProducts(): Product[] {
-  ensureDirectoryExists();
-  if (!fs.existsSync(PRODUCTS_FILE)) {
-    fs.writeFileSync(PRODUCTS_FILE, JSON.stringify(SEED_PRODUCTS, null, 2));
-    return SEED_PRODUCTS;
-  }
   try {
-    const data = fs.readFileSync(PRODUCTS_FILE, "utf-8");
-    return JSON.parse(data);
+    ensureDirectoryExists();
+    if (fs.existsSync(PRODUCTS_FILE)) {
+      const data = fs.readFileSync(PRODUCTS_FILE, "utf-8");
+      return JSON.parse(data);
+    }
   } catch {
-    return SEED_PRODUCTS;
+    // Ignore read/write failures on serverless
   }
+  return SEED_PRODUCTS;
 }
 
 function saveLocalProduct(product: Product): Product {
-  ensureDirectoryExists();
-  const products = getLocalProducts();
-  const index = products.findIndex((p) => p.id === product.id || p.sourceOfferId === product.sourceOfferId);
-  if (index >= 0) {
-    products[index] = { ...products[index], ...product };
-  } else {
-    products.unshift(product);
+  try {
+    ensureDirectoryExists();
+    const products = getLocalProducts();
+    const index = products.findIndex((p) => p.id === product.id || p.sourceOfferId === product.sourceOfferId);
+    if (index >= 0) {
+      products[index] = { ...products[index], ...product };
+    } else {
+      products.unshift(product);
+    }
+    fs.writeFileSync(PRODUCTS_FILE, JSON.stringify(products, null, 2));
+  } catch {
+    // Ignore read-only errors
   }
-  fs.writeFileSync(PRODUCTS_FILE, JSON.stringify(products, null, 2));
   return product;
 }
 
 function getLocalOrders(): Order[] {
-  ensureDirectoryExists();
-  if (!fs.existsSync(ORDERS_FILE)) {
-    fs.writeFileSync(ORDERS_FILE, JSON.stringify(SEED_ORDERS, null, 2));
-    return SEED_ORDERS;
-  }
   try {
-    const data = fs.readFileSync(ORDERS_FILE, "utf-8");
-    return JSON.parse(data);
+    ensureDirectoryExists();
+    if (fs.existsSync(ORDERS_FILE)) {
+      const data = fs.readFileSync(ORDERS_FILE, "utf-8");
+      return JSON.parse(data);
+    }
   } catch {
-    return SEED_ORDERS;
+    // Ignore read/write failures on serverless
   }
+  return SEED_ORDERS;
 }
 
 function saveLocalOrder(order: Order): Order {
-  ensureDirectoryExists();
-  const orders = getLocalOrders();
-  const index = orders.findIndex((o) => o.id === order.id || o.orderNumber === order.orderNumber);
-  if (index >= 0) {
-    orders[index] = { ...orders[index], ...order };
-  } else {
-    orders.unshift(order);
+  try {
+    ensureDirectoryExists();
+    const orders = getLocalOrders();
+    const index = orders.findIndex((o) => o.id === order.id || o.orderNumber === order.orderNumber);
+    if (index >= 0) {
+      orders[index] = { ...orders[index], ...order };
+    } else {
+      orders.unshift(order);
+    }
+    fs.writeFileSync(ORDERS_FILE, JSON.stringify(orders, null, 2));
+  } catch {
+    // Ignore read-only errors
   }
-  fs.writeFileSync(ORDERS_FILE, JSON.stringify(orders, null, 2));
   return order;
 }
 
 function getLocalSettings(): GlobalSettings {
-  ensureDirectoryExists();
-  if (!fs.existsSync(SETTINGS_FILE)) {
-    fs.writeFileSync(SETTINGS_FILE, JSON.stringify(DEFAULT_SETTINGS, null, 2));
-    return DEFAULT_SETTINGS;
-  }
   try {
-    const data = fs.readFileSync(SETTINGS_FILE, "utf-8");
-    return JSON.parse(data);
+    ensureDirectoryExists();
+    if (fs.existsSync(SETTINGS_FILE)) {
+      const data = fs.readFileSync(SETTINGS_FILE, "utf-8");
+      return JSON.parse(data);
+    }
   } catch {
-    return DEFAULT_SETTINGS;
+    // Ignore read/write failures on serverless
   }
+  return DEFAULT_SETTINGS;
 }
 
 function saveLocalSettings(settings: GlobalSettings): GlobalSettings {
-  ensureDirectoryExists();
-  fs.writeFileSync(SETTINGS_FILE, JSON.stringify(settings, null, 2));
+  try {
+    ensureDirectoryExists();
+    fs.writeFileSync(SETTINGS_FILE, JSON.stringify(settings, null, 2));
+  } catch {
+    // Ignore read-only errors
+  }
   return settings;
 }
 

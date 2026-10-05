@@ -11,8 +11,8 @@ function sanitizeForCustomer(p: Product): Product {
     ...p,
     sourcePlatform: "FACTORY_DIRECT",
     url: "",
-    images: (p.images || []).map((img) => img.replace(/1688\+Product/g, "Factory+Direct")),
-    descriptionImages: (p.descriptionImages || []).map((img) => img.replace(/1688\+Product/g, "Factory+Direct"))
+    images: (p.images || []).map((img) => (typeof img === "string" ? img.replace(/1688\+Product/g, "Factory+Direct") : "")).filter(Boolean),
+    descriptionImages: (p.descriptionImages || []).map((img) => (typeof img === "string" ? img.replace(/1688\+Product/g, "Factory+Direct") : "")).filter(Boolean)
   };
 }
 
