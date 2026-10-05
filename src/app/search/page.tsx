@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { ArrowRight, Sparkles, CheckCircle2, PackageCheck } from "lucide-react";
 import { getClientProducts } from "@/lib/seed-data";
+import { DEFAULT_SETTINGS } from "@/lib/pricing";
 import { Product } from "@/types";
 
 function SearchContent() {
@@ -97,7 +98,9 @@ function SearchContent() {
     const tierPrice = resolvedProduct.priceTiers && resolvedProduct.priceTiers.length > 0
       ? resolvedProduct.priceTiers[0].priceRmb
       : resolvedProduct.basePriceRmb;
-    const bdtPrice = Math.round(tierPrice * 17.5 * 1.12);
+    const bdtPrice = Math.round(
+      tierPrice * DEFAULT_SETTINGS.exchangeRateRmbToBdt * (1 + DEFAULT_SETTINGS.defaultProfitMarginPercent / 100)
+    );
 
     return (
       <div className="max-w-3xl mx-auto px-4 py-14 text-center space-y-6">

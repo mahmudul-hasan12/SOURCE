@@ -77,7 +77,7 @@ export function Navbar() {
 
             <div className="flex items-center gap-3 text-slate-300 text-xs">
               <Link 
-                href="/orders/ord-8910/track" 
+                href="/track" 
                 className="hidden sm:flex items-center gap-1.5 text-slate-300 hover:text-white transition"
               >
                 <ShieldCheck className="w-3.5 h-3.5 text-qc-emerald" />

@@ -2,7 +2,7 @@
 import { GlobalSettings, PriceTier } from "@/types";
 
 export const DEFAULT_SETTINGS: GlobalSettings = {
-  exchangeRateRmbToBdt: 17.50, // 1 CNY = 17.50 BDT
+  exchangeRateRmbToBdt: 19.60, // 1 CNY = 19.60 BDT (Live Market Rate)
   defaultProfitMarginPercent: 12, // 12% agent service commission
   advancePaymentPercent: 50, // 50% advance for two-stage payment
   airRatePerKgGeneral: 750, // 750 BDT / kg for general goods by air (10-18 days)
@@ -11,8 +11,8 @@ export const DEFAULT_SETTINGS: GlobalSettings = {
   seaRatePerCbm: 25000, // 25,000 BDT / CBM by sea
   localCourierDhaka: 70, // 70 BDT inside Dhaka
   localCourierOutsideDhaka: 130, // 130 BDT outside Dhaka
-  chinaWarehouseAddressCn: "广东省广州市白云区石门街道石沙路 SkySourcing China Hub (仓储部)",
-  chinaWarehouseContact: "+86 138-0000-8888 (WeChat / Phone)",
+  chinaWarehouseAddressCn: "广东省广州市白云区北湖北街十社停车场A1仓 SkySourcing China Hub (广州中转仓)",
+  chinaWarehouseContact: "+86 176 6575 9512 (沈小姐 / WeChat / Phone)",
 };
 
 /**

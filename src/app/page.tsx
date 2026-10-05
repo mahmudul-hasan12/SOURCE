@@ -1,11 +1,4 @@
 import React from "react";
-import Link from "next/link";
-import { 
-  Search, 
-  ArrowRight, 
-  ShieldCheck, 
-  Percent
-} from "lucide-react";
 import { 
   HeroLogisticsCard, 
   FeatureBannersBengali, 
@@ -14,6 +7,7 @@ import {
   FaqAccordionBengali, 
   WhatsAppSupportBanner 
 } from "@/components/BengaliBanners";
+import { HeroOmnibarClient } from "@/components/HeroOmnibarClient";
 
 export default function HomePage() {
   return (
@@ -55,75 +49,8 @@ export default function HomePage() {
                 ১৬৮৮ (1688) বা তাওবাও (Taobao)-এর যেকোনো লিংক পেস্ট করুন — সাথে সাথে জানুন বাংলাদেশি টাকায় মোট মূল্য, এয়ার/সি ফ্রেইট ও ডেলিভারি সময়। কোনো লুকানো খরচ নেই।
               </p>
 
-              {/* Universal Sourcing Omnibar */}
-              <div className="bg-cargo-900/95 border border-cargo-700/90 rounded-2xl p-3 sm:p-4 shadow-cargo space-y-3">
-                <form action="/search" method="GET" className="space-y-3">
-                  <div className="flex items-center bg-cargo-950/90 border border-cargo-700 rounded-xl overflow-hidden focus-within:border-freight-amber focus-within:ring-2 focus-within:ring-freight-amber/20 transition p-1.5">
-                    <input
-                      id="omnibar-input"
-                      type="text"
-                      name="url"
-                      placeholder="এখানে ১৬৮৮ বা তাওবাও পণ্যের লিংক পেস্ট করুন (Paste 1688/Taobao link)..."
-                      className="flex-1 px-3 py-2.5 bg-transparent text-white placeholder-slate-400 text-xs sm:text-sm focus:outline-none min-h-[44px]"
-                    />
-                    <button
-                      type="submit"
-                      className="bg-freight-amber hover:bg-freight-amberHover active:scale-[0.98] text-cargo-950 font-black px-5 py-2.5 rounded-lg text-xs sm:text-sm transition flex items-center gap-1.5 flex-shrink-0 shadow-xs btn-tactile min-h-[44px]"
-                    >
-                      <Search className="w-4 h-4 text-cargo-950" />
-                      <span>যাচাই করুন</span>
-                    </button>
-                  </div>
-
-                  {/* Sample Ready-to-Test Links */}
-                  <div className="flex flex-wrap items-center gap-1.5 text-xs text-slate-400 pt-1">
-                    <span className="text-slate-500 font-mono text-[11px]">টেস্ট করার লিংক:</span>
-                    <Link 
-                      href="/search?url=https%3A%2F%2Fdetail.1688.com%2Foffer%2F895199300568.html" 
-                      className="bg-cargo-800/90 hover:bg-cargo-750 px-2 py-0.5 rounded text-freight-amber transition border border-cargo-700/80 font-mono text-[11px] flex items-center gap-1"
-                    >
-                      <span>কটন ওয়ার্কস্যুট</span>
-                      <ArrowRight className="w-3 h-3 text-freight-amber/70" />
-                    </Link>
-                    <Link 
-                      href="/search?url=https%3A%2F%2Fdetail.1688.com%2Foffer%2F888899990001.html" 
-                      className="bg-cargo-800/90 hover:bg-cargo-750 px-2 py-0.5 rounded text-freight-amber transition border border-cargo-700/80 font-mono text-[11px] flex items-center gap-1"
-                    >
-                      <span>ভিন্টেজ ডেনিম জিন্স</span>
-                      <ArrowRight className="w-3 h-3 text-freight-amber/70" />
-                    </Link>
-                    <Link 
-                      href="/search?url=https%3A%2F%2Fitem.taobao.com%2Fitem.htm%3Fid%3D777788889999" 
-                      className="bg-cargo-800/90 hover:bg-cargo-750 px-2 py-0.5 rounded text-freight-amber transition border border-cargo-700/80 font-mono text-[11px] flex items-center gap-1"
-                    >
-                      <span>ANC ব্লুটুথ ইয়ারবাড</span>
-                      <ArrowRight className="w-3 h-3 text-freight-amber/70" />
-                    </Link>
-                  </div>
-                </form>
-
-                {/* Trade Guarantees Strip */}
-                <div className="grid grid-cols-2 gap-3 pt-3 border-t border-cargo-800/80 text-xs">
-                  <div className="flex items-start gap-2">
-                    <div className="p-1.5 bg-cargo-800 text-freight-amber rounded-lg flex-shrink-0 mt-0.5">
-                      <Percent className="w-3.5 h-3.5" />
-                    </div>
-                    <div>
-                      <span className="font-bold text-white text-xs block">৫০% অগ্রিম পেমেন্ট</span>
-                      <span className="text-[11px] text-slate-400 leading-tight block">বাকি টাকা বাংলাদেশে পণ্য পৌঁছানোর পর।</span>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <div className="p-1.5 bg-cargo-800 text-qc-emerald rounded-lg flex-shrink-0 mt-0.5">
-                      <ShieldCheck className="w-3.5 h-3.5" />
-                    </div>
-                    <div>
-                      <span className="font-bold text-white text-xs block">গুয়াংজু স্কেল QC</span>
-                      <span className="text-[11px] text-slate-400 leading-tight block">প্রাক-শিপমেন্ট ওজন ও আসল ছবি ভেরিফিকেশন।</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {/* Universal Sourcing Omnibar with Instant Quotation & WhatsApp RFQ */}
+              <HeroOmnibarClient />
             </div>
 
             {/* Right Column (5 cols): Live Logistics Status Card (Replaces 3D Globe) */}
