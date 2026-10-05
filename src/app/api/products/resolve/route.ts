@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { StorageService } from "@/lib/db";
 import { translateText } from "@/lib/translate";
 import { Product } from "@/types";
-import https from "https";
 
 export const dynamic = "force-dynamic";
 
@@ -21,80 +20,64 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// Resilient upstream fetcher that extracts title, images, and pricing when available
+// Resilient upstream fetcher using native fetch that extracts title, images, and pricing
 async function tryFetchUpstream(targetUrl: string): Promise<{
   title?: string;
   images?: string[];
   price?: number;
   shopName?: string;
 } | null> {
-  return new Promise((resolve) => {
-    try {
-      const parsed = new URL(targetUrl);
-      const req = https.get(
-        targetUrl,
-        {
-          headers: {
-            "User-Agent":
-              "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
-            Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-            "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
-            Referer: `${parsed.protocol}//${parsed.hostname}/`,
-          },
-          timeout: 4500,
-        },
-        (res) => {
-          let html = "";
-          res.on("data", (chunk) => {
-            html += chunk;
-            // Prevent excessive buffer if large payload
-            if (html.length > 500000) res.destroy();
-          });
-          res.on("end", () => {
-            if (html.length < 500 || html.includes("punish?x5secdata=") || html.includes("sec.1688.com")) {
-              // Anti-bot challenge detected
-              resolve(null);
-              return;
-            }
+  try {
+    const parsed = new URL(targetUrl);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 4000);
 
-            // Extract title
-            const titleMatch =
-              html.match(/<meta\s+property=["']og:title["']\s+content=["']([^"']+)["']/i) ||
-              html.match(/<title>([^<]+)<\/title>/i);
-            const rawTitle = titleMatch ? titleMatch[1].replace(/【|】|_1688| - 1688.*|_厂家.*|批发价格.*|阿里巴巴.*/g, "").trim() : "";
+    const res = await fetch(targetUrl, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
+        Referer: `${parsed.protocol}//${parsed.hostname}/`,
+      },
+      signal: controller.signal,
+    });
+    clearTimeout(timeout);
 
-            // Extract images from Alicdn (cbu01 & alicdn)
-            const alicdnImages = [
-              ...new Set(
-                [...html.matchAll(/https:\/\/[^"'\s]+\.(?:cbu01\.alicdn\.com|alicdn\.com)[^"'\s]*\.(?:jpg|png|jpeg)/gi)]
-                  .map((m) => m[0])
-                  .filter((url) => !url.includes("-tps-") && !url.includes("tfs/") && !url.includes("badge") && !url.includes("spacer"))
-              ),
-            ].slice(0, 5);
-
-            // Extract price if available
-            const priceMatches = [...html.matchAll(/(?:¥|￥|&yen;|price['":\s]+)([0-9]+(?:\.[0-9]+)?)/gi)].map((m) => parseFloat(m[1]));
-            const validPrices = priceMatches.filter((p) => p >= 1 && p < 100000);
-            const foundPrice = validPrices.length > 0 ? validPrices[0] : undefined;
-
-            resolve({
-              title: rawTitle || undefined,
-              images: alicdnImages.length > 0 ? alicdnImages : undefined,
-              price: foundPrice,
-            });
-          });
-        }
-      );
-
-      req.on("error", () => resolve(null));
-      req.on("timeout", () => {
-        req.destroy();
-        resolve(null);
-      });
-    } catch {
-      resolve(null);
+    if (!res.ok) return null;
+    const html = await res.text();
+    if (html.length < 500 || html.includes("punish?x5secdata=") || html.includes("sec.1688.com")) {
+      return null;
     }
-  });
+
+    // Extract title
+    const titleMatch =
+      html.match(/<meta\s+property=["']og:title["']\s+content=["']([^"']+)["']/i) ||
+      html.match(/<title>([^<]+)<\/title>/i);
+    const rawTitle = titleMatch ? titleMatch[1].replace(/【|】|_1688| - 1688.*|_厂家.*|批发价格.*|阿里巴巴.*/g, "").trim() : "";
+
+    // Extract images from Alicdn (cbu01 & alicdn)
+    const alicdnImages = [
+      ...new Set(
+        [...html.matchAll(/https:\/\/[^"'\s]+\.(?:cbu01\.alicdn\.com|alicdn\.com)[^"'\s]*\.(?:jpg|png|jpeg)/gi)]
+          .map((m) => m[0])
+          .filter((url) => !url.includes("-tps-") && !url.includes("tfs/") && !url.includes("badge") && !url.includes("spacer"))
+      ),
+    ].slice(0, 5);
+
+    // Extract price if available
+    const priceMatches = [...html.matchAll(/(?:¥|￥|&yen;|price['":\s]+)([0-9]+(?:\.[0-9]+)?)/gi)].map((m) => parseFloat(m[1]));
+    const validPrices = priceMatches.filter((p) => p >= 1 && p < 100000);
+    const foundPrice = validPrices.length > 0 ? validPrices[0] : undefined;
+
+    return {
+      title: rawTitle || undefined,
+      images: alicdnImages.length > 0 ? alicdnImages : undefined,
+      price: foundPrice,
+    };
+  } catch {
+    return null;
+  }
 }
 
 // Category and authentic asset classifier

@@ -1,5 +1,4 @@
 // Chinese-to-English Manufacturing & Cross-Border Wholesale Translation Service
-import https from "https";
 import { ProductAttribute } from "@/types";
 
 // In-memory LRU cache to prevent redundant external translation requests
@@ -136,39 +135,29 @@ export async function translateText(text: string, from = "zh-CN", to = "en"): Pr
 /**
  * Calls the Google Translate free endpoint
  */
-function fetchGoogleTranslate(text: string, from: string, to: string): Promise<string> {
-  return new Promise((resolve, reject) => {
+async function fetchGoogleTranslate(text: string, from: string, to: string): Promise<string> {
+  try {
     const encodedText = encodeURIComponent(text);
     const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${from}&tl=${to}&dt=t&q=${encodedText}`;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 4000);
 
-    const req = https.get(url, { timeout: 4000 }, (res) => {
-      let data = "";
-      res.on("data", (chunk) => (data += chunk));
-      res.on("end", () => {
-        try {
-          const parsed = JSON.parse(data);
-          if (parsed && Array.isArray(parsed[0])) {
-            const result = parsed[0]
-              .map((item: any) => (Array.isArray(item) ? item[0] : ""))
-              .filter(Boolean)
-              .join("")
-              .trim();
-            resolve(result || text);
-          } else {
-            resolve(text);
-          }
-        } catch (e) {
-          resolve(text);
-        }
-      });
-    });
-
-    req.on("error", reject);
-    req.on("timeout", () => {
-      req.destroy();
-      reject(new Error("Translation request timed out"));
-    });
-  });
+    const res = await fetch(url, { signal: controller.signal });
+    clearTimeout(timeout);
+    if (!res.ok) return text;
+    const parsed = await res.json();
+    if (parsed && Array.isArray(parsed[0])) {
+      const result = parsed[0]
+        .map((item: any) => (Array.isArray(item) ? item[0] : ""))
+        .filter(Boolean)
+        .join("")
+        .trim();
+      return result || text;
+    }
+    return text;
+  } catch {
+    return text;
+  }
 }
 
 /**

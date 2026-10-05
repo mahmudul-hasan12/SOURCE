@@ -7,7 +7,8 @@ const files = [
   'src/app/search/page.tsx',
   'src/components/MobileBottomNav.tsx',
   'src/components/Navbar.tsx',
-  'src/components/ProductDetailClient.tsx'
+  'src/components/ProductDetailClient.tsx',
+  'src/lib/translate.ts'
 ];
 
 let hasError = false;
