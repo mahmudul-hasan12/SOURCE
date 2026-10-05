@@ -19,6 +19,8 @@ import {
   Scale,
   Camera,
   ArrowRight,
+  ArrowUpRight,
+  Edit3,
   X,
   Maximize2,
   ChevronDown
@@ -46,6 +48,44 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
   const [isQcModalOpen, setIsQcModalOpen] = useState(false);
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
   const [showAllDescImages, setShowAllDescImages] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [editTitle, setEditTitle] = useState(fallbackProduct?.titleEn || "");
+  const [editPrice, setEditPrice] = useState(fallbackProduct?.basePriceRmb || 25);
+  const [editImage, setEditImage] = useState(fallbackProduct?.images[0] || "");
+  const [isSavingEdit, setIsSavingEdit] = useState(false);
+
+  const handleSaveEdit = async () => {
+    if (!product) return;
+    setIsSavingEdit(true);
+    try {
+      const priceNum = parseFloat(String(editPrice)) || product.basePriceRmb || 25;
+      const updatedProduct: Product = {
+        ...product,
+        titleEn: editTitle.trim() || product.titleEn,
+        basePriceRmb: priceNum,
+        images: editImage.trim() ? [editImage.trim(), ...(product.images.slice(1))] : product.images,
+        priceTiers: [
+          { range: "2–9 pcs", minQty: 2, priceRmb: priceNum },
+          { range: "10–49 pcs", minQty: 10, priceRmb: Number((priceNum * 0.9).toFixed(1)) },
+          { range: "50+ pcs", minQty: 50, priceRmb: Number((priceNum * 0.82).toFixed(1)) }
+        ]
+      };
+      const res = await fetch("/api/products", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedProduct)
+      });
+      if (res.ok) {
+        setProduct(updatedProduct);
+        setSelectedImage(updatedProduct.images[0]);
+        setIsEditModalOpen(false);
+      }
+    } catch (e) {
+      console.error("Save edit failed:", e);
+    } finally {
+      setIsSavingEdit(false);
+    }
+  };
 
   useEffect(() => {
     if (!productId) return;
@@ -149,6 +189,42 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
         <span className="capitalize">{product.category}</span>
         <span>/</span>
         <span className="text-cargo-900 font-semibold truncate max-w-sm">{product.titleEn}</span>
+      </div>
+
+      {/* 1688 Verified Sourcing & Sync Action Bar */}
+      <div className="flex flex-wrap items-center justify-between gap-3 bg-cargo-900 text-white p-3 sm:p-4 rounded-2xl border border-cargo-750 shadow-xs text-xs font-mono">
+        <div className="flex items-center gap-2.5 flex-wrap">
+          <span className="w-2.5 h-2.5 rounded-full bg-qc-emerald animate-pulse" />
+          <span className="text-freight-amber font-bold">1688 Direct Factory Listing:</span>
+          <span className="text-slate-300">Offer #{product.sourceOfferId}</span>
+          <span className="text-slate-500 hidden sm:inline">•</span>
+          <span className="text-slate-400 hidden sm:inline">Guangzhou Warehouse Pre-Shipment Inspection</span>
+        </div>
+        <div className="flex items-center gap-2">
+          {product.url && (
+            <a
+              href={product.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-cargo-800 hover:bg-cargo-700 text-slate-200 px-3 py-1.5 rounded-lg border border-cargo-650 transition flex items-center gap-1.5 btn-tactile"
+            >
+              <span>View on 1688</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-freight-amber" />
+            </a>
+          )}
+          <button
+            onClick={() => {
+              setEditTitle(product.titleEn);
+              setEditPrice(product.basePriceRmb);
+              setEditImage(product.images[0]);
+              setIsEditModalOpen(true);
+            }}
+            className="bg-freight-amber hover:bg-freight-amberHover active:scale-[0.98] text-cargo-950 font-bold px-3.5 py-1.5 rounded-lg transition shadow-xs flex items-center gap-1.5 btn-tactile"
+          >
+            <Edit3 className="w-3.5 h-3.5" />
+            <span>Quick Edit & Sync</span>
+          </button>
+        </div>
       </div>
 
       {/* Main Product Surface Grid */}
@@ -689,6 +765,83 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
           <ArrowRight className="w-3.5 h-3.5 text-cargo-950" />
         </button>
       </div>
+
+      {/* Quick Edit & Sync Listing Modal */}
+      {isEditModalOpen && (
+        <div className="fixed inset-0 bg-cargo-950/75 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl space-y-4 border border-slate-200 animate-modal-enter text-left">
+            <div className="flex justify-between items-center border-b pb-3">
+              <div className="flex items-center gap-2">
+                <Edit3 className="w-5 h-5 text-freight-amber" />
+                <h3 className="font-bold text-base text-cargo-900">Quick Edit & Sync Listing</h3>
+              </div>
+              <button 
+                onClick={() => setIsEditModalOpen(false)}
+                className="p-1.5 rounded-lg text-slate-400 hover:text-cargo-900 hover:bg-slate-100 btn-tactile"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="space-y-3.5 text-xs">
+              <div>
+                <label className="block font-bold text-slate-700 mb-1">Product Title (English)</label>
+                <input 
+                  type="text" 
+                  value={editTitle} 
+                  onChange={(e) => setEditTitle(e.target.value)}
+                  className="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 focus:outline-none focus:border-freight-amber text-xs"
+                />
+              </div>
+
+              <div>
+                <label className="block font-bold text-slate-700 mb-1">Factory RMB Price (¥)</label>
+                <div className="flex items-center gap-2">
+                  <input 
+                    type="number" 
+                    step="0.1" 
+                    value={editPrice} 
+                    onChange={(e) => setEditPrice(Number(e.target.value))}
+                    className="w-1/2 p-2.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 focus:outline-none focus:border-freight-amber text-xs font-mono"
+                  />
+                  <span className="text-slate-500 font-mono text-[11px]">
+                    ≈ ৳{Math.round(Number(editPrice) * 17.5 * 1.12)} BDT (Tier 1)
+                  </span>
+                </div>
+              </div>
+
+              <div>
+                <label className="block font-bold text-slate-700 mb-1">Primary Image URL</label>
+                <input 
+                  type="text" 
+                  value={editImage} 
+                  onChange={(e) => setEditImage(e.target.value)}
+                  className="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 focus:outline-none focus:border-freight-amber text-xs font-mono"
+                />
+              </div>
+            </div>
+
+            <div className="flex gap-2 pt-2">
+              <button
+                type="button"
+                onClick={() => setIsEditModalOpen(false)}
+                className="w-1/3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 rounded-xl text-xs transition"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                disabled={isSavingEdit}
+                onClick={handleSaveEdit}
+                className="w-2/3 bg-cargo-900 hover:bg-cargo-800 active:scale-[0.98] text-white font-bold py-2.5 rounded-xl text-xs transition flex items-center justify-center gap-1.5 shadow-sm"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-freight-amber" />
+                <span>{isSavingEdit ? "Saving..." : "Save & Update Store"}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

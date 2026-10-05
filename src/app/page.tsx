@@ -48,17 +48,19 @@ export default async function HomePage() {
     <div className="space-y-12 pb-20">
       {/* Asymmetric Industrial Trade Terminal Hero */}
       <section className="bg-cargo-950 text-white pt-10 pb-12 sm:pt-14 sm:pb-16 px-4 relative overflow-hidden border-b border-cargo-850">
-        {/* Subtle Architectural Grid Texture */}
+        {/* Editorial Cargo Port Background Cover Photo */}
         <div 
-          className="absolute inset-0 bg-cover bg-center opacity-25 pointer-events-none"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-80 sm:opacity-90 pointer-events-none transition-opacity duration-700"
           style={{ backgroundImage: "url('/hero-cover.jpg')" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-cargo-950 via-cargo-950/90 to-cargo-950/80 pointer-events-none" />
+        {/* Directional contrast vignette: keeps left text crisp while letting illuminated cargo ships and port cranes shine through */}
+        <div className="absolute inset-0 bg-gradient-to-r from-cargo-950/95 via-cargo-950/65 to-cargo-950/30 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-cargo-950/90 via-transparent to-cargo-950/50 pointer-events-none" />
 
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left Column (7 cols): Value Prop & Sourcing Omnibar */}
-            <div className="lg:col-span-7 space-y-6">
+            <div className="lg:col-span-7 space-y-6 bg-cargo-950/50 p-3 sm:p-6 rounded-3xl backdrop-blur-xs border border-cargo-750/30">
               {/* Corridor Status Strip */}
               <div className="inline-flex items-center gap-2.5 bg-cargo-900/90 border border-cargo-750 px-3.5 py-1.5 rounded-full text-xs font-mono shadow-xs backdrop-blur-md">
                 <span className="w-2 h-2 rounded-full bg-qc-emerald animate-pulse"></span>

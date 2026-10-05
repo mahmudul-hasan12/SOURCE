@@ -26,7 +26,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   chrome.storage.local.get(["exchangeRate", "profitMargin", "apiUrl"], (result) => {
     if (result.exchangeRate) document.getElementById("cfg-exchange").value = result.exchangeRate;
     if (result.profitMargin) document.getElementById("cfg-margin").value = result.profitMargin;
-    if (result.apiUrl) document.getElementById("cfg-api-url").value = result.apiUrl;
+    if (result.apiUrl) {
+      document.getElementById("cfg-api-url").value = result.apiUrl;
+    } else {
+      document.getElementById("cfg-api-url").value = "https://skylinebd.vercel.app/api/extension/import";
+    }
     recalculatePrices();
   });
 
