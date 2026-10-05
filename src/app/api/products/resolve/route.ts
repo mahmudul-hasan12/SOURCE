@@ -107,7 +107,15 @@ function classifyProduct(url: string, rawTitle: string): {
   shopName: string;
   isSensitiveCargo?: boolean;
 } {
-  const combined = `${url} ${rawTitle}`.toLowerCase();
+  let decodedUrl = url;
+  try {
+    decodedUrl = decodeURIComponent(url);
+  } catch {}
+  let decodedTitle = rawTitle;
+  try {
+    decodedTitle = decodeURIComponent(rawTitle);
+  } catch {}
+  const combined = `${decodedUrl} ${decodedTitle}`.toLowerCase();
 
   // 1. Workwear Uniform Suits
   if (/工作服|劳保|焊工|机修|工程服|防烫|耐磨|workwear|uniform/i.test(combined)) {
@@ -320,7 +328,7 @@ async function handleResolve(rawUrl: string) {
   let titleEn = classification.defaultTitleEn;
   if (rawTitleCn) {
     const translated = await translateText(rawTitleCn);
-    if (translated && translated.length > 5) {
+    if (translated && translated.length > 3 && !/[\u4e00-\u9fa5]/.test(translated)) {
       titleEn = translated;
     }
   } else if (offerId) {
