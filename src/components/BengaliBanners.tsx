@@ -99,24 +99,6 @@ export function HeroLogisticsCard() {
           <span><strong>কোনো লুকানো চার্জ নেই:</strong> পণ্য হাতে পাওয়ার আগ পর্যন্ত সম্পূর্ণ ট্র্যাকিং</span>
         </div>
       </div>
-
-      {/* Direct Corridor Quick Action Buttons */}
-      <div className="grid grid-cols-2 gap-2 pt-1 border-t border-cargo-800">
-        <Link
-          href="/track"
-          className="bg-cargo-800/90 hover:bg-cargo-750 text-slate-200 text-xs font-mono font-semibold py-2 px-2.5 rounded-xl border border-cargo-700 transition flex items-center justify-center gap-1.5"
-        >
-          <ShieldCheck className="w-3.5 h-3.5 text-qc-emerald" />
-          <span>পার্সেল ট্র্যাক করুন</span>
-        </Link>
-        <Link
-          href="/warehouse"
-          className="bg-cargo-800/90 hover:bg-cargo-750 text-freight-amber text-xs font-mono font-semibold py-2 px-2.5 rounded-xl border border-cargo-700 transition flex items-center justify-center gap-1.5"
-        >
-          <Package className="w-3.5 h-3.5 text-freight-amber" />
-          <span>চীন ওয়্যারহাউস ঠিকানা</span>
-        </Link>
-      </div>
     </div>
   );
 }
@@ -408,7 +390,7 @@ export function FaqAccordionBengali() {
     },
     {
       q: "পেমেন্ট কীভাবে করতে পারব?",
-      a: "আপনি বিকাশ (bKash), নগদ (Nagad), অথবা সরাসরি আমাদের বাংলাদেশি ব্যাংক অ্যাকাউন্টের মাধ্যমে ঘরে বসেই ৫০% অগ্রিম ও ডেলিভারির সময় বাকি পেমেন্ট সম্পন্ন করতে পারবেন।"
+      a: "আপনি বিকাশ (bKash) অথবা নগদ (Nagad)-এর মাধ্যমে ঘরে বসেই ৫০% অগ্রিম এবং ডেলিভারির সময় বাকি ৫০% ও ফ্রেইট পেমেন্ট সম্পন্ন করতে পারবেন।"
     }
   ];
 

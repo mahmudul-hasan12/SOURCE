@@ -45,7 +45,6 @@ export interface Product {
   location: string;
   estimatedWeightKg: number;
   minOrderQty: number;
-  sizes?: string[];
   isSensitiveCargo?: boolean; // battery, liquid, powder, magnet
   createdAt?: string;
 }
@@ -128,6 +127,18 @@ export interface OrderTrackingInfo {
   deliveredAt?: string;
 }
 
+export interface OrderPaymentInfo {
+  method: "BKASH" | "NAGAD";
+  accountType?: string;
+  senderNumber: string;
+  transactionId: string;
+  amount: number;
+  submittedAt: string;
+  verified: boolean;
+  verifiedAt?: string;
+  verifiedBy?: string;
+}
+
 export interface Order {
   id: string;
   orderNumber: string;
@@ -139,10 +150,11 @@ export interface Order {
   items: OrderItem[];
   pricing: OrderPricing;
   tracking: OrderTrackingInfo;
+  payment?: OrderPaymentInfo;
 }
 
 export interface GlobalSettings {
-  exchangeRateRmbToBdt: number; // e.g. 17.50
+  exchangeRateRmbToBdt: number; // e.g. 18.50
   defaultProfitMarginPercent: number; // e.g. 12%
   advancePaymentPercent: number; // e.g. 50%
   airRatePerKgGeneral: number; // e.g. 750 BDT
@@ -153,4 +165,10 @@ export interface GlobalSettings {
   localCourierOutsideDhaka: number; // e.g. 130 BDT
   chinaWarehouseAddressCn: string;
   chinaWarehouseContact: string;
+  bkashNumber: string; // e.g. 01712-345678
+  bkashAccountType: "PERSONAL" | "MERCHANT" | "AGENT";
+  nagadNumber: string; // e.g. 01812-345678
+  nagadAccountType: "PERSONAL" | "MERCHANT";
+  whatsappNumber: string; // e.g. +8801700000000
+  announcementNotice?: string;
 }

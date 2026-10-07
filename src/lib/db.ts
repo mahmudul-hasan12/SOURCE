@@ -177,20 +177,12 @@ export class StorageService {
   }
 
   static async getProductById(id: string): Promise<Product | null> {
-    const cleanId = id ? id.replace(/^prod-/, "") : "";
     const db = await getMongoDb();
     if (db) {
       try {
         const col = db.collection<Product>("products");
         const doc = await col.findOne(
-          {
-            $or: [
-              { id },
-              { id: `prod-${cleanId}` },
-              { sourceOfferId: id },
-              { sourceOfferId: cleanId },
-            ] as any,
-          },
+          { $or: [{ id }, { sourceOfferId: id }] as any },
           { projection: { _id: 0 } }
         );
         if (doc) return doc as Product;
@@ -199,15 +191,7 @@ export class StorageService {
       }
     }
     const local = getLocalProducts();
-    return (
-      local.find(
-        (p) =>
-          p.id === id ||
-          p.id === `prod-${cleanId}` ||
-          p.sourceOfferId === id ||
-          p.sourceOfferId === cleanId
-      ) || null
-    );
+    return local.find((p) => p.id === id || p.sourceOfferId === id) || null;
   }
 
   static async saveProduct(product: Product): Promise<Product> {
@@ -226,6 +210,27 @@ export class StorageService {
       }
     }
     return saveLocalProduct(product);
+  }
+
+  static async deleteProduct(id: string): Promise<boolean> {
+    const db = await getMongoDb();
+    if (db) {
+      try {
+        const col = db.collection<Product>("products");
+        const res = await col.deleteOne({ $or: [{ id }, { sourceOfferId: id }] as any });
+        return res.deletedCount > 0;
+      } catch (err) {
+        console.error("[StorageService] Error deleting product from MongoDB:", err);
+      }
+    }
+    try {
+      ensureDirectoryExists();
+      const products = getLocalProducts().filter((p) => p.id !== id && p.sourceOfferId !== id);
+      fs.writeFileSync(PRODUCTS_FILE, JSON.stringify(products, null, 2));
+      return true;
+    } catch {
+      return false;
+    }
   }
 
   // ORDERS
@@ -285,6 +290,27 @@ export class StorageService {
     return saveLocalOrder(order);
   }
 
+  static async deleteOrder(id: string): Promise<boolean> {
+    const db = await getMongoDb();
+    if (db) {
+      try {
+        const col = db.collection<Order>("orders");
+        const res = await col.deleteOne({ $or: [{ id }, { orderNumber: id }] as any });
+        return res.deletedCount > 0;
+      } catch (err) {
+        console.error("[StorageService] Error deleting order from MongoDB:", err);
+      }
+    }
+    try {
+      ensureDirectoryExists();
+      const orders = getLocalOrders().filter((o) => o.id !== id && o.orderNumber !== id);
+      fs.writeFileSync(ORDERS_FILE, JSON.stringify(orders, null, 2));
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
   // SETTINGS
   static async getSettings(): Promise<GlobalSettings> {
     const db = await getMongoDb();
@@ -292,7 +318,10 @@ export class StorageService {
       try {
         const col = db.collection<GlobalSettings>("settings");
         const doc = await col.findOne({}, { projection: { _id: 0 } });
-        if (doc) return doc as GlobalSettings;
+        if (doc) {
+          // Merge with DEFAULT_SETTINGS to ensure all fields exist
+          return { ...DEFAULT_SETTINGS, ...doc } as GlobalSettings;
+        }
         // Auto-seed settings
         await col.insertOne(DEFAULT_SETTINGS as any);
         return DEFAULT_SETTINGS;
@@ -300,20 +329,22 @@ export class StorageService {
         console.error("[StorageService] Error fetching settings from MongoDB:", err);
       }
     }
-    return getLocalSettings();
+    const local = getLocalSettings();
+    return { ...DEFAULT_SETTINGS, ...local };
   }
 
   static async saveSettings(settings: GlobalSettings): Promise<GlobalSettings> {
+    const merged = { ...DEFAULT_SETTINGS, ...settings };
     const db = await getMongoDb();
     if (db) {
       try {
         const col = db.collection<GlobalSettings>("settings");
-        await col.replaceOne({}, settings, { upsert: true });
-        return settings;
+        await col.replaceOne({}, merged, { upsert: true });
+        return merged;
       } catch (err) {
         console.error("[StorageService] Error saving settings to MongoDB:", err);
       }
     }
-    return saveLocalSettings(settings);
+    return saveLocalSettings(merged);
   }
 }

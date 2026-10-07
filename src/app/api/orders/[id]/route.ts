@@ -17,8 +17,14 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
       return NextResponse.json({ success: false, message: "Order not found" }, { status: 404 });
     }
 
-    // Merge status and tracking
+    // Merge status, tracking, and payment
     if (updates.status) order.status = updates.status;
+    if (updates.payment) {
+      order.payment = {
+        ...order.payment,
+        ...updates.payment
+      };
+    }
     if (updates.tracking) {
       order.tracking = {
         ...order.tracking,
@@ -36,6 +42,19 @@ export async function PATCH(req: NextRequest, { params }: { params: { id: string
 
     await StorageService.saveOrder(order);
     return NextResponse.json({ success: true, order });
+  } catch (err: any) {
+    return NextResponse.json({ success: false, message: err.message }, { status: 500 });
+  }
+}
+
+export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+  return PATCH(req, { params });
+}
+
+export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+  try {
+    const deleted = await StorageService.deleteOrder(params.id);
+    return NextResponse.json({ success: deleted });
   } catch (err: any) {
     return NextResponse.json({ success: false, message: err.message }, { status: 500 });
   }

@@ -243,8 +243,8 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
               referrerPolicy="no-referrer"
               onError={(e) => {
                 const target = e.currentTarget;
-                if (product.images.length > 1 && target.src !== product.images[1]) {
-                  target.src = product.images[1];
+                if (!target.src.includes('fallback-product.jpg')) {
+                  target.src = '/products/fallback-product.jpg';
                 }
               }}
               className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
@@ -280,7 +280,7 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
                     : "border-slate-200 opacity-70 hover:opacity-100"
                 }`}
               >
-                <img src={img} alt="Thumb" referrerPolicy="no-referrer" className="w-full h-full object-cover" />
+                <img src={img} alt="Thumb" className="w-full h-full object-cover" />
               </button>
             ))}
           </div>
@@ -405,7 +405,7 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
                       }`}
                     >
                       {sku.image && (
-                        <img src={sku.image} alt={sku.name} referrerPolicy="no-referrer" className="w-8 h-8 rounded-lg object-cover" />
+                        <img src={sku.image} alt={sku.name} className="w-8 h-8 rounded-lg object-cover" />
                       )}
                       <span>{sku.name}</span>
                     </button>
@@ -718,7 +718,6 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
                     <img
                       src={img}
                       alt={`Factory Diagram ${idx + 1}`}
-                      referrerPolicy="no-referrer"
                       loading="lazy"
                       decoding="async"
                       className="w-full h-auto object-cover group-hover:scale-[1.02] transition duration-300"
@@ -768,7 +767,6 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
             <img 
               src={lightboxImage} 
               alt="Expanded Factory Inspection View" 
-              referrerPolicy="no-referrer"
               className="max-h-[75vh] w-auto max-w-full rounded-2xl border border-slate-700/60 shadow-2xl object-contain bg-cargo-950" 
             />
             {product.images && product.images.length > 1 && (
@@ -784,7 +782,7 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
                       lightboxImage === img ? "border-freight-amber ring-2 ring-freight-amber/30 scale-105" : "border-slate-700 opacity-60 hover:opacity-100"
                     }`}
                   >
-                    <img src={img} alt="" referrerPolicy="no-referrer" className="w-full h-full object-cover" />
+                    <img src={img} alt="" className="w-full h-full object-cover" />
                   </button>
                 ))}
               </div>

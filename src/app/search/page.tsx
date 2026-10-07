@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { ArrowRight, Sparkles, CheckCircle2, PackageCheck } from "lucide-react";
 import { getClientProducts } from "@/lib/seed-data";
-import { DEFAULT_SETTINGS } from "@/lib/pricing";
 import { Product } from "@/types";
 
 function SearchContent() {
@@ -25,9 +24,20 @@ function SearchContent() {
 
     async function loadSearchData() {
       try {
-        if (queryUrl) {
+        const rawTarget = queryUrl || (
+          queryText && (
+            queryText.includes("1688.com") ||
+            queryText.includes("taobao.com") ||
+            queryText.includes("tmall.com") ||
+            queryText.includes("http") ||
+            queryText.includes("【") ||
+            /^\d{8,14}$/.test(queryText.trim())
+          ) ? queryText : ""
+        );
+
+        if (rawTarget) {
           // Dynamic URL Resolver: query backend API to match catalog or resolve 1688 listing
-          const res = await fetch(`/api/products/resolve?url=${encodeURIComponent(queryUrl)}`);
+          const res = await fetch(`/api/products/resolve?url=${encodeURIComponent(rawTarget.trim())}`);
           if (res.ok) {
             const data = await res.json();
             if (data.success && data.product) {
@@ -98,9 +108,7 @@ function SearchContent() {
     const tierPrice = resolvedProduct.priceTiers && resolvedProduct.priceTiers.length > 0
       ? resolvedProduct.priceTiers[0].priceRmb
       : resolvedProduct.basePriceRmb;
-    const bdtPrice = Math.round(
-      tierPrice * DEFAULT_SETTINGS.exchangeRateRmbToBdt * (1 + DEFAULT_SETTINGS.defaultProfitMarginPercent / 100)
-    );
+    const bdtPrice = Math.round(tierPrice * 17.5 * 1.12);
 
     return (
       <div className="max-w-3xl mx-auto px-4 py-14 text-center space-y-6">

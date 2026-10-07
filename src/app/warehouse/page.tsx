@@ -16,20 +16,13 @@ import {
   Plus,
   RefreshCw,
   QrCode,
-  ArrowRight,
-  Copy,
-  Check,
-  ShieldCheck,
-  Building2,
-  PhoneCall
+  ArrowRight
 } from "lucide-react";
 import { Order, OrderStatus } from "@/types";
 
 export default function ChinaWarehousePortal() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
-  const [copiedAir, setCopiedAir] = useState(false);
-  const [copiedSea, setCopiedSea] = useState(false);
   const [activeTab, setActiveTab] = useState<"PURCHASE" | "INBOUND" | "QC" | "DISPATCH">("PURCHASE");
 
   // Inbound Scanner State
@@ -140,122 +133,6 @@ export default function ChinaWarehousePortal() {
             <RefreshCw className="w-3.5 h-3.5" />
             <span>Refresh Queue</span>
           </button>
-        </div>
-      </div>
-
-      {/* Customer & Supplier Sourcing Address Desk */}
-      <div className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-xs space-y-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
-          <div className="space-y-1">
-            <div className="inline-flex items-center gap-1.5 text-xs bg-emerald-50 text-qc-emeraldDark font-mono font-bold px-3 py-1 rounded-full border border-emerald-200">
-              <ShieldCheck className="w-3.5 h-3.5 text-qc-emerald" />
-              <span>ভেরিফায়েড গুয়াংজু কনসলিডেশন ওয়্যারহাউস</span>
-            </div>
-            <h2 className="text-xl sm:text-2xl font-black text-cargo-900 tracking-tight">
-              চীন ওয়্যারহাউস ঠিকানা ও সাপ্লায়ার শিপিং গাইড
-            </h2>
-            <p className="text-xs text-slate-500">
-              আপনার ১৬৮৮, তাওবাও, বা আলিবাবা ফ্যাক্টরি সাপ্লায়ারকে সরাসরি নিচের ঠিকানায় পার্সেল পাঠাতে বলুন।
-            </p>
-          </div>
-          <Link
-            href="/track"
-            className="self-start sm:self-auto bg-cargo-950 hover:bg-cargo-900 text-freight-amber font-mono font-bold text-xs px-4 py-2.5 rounded-xl transition flex items-center gap-2"
-          >
-            <span>পার্সেল ট্র্যাকিং পোর্টাল</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-
-        {/* Dual Warehouse Cards: Air (A1) vs Sea (A2) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Air Cargo Warehouse A1 */}
-          <div className="p-5 rounded-2xl border border-sky-200 bg-sky-50/50 space-y-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Plane className="w-4 h-4 text-transit-air" />
-                <h3 className="font-bold text-sm text-cargo-900">এয়ার কার্গো হাব (Air Cargo Warehouse - A1)</h3>
-              </div>
-              <span className="text-[10px] font-mono bg-sky-100 text-sky-800 font-bold px-2 py-0.5 rounded">১০–১৮ দিন</span>
-            </div>
-
-            <div className="bg-white p-3.5 rounded-xl border border-sky-200/80 font-mono text-xs text-slate-700 space-y-1">
-              <p><strong className="text-cargo-900">收件地址 (Address):</strong> 广东省广州市白云区北湖北街十社停车场A1仓（导航至联滘路与北湖北路交叉口）</p>
-              <p><strong className="text-cargo-900">收件人 (Recipient):</strong> SkySourcing BD / 沈小姐 (আপনার নাম বা ফোন)</p>
-              <p><strong className="text-cargo-900">电话 (Phone):</strong> 17665759512 / +86 176 6575 9512</p>
-              <p><strong className="text-cargo-900">邮编 (Zip Code):</strong> 510440</p>
-            </div>
-
-            <button
-              type="button"
-              onClick={() => {
-                if (typeof navigator !== "undefined" && navigator.clipboard) {
-                  navigator.clipboard.writeText("广东省广州市白云区北湖北街十社停车场A1仓（导航至联滘路与北湖北路交叉口） 收件人: SkySourcing BD / 沈小姐 电话: 17665759512 邮编: 510440");
-                  setCopiedAir(true);
-                  setTimeout(() => setCopiedAir(false), 2000);
-                }
-              }}
-              className="w-full bg-white hover:bg-sky-100 text-transit-air border border-sky-300 font-bold py-2 px-3 rounded-xl text-xs transition flex items-center justify-center gap-1.5"
-            >
-              {copiedAir ? <Check className="w-3.5 h-3.5 text-qc-emerald" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copiedAir ? "ঠিকানা কপি করা হয়েছে!" : "এয়ার হাবের চাইনিজ ঠিকানা কপি করুন"}</span>
-            </button>
-          </div>
-
-          {/* Sea Freight Warehouse A2 */}
-          <div className="p-5 rounded-2xl border border-indigo-200 bg-indigo-50/50 space-y-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Ship className="w-4 h-4 text-indigo-600" />
-                <h3 className="font-bold text-sm text-cargo-900">সি ফ্রেইট হাব (Sea Freight Warehouse - A2)</h3>
-              </div>
-              <span className="text-[10px] font-mono bg-indigo-100 text-indigo-800 font-bold px-2 py-0.5 rounded">৩০–৪৫ দিন</span>
-            </div>
-
-            <div className="bg-white p-3.5 rounded-xl border border-indigo-200/80 font-mono text-xs text-slate-700 space-y-1">
-              <p><strong className="text-cargo-900">收件地址 (Address):</strong> 广东省广州市白云区北湖北街十社停车场A2仓（导航至联滘路与北湖北路交叉口）</p>
-              <p><strong className="text-cargo-900">收件人 (Recipient):</strong> SkySourcing BD / 沈小姐 (আপনার নাম বা ফোন)</p>
-              <p><strong className="text-cargo-900">电话 (Phone):</strong> 17665759512 / +86 176 6575 9512</p>
-              <p><strong className="text-cargo-900">邮编 (Zip Code):</strong> 510440</p>
-            </div>
-
-            <button
-              type="button"
-              onClick={() => {
-                if (typeof navigator !== "undefined" && navigator.clipboard) {
-                  navigator.clipboard.writeText("广东省广州市白云区北湖北街十社停车场A2仓（导航至联滘路与北湖北路交叉口） 收件人: SkySourcing BD / 沈小姐 电话: 17665759512 邮编: 510440");
-                  setCopiedSea(true);
-                  setTimeout(() => setCopiedSea(false), 2000);
-                }
-              }}
-              className="w-full bg-white hover:bg-indigo-100 text-indigo-700 border border-indigo-300 font-bold py-2 px-3 rounded-xl text-xs transition flex items-center justify-center gap-1.5"
-            >
-              {copiedSea ? <Check className="w-3.5 h-3.5 text-qc-emerald" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copiedSea ? "ঠিকানা কপি করা হয়েছে!" : "সি ফ্রেইট চাইনিজ ঠিকানা কপি করুন"}</span>
-            </button>
-          </div>
-        </div>
-
-        {/* 3-Step Supplier Instructions */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs">
-          <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl space-y-1">
-            <span className="font-bold font-mono text-freight-amber text-sm block">১. ঠিকানা দিন</span>
-            <p className="text-slate-600 leading-relaxed">
-              আপনার চাইনিজ সাপ্লায়ারকে এয়ার (A1) বা সি (A2) ফ্রেইটের চাইনিজ ঠিকানাটি দিন।
-            </p>
-          </div>
-          <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl space-y-1">
-            <span className="font-bold font-mono text-freight-amber text-sm block">২. মার্কার দিয়ে নাম লিখুন</span>
-            <p className="text-slate-600 leading-relaxed">
-              প্রতিটি কার্টনের উপর আপনার নাম এবং ফোন নম্বর লিখে দেওয়ার জন্য সাপ্লায়ারকে নির্দেশ দিন।
-            </p>
-          </div>
-          <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-2xl space-y-1">
-            <span className="font-bold font-mono text-qc-emerald text-sm block">৩. ওজন ও ছবি নিশ্চিতকরণ</span>
-            <p className="text-slate-600 leading-relaxed">
-              পার্সেল গুয়াংজু পৌঁছালে ওজন মেপে ডিজিটাল স্কেলের ছবি সহ আপনাকে আপডেট পাঠানো হবে।
-            </p>
-          </div>
         </div>
       </div>
 
