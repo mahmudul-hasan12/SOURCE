@@ -95,9 +95,9 @@ export interface OrderPricing {
   exchangeRateUsed: number;
   productTotalRmb: number;
   productTotalBdt: number;
-  advancePercentage: number; // e.g. 50%
+  advancePercentage: number; // e.g. 100%
   advanceAmountBdt: number; // paid in stage 1
-  stage2ProductBalanceBdt: number; // remaining 50%
+  stage2ProductBalanceBdt: number; // 0 when 100% product payment
   estimatedWeightKg: number;
   actualWeightKg?: number;
   intlShippingRatePerKg: number;
@@ -156,7 +156,7 @@ export interface Order {
 export interface GlobalSettings {
   exchangeRateRmbToBdt: number; // e.g. 18.50
   defaultProfitMarginPercent: number; // e.g. 12%
-  advancePaymentPercent: number; // e.g. 50%
+  advancePaymentPercent: number; // e.g. 100%
   airRatePerKgGeneral: number; // e.g. 750 BDT
   airRatePerKgSensitive: number; // e.g. 950 BDT
   seaRatePerKg: number; // e.g. 220 BDT

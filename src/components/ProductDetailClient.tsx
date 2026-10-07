@@ -158,7 +158,7 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
     totalPriceBdt,
     shippingCostBdt,
     settings.localCourierDhaka,
-    50
+    settings.advancePaymentPercent || 100
   );
 
   const handleCheckout = () => {
@@ -558,26 +558,26 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
               <div className="bg-cargo-900/90 border border-qc-emerald/40 p-3.5 rounded-2xl space-y-1">
                 <div className="text-qc-emerald font-bold flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-qc-emerald animate-pulse"></span>
-                  <span>STAGE 1: PAY NOW (50%)</span>
+                  <span>১০০% পণ্যের মূল্য (PAY NOW)</span>
                 </div>
                 <div className="text-2xl font-mono font-black text-white tabular-nums">
-                  ৳{paymentBreakdown.advanceAmountBdt.toLocaleString()}
+                  ৳{totalPriceBdt.toLocaleString()}
                 </div>
                 <p className="text-[11px] text-slate-300">
-                  Required to initiate direct wholesale procurement & order processing
+                  অর্ডার কনফার্মেশনের জন্য সম্পূর্ণ পণ্যের মূল্য পরিশোধযোগ্য
                 </p>
               </div>
 
               <div className="bg-cargo-900/90 border border-cargo-700 p-3.5 rounded-2xl space-y-1">
                 <div className="text-freight-amber font-bold flex items-center gap-1.5">
                   <Clock className="w-3.5 h-3.5 text-freight-amber" />
-                  <span>STAGE 2: ON BD ARRIVAL</span>
+                  <span>ডেলিভারি ফি (ON BD ARRIVAL)</span>
                 </div>
                 <div className="text-2xl font-mono font-black text-white tabular-nums">
-                  ৳{paymentBreakdown.stage2TotalPayableBdt.toLocaleString()}
+                  ৳{shippingCostBdt.toLocaleString()}
                 </div>
                 <p className="text-[11px] text-slate-300">
-                  Remaining 50% + {shippingMethod === "AIR" ? "Air" : "Sea"} Cargo (৳{shippingCostBdt.toLocaleString()})
+                  {shippingMethod === "AIR" ? "এয়ার কার্গো (৳৭৫০/কেজি)" : "সি ফ্রেইট (৳২২০/কেজি)"} • আনুমানিক {((product.estimatedWeightKg || 0.45) * quantity).toFixed(1)} কেজি ওজনে
                 </p>
               </div>
             </div>
@@ -588,8 +588,8 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
                 onClick={handleCheckout}
                 className="w-full bg-freight-amber hover:bg-freight-amberHover active:scale-[0.98] text-cargo-950 font-black py-4 px-6 rounded-2xl text-sm transition shadow-cargo flex items-center justify-center gap-2 btn-tactile"
               >
-                <span>Lock Order with 50% Advance</span>
-                <span className="font-mono font-bold">• ৳{paymentBreakdown.advanceAmountBdt.toLocaleString()} BDT</span>
+                <span>অর্ডার কনফার্ম করুন (১০০% পেমেন্ট)</span>
+                <span className="font-mono font-bold">• ৳{totalPriceBdt.toLocaleString()} BDT</span>
                 <ArrowRight className="w-4 h-4 text-cargo-950" />
               </button>
             </div>
@@ -814,14 +814,14 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
       <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white/95 backdrop-blur-md border-t border-slate-200 px-4 py-3 shadow-cargo flex items-center justify-between gap-3 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))]">
         <div className="min-w-0">
           <div className="text-[10px] text-slate-500 font-mono flex items-center gap-1.5">
-            <span>50% Advance</span>
+            <span>১০০% পণ্যের মূল্য</span>
             <span className="text-qc-emerald font-semibold">• {quantity} pcs</span>
           </div>
           <div className="text-base font-black text-cargo-900 font-mono tabular-nums leading-tight">
-            ৳{paymentBreakdown.advanceAmountBdt.toLocaleString()}
+            ৳{totalPriceBdt.toLocaleString()}
           </div>
           <div className="text-[10px] text-slate-400 font-mono tabular-nums">
-            Total: ৳{totalPriceBdt.toLocaleString()}
+            ডেলিভারি ফি ওজনে (BD Arrival)
           </div>
         </div>
         <div className="flex items-center gap-2 flex-shrink-0">
@@ -839,7 +839,7 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
             onClick={handleCheckout}
             className="bg-freight-amber hover:bg-freight-amberHover active:scale-[0.98] text-cargo-950 font-black px-5 py-2.5 rounded-xl text-xs transition shadow-xs flex items-center gap-1.5 btn-tactile min-h-[44px]"
           >
-            <span>Order 50%</span>
+            <span>অর্ডার করুন</span>
             <ArrowRight className="w-3.5 h-3.5 text-cargo-950" />
           </button>
         </div>

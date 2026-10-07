@@ -45,7 +45,7 @@ export default function CartPage() {
     ? Math.round(product.estimatedWeightKg * quantity * 750) 
     : Math.round(product.estimatedWeightKg * quantity * 220);
 
-  const breakdown = calculateTwoStagePayment(totalPriceBdt, shippingCostBdt, 70, 50);
+  const breakdown = calculateTwoStagePayment(totalPriceBdt, shippingCostBdt, 70, 100);
 
   const handleProceed = () => {
     const checkoutItem = {
@@ -77,7 +77,7 @@ export default function CartPage() {
           </h1>
         </div>
         <p className="text-xs text-slate-500 mt-1">
-          Review your factory items and select your international freight corridor before paying the 50% advance.
+          Review your items and select your international freight corridor. 100% product price is paid to order, delivery charge is per kg upon arrival.
         </p>
       </div>
 
@@ -183,14 +183,14 @@ export default function CartPage() {
         <div className="lg:col-span-5 bg-cargo-950 text-white border border-cargo-800 rounded-2xl p-6 shadow-cargo-lg space-y-5">
           <div className="border-b border-cargo-800 pb-3 flex justify-between items-center">
             <h3 className="font-bold text-sm text-white uppercase tracking-wider">Payment Schedule</h3>
-            <span className="text-[10px] bg-cargo-900 text-freight-amber font-mono px-2 py-0.5 rounded border border-cargo-700">
-              50% Advance Protocol
+            <span className="text-[10px] bg-cargo-900 text-qc-emerald font-mono px-2 py-0.5 rounded border border-cargo-700">
+              100% Product Payment
             </span>
           </div>
 
           <div className="space-y-2.5 text-xs font-mono">
             <div className="flex justify-between text-slate-400">
-              <span>Factory Goods Total:</span>
+              <span>Goods Total:</span>
               <span className="font-bold text-white tabular-nums">৳{totalPriceBdt.toLocaleString()}</span>
             </div>
 
@@ -207,16 +207,16 @@ export default function CartPage() {
             <div className="pt-3 border-t border-cargo-800 space-y-2.5">
               <div className="bg-cargo-900 border border-qc-emerald/40 p-3.5 rounded-xl flex justify-between items-center">
                 <div>
-                  <span className="font-bold text-xs text-qc-emerald block">STAGE 1: PAY NOW (50%)</span>
-                  <span className="text-[10px] text-slate-400 font-sans">Initial factory manufacturing deposit</span>
+                  <span className="font-bold text-xs text-qc-emerald block">PAY NOW (100% GOODS)</span>
+                  <span className="text-[10px] text-slate-400 font-sans">Full product order payment</span>
                 </div>
                 <span className="text-xl font-black text-white tabular-nums">৳{breakdown.advanceAmountBdt.toLocaleString()}</span>
               </div>
 
               <div className="bg-cargo-900 border border-cargo-700 p-3.5 rounded-xl flex justify-between items-center text-xs">
                 <div>
-                  <span className="font-bold text-freight-amber block">STAGE 2: ON BD ARRIVAL</span>
-                  <span className="text-[10px] text-slate-400 font-sans">Remaining 50% + Actual Weight Cargo</span>
+                  <span className="font-bold text-freight-amber block">ON BD ARRIVAL</span>
+                  <span className="text-[10px] text-slate-400 font-sans">International Freight (Per Kg) + Local Courier</span>
                 </div>
                 <span className="font-bold text-base text-white tabular-nums">৳{breakdown.stage2TotalPayableBdt.toLocaleString()}</span>
               </div>
@@ -227,7 +227,7 @@ export default function CartPage() {
             onClick={handleProceed}
             className="w-full bg-freight-amber hover:bg-freight-amberHover active:scale-[0.98] text-cargo-950 font-black py-4 rounded-xl text-xs sm:text-sm transition shadow-amber-glow flex items-center justify-center gap-2"
           >
-            <span>Proceed with 50% Advance (৳{breakdown.advanceAmountBdt.toLocaleString()})</span>
+            <span>Proceed to Checkout (৳{breakdown.advanceAmountBdt.toLocaleString()})</span>
             <ArrowRight className="w-4 h-4 text-cargo-950" />
           </button>
         </div>

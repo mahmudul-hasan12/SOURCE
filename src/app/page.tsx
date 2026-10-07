@@ -109,8 +109,8 @@ export default function HomePage() {
                       <Percent className="w-3.5 h-3.5" />
                     </div>
                     <div>
-                      <span className="font-bold text-white text-xs block">৫০% অগ্রিম পেমেন্ট</span>
-                      <span className="text-[11px] text-slate-400 leading-tight block">বাকি টাকা বাংলাদেশে পণ্য পৌঁছানোর পর।</span>
+                      <span className="font-bold text-white text-xs block">১০০% পণ্যের পেমেন্ট</span>
+                      <span className="text-[11px] text-slate-400 leading-tight block">ডেলিভারি চার্জ শুধু প্রতি কেজি ওজনে।</span>
                     </div>
                   </div>
                   <div className="flex items-start gap-2">

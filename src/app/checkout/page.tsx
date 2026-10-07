@@ -59,14 +59,14 @@ export default function CheckoutPage() {
         const defaultProduct = getClientProducts()[0];
         setCheckoutData({
           product: defaultProduct,
-          sku: defaultProduct.skus[0],
+          sku: defaultProduct?.skus?.[0],
           quantity: 2,
           shippingMethod: "AIR",
           unitPriceBdt: 700,
           totalPriceBdt: 1400,
           shippingCostBdt: 375,
-          advanceAmountBdt: 700,
-          stage2TotalPayableBdt: 1075
+          advanceAmountBdt: 1400,
+          stage2TotalPayableBdt: 505
         });
       }
     }
@@ -206,10 +206,10 @@ export default function CheckoutPage() {
           </div>
           <div>
             <h1 className="text-2xl font-black text-cargo-900 tracking-tight">
-              নিরাপদ ২-ধাপ হোলসেল চেকআউট (Two-Stage B2B Checkout)
+              নিরাপদ হোলসেল চেকআউট (B2B Checkout)
             </h1>
             <p className="text-xs text-slate-500 mt-0.5">
-              ৫০% অগ্রিম পেমেন্টে চীন কারখানায় অর্ডার বুক করুন। বাকি ৫০% এবং কেজি-ভিত্তিক ফ্রেইট পণ্য বাংলাদেশে পৌঁছালে পরিশোধযোগ্য।
+              ১০০% পণ্যের মূল্যে নিরাপদ অর্ডার নিশ্চিত করুন। ডেলিভারি ও ফ্রেইট ফি পণ্য বাংলাদেশে পৌঁছালে প্রতি কেজি ওজনে পরিশোধযোগ্য।
             </p>
           </div>
         </div>
@@ -314,7 +314,7 @@ export default function CheckoutPage() {
             <div className="flex items-center justify-between border-b border-slate-100 pb-3">
               <h3 className="font-bold text-sm text-cargo-900 flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-qc-emerald" />
-                <span>৫০% অগ্রিম পরিশোধের মাধ্যম নির্বাচন করুন</span>
+                <span>পণ্যের ১০০% মূল্য পরিশোধের মাধ্যম নির্বাচন করুন</span>
               </h3>
               <span className="text-[11px] font-mono font-semibold text-slate-500">
                 bKash / Nagad Only
@@ -365,7 +365,7 @@ export default function CheckoutPage() {
               <div className="flex items-center justify-between flex-wrap gap-2">
                 <span className="font-bold text-xs flex items-center gap-1.5">
                   <span className={`w-2 h-2 rounded-full ${paymentMethod === "BKASH" ? "bg-pink-600" : "bg-orange-600"}`} />
-                  <span>ধাপ ১: {paymentMethod === "BKASH" ? "বিকাশ" : "নগদ"} একাউন্টে ৫০% অগ্রিম পাঠান</span>
+                  <span>ধাপ ১: {paymentMethod === "BKASH" ? "বিকাশ" : "নগদ"} একাউন্টে ১০০% পণ্যের মূল্য পাঠান</span>
                 </span>
                 <span className="text-xs font-mono font-bold bg-white px-2 py-0.5 rounded border shadow-xs">
                   প্রদেয়: ৳{advanceAmountBdt.toLocaleString()}
@@ -408,7 +408,7 @@ export default function CheckoutPage() {
 
               <div className="text-[11px] text-slate-600 space-y-1 font-medium leading-relaxed">
                 <p>
-                  • আপনার {paymentMethod === "BKASH" ? "bKash" : "Nagad"} অ্যাপ অথবা USSD মেনু থেকে <strong>৳{advanceAmountBdt.toLocaleString()}</strong> টাকা {currentAccountType === "MERCHANT" ? "Make Payment" : "Send Money"} করুন।
+                  • আপনার {paymentMethod === "BKASH" ? "bKash" : "Nagad"} অ্যাপ অথবা USSD মেনু থেকে <strong>৳{advanceAmountBdt.toLocaleString()}</strong> টাকা (১০০% পণ্যের মূল্য) {currentAccountType === "MERCHANT" ? "Make Payment" : "Send Money"} করুন।
                 </p>
                 <p>
                   • পেমেন্ট সম্পন্ন হলে মেসেজ থেকে <strong>TrxID (Transaction ID)</strong> কপি করে নিচের বক্সে প্রদান করুন।
@@ -502,14 +502,14 @@ export default function CheckoutPage() {
               <div className="pt-2 border-t border-cargo-800 space-y-2">
                 <div className="flex justify-between items-center bg-cargo-800 border border-qc-emerald/40 text-qc-emerald p-3.5 rounded-xl font-bold">
                   <div>
-                    <span className="block text-xs font-bold text-white">১ম ধাপ: এখন পরিশোধযোগ্য (৫০%)</span>
-                    <span className="text-[10px] text-qc-emerald font-normal font-sans">চীন কারখানায় অর্ডার নিশ্চিত করতে</span>
+                    <span className="block text-xs font-bold text-white">এখন পরিশোধযোগ্য (১০০% পণ্যের মূল্য)</span>
+                    <span className="text-[10px] text-qc-emerald font-normal font-sans">সরাসরি অর্ডার নিশ্চিত ও প্রসেসিং</span>
                   </div>
                   <span className="text-lg text-white tabular-nums">৳{advanceAmountBdt.toLocaleString()}</span>
                 </div>
 
                 <div className="flex justify-between items-center text-slate-400 px-1 text-[11px]">
-                  <span>২য় ধাপ: ঢাকায় পণ্য পৌঁছালে (৫০% + ফ্রেইট):</span>
+                  <span>ঢাকায় পণ্য পৌঁছালে প্রদেয় (ডেলিভারি ও ফ্রেইট ফি):</span>
                   <span className="font-semibold text-freight-amber tabular-nums">৳{stage2TotalPayableBdt.toLocaleString()}</span>
                 </div>
               </div>

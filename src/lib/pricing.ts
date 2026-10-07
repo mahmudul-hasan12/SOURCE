@@ -4,7 +4,7 @@ import { GlobalSettings, PriceTier } from "@/types";
 export const DEFAULT_SETTINGS: GlobalSettings = {
   exchangeRateRmbToBdt: 18.50, // 1 CNY = 18.50 BDT
   defaultProfitMarginPercent: 12, // 12% agent service commission
-  advancePaymentPercent: 50, // 50% advance for two-stage payment
+  advancePaymentPercent: 100, // 100% full product payment up front
   airRatePerKgGeneral: 750, // 750 BDT / kg for general goods by air (10-18 days)
   airRatePerKgSensitive: 950, // 950 BDT / kg for battery/liquid/magnet by air
   seaRatePerKg: 220, // 220 BDT / kg by sea (30-45 days)
@@ -18,7 +18,7 @@ export const DEFAULT_SETTINGS: GlobalSettings = {
   nagadNumber: "01855-123456",
   nagadAccountType: "PERSONAL",
   whatsappNumber: "+8801755123456",
-  announcementNotice: "চীন থেকে সরাসরি ফ্যাক্টরি মূল্যে আমদানি করুন | ৫০% অগ্রিম বুকিংয়ে অর্ডার কনফার্ম | গুয়াংজু হাব QC ভেরিফায়েড",
+  announcementNotice: "আন্তর্জাতিক সরাসরি পাইকারি সোর্সিং | ১০০% পণ্যের নিরাপদ পেমেন্ট | ডেলিভারি চার্জ শুধু প্রতি কেজিতে | ভেরিফায়েড QC",
 };
 
 /**
@@ -84,9 +84,9 @@ export function calculateShippingFee(
 }
 
 /**
- * Calculates the Two-Stage Payment Structure
- * Stage 1: Advance payment (50% of product cost) to initiate purchase in China
- * Stage 2: Remaining 50% + actual international shipping weight fee + local BD delivery fee
+ * Calculates the Payment Structure
+ * Stage 1: 100% full product cost to initiate order
+ * Stage 2: Actual international freight weight fee (per kg) + local BD courier fee payable on arrival
  */
 export function calculateTwoStagePayment(
   productTotalBdt: number,

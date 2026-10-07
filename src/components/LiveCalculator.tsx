@@ -19,7 +19,7 @@ export function LiveCalculator() {
   const totalWeightKg = Number((unitWeightKg * quantity).toFixed(2));
 
   const { shippingCostBdt } = calculateShippingFee(totalWeightKg, shippingMethod);
-  const paymentBreakdown = calculateTwoStagePayment(productTotalBdt, shippingCostBdt, 70, 50);
+  const paymentBreakdown = calculateTwoStagePayment(productTotalBdt, shippingCostBdt, 70, 100);
 
   return (
     <div className="bg-cargo-900 border border-cargo-750 text-white rounded-2xl p-6 sm:p-8 shadow-cargo relative overflow-hidden">
@@ -175,17 +175,17 @@ export function LiveCalculator() {
             <div className="flex items-center justify-between">
               <span className="text-[11px] text-qc-emerald font-bold tracking-wider uppercase font-mono flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-qc-emerald"></span>
-                Stage 1 (Pay Now)
+                Pay Now (Goods Total)
               </span>
               <span className="text-[10px] bg-qc-emerald/20 text-emerald-300 font-mono px-2 py-0.5 rounded font-bold">
-                50% Advance
+                100% Product Price
               </span>
             </div>
             <div className="text-2xl font-mono font-black text-emerald-300 tabular-nums">
               ৳{paymentBreakdown.advanceAmountBdt.toLocaleString()}
             </div>
             <p className="text-[11px] text-slate-300 leading-snug">
-              Deposit required to lock factory order and start Guangzhou warehouse intake.
+              Full product amount required to confirm order and initiate procurement.
             </p>
           </div>
 
@@ -193,17 +193,17 @@ export function LiveCalculator() {
           <div className="bg-cargo-900 border border-cargo-750 p-4 rounded-xl space-y-1.5">
             <div className="flex items-center justify-between">
               <span className="text-[11px] text-freight-amber font-bold tracking-wider uppercase font-mono">
-                Stage 2 (Pay on BD Arrival)
+                Pay on BD Arrival
               </span>
               <span className="text-[10px] bg-cargo-800 text-slate-300 font-mono px-2 py-0.5 rounded">
-                Remaining 50% + Freight
+                Delivery Fee Per Kg
               </span>
             </div>
             <div className="text-2xl font-mono font-black text-freight-amber tabular-nums">
               ৳{paymentBreakdown.stage2TotalPayableBdt.toLocaleString()}
             </div>
             <p className="text-[11px] text-slate-300 leading-snug">
-              Paid upon customs clearance at Dhaka Hub, including {shippingMethod === "AIR" ? "Air" : "Sea"} cargo (৳{shippingCostBdt.toLocaleString()}).
+              Paid upon arrival at Dhaka Hub, based strictly on weight ({shippingMethod === "AIR" ? "Air" : "Sea"} cargo: ৳{shippingCostBdt.toLocaleString()} + local courier: ৳70).
             </p>
           </div>
         </div>

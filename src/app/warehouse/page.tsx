@@ -216,7 +216,7 @@ export default function ChinaWarehousePortal() {
                       <div>
                         <span className="font-black text-sm text-slate-900">{order.orderNumber}</span>
                         <span className="ml-2 text-xs bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded">
-                          50% Advance Paid (৳{order.pricing.advanceAmountBdt})
+                          100% Paid (৳{order.pricing.advanceAmountBdt})
                         </span>
                       </div>
                       <div className="text-xs text-slate-500">

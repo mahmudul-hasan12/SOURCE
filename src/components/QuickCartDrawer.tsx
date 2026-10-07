@@ -43,7 +43,7 @@ export function QuickCartDrawer({ isOpen, onClose }: QuickCartDrawerProps) {
     ? Math.round((product?.estimatedWeightKg || 0.3) * quantity * 750) 
     : Math.round((product?.estimatedWeightKg || 0.3) * quantity * 220);
 
-  const breakdown = calculateTwoStagePayment(totalPriceBdt, shippingCostBdt, 70, 50);
+  const breakdown = calculateTwoStagePayment(totalPriceBdt, shippingCostBdt, 70, 100);
 
   const handleCheckout = () => {
     onClose();
@@ -195,8 +195,8 @@ export function QuickCartDrawer({ isOpen, onClose }: QuickCartDrawerProps) {
               <div className="space-y-2 text-xs">
                 <div className="bg-cargo-900 border border-qc-emerald/40 p-2.5 rounded-xl flex justify-between items-center">
                   <div>
-                    <span className="text-[11px] font-bold text-qc-emerald block">STAGE 1 (PAY NOW)</span>
-                    <span className="text-[9px] text-slate-400 font-sans">50% Advance to start factory order</span>
+                    <span className="text-[11px] font-bold text-qc-emerald block">PAY NOW (100% GOODS)</span>
+                    <span className="text-[9px] text-slate-400 font-sans">Full product order payment</span>
                   </div>
                   <span className="text-base font-black text-white tabular-nums">
                     ৳{breakdown.advanceAmountBdt.toLocaleString()}
@@ -205,8 +205,8 @@ export function QuickCartDrawer({ isOpen, onClose }: QuickCartDrawerProps) {
 
                 <div className="bg-cargo-900 border border-cargo-700 p-2.5 rounded-xl flex justify-between items-center text-slate-300">
                   <div>
-                    <span className="text-[11px] font-bold text-freight-amber block">STAGE 2 (BD ARRIVAL)</span>
-                    <span className="text-[9px] text-slate-400 font-sans">50% Balance + Actual Cargo Weight</span>
+                    <span className="text-[11px] font-bold text-freight-amber block">BD ARRIVAL</span>
+                    <span className="text-[9px] text-slate-400 font-sans">International Freight (Per Kg) + Courier</span>
                   </div>
                   <span className="text-sm font-bold text-white tabular-nums">
                     ৳{breakdown.stage2TotalPayableBdt.toLocaleString()}
@@ -222,7 +222,7 @@ export function QuickCartDrawer({ isOpen, onClose }: QuickCartDrawerProps) {
               onClick={handleCheckout}
               className="w-full bg-freight-amber hover:bg-freight-amberHover text-cargo-950 font-black py-3.5 rounded-xl text-xs transition shadow-amber-glow flex items-center justify-center gap-2 btn-tactile"
             >
-              <span>Pay 50% Advance (৳{breakdown.advanceAmountBdt.toLocaleString()})</span>
+              <span>Proceed to Checkout (৳{breakdown.advanceAmountBdt.toLocaleString()})</span>
               <ArrowRight className="w-4 h-4 text-cargo-950" />
             </button>
             <Link

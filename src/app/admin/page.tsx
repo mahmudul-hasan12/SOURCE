@@ -764,7 +764,7 @@ export default function AdminPage() {
                   value={settings.announcementNotice || ""}
                   onChange={(e) => setSettings({ ...settings, announcementNotice: e.target.value })}
                   className="w-full px-3 py-2 border rounded-xl font-medium text-slate-900 focus:ring-2 focus:ring-freight-amber focus:outline-none"
-                  placeholder="চীন থেকে সরাসরি ফ্যাক্টরি মূল্যে আমদানি করুন | ৫০% অগ্রিম বুকিং"
+                  placeholder="আন্তর্জাতিক সরাসরি পাইকারি সোর্সিং | ১০০% নিরাপদ পেমেন্ট | ডেলিভারি চার্জ শুধু প্রতি কেজিতে"
                 />
               </div>
             </div>

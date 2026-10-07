@@ -190,7 +190,7 @@ export function Navbar() {
                   </span>
                 </div>
                 <span className="text-[9px] sm:text-[10px] text-slate-500 block leading-none font-medium mt-0.5 hidden xs:block">
-                  Direct Factory Wholesale • 50% Advance
+                  Direct Factory Wholesale • 100% Secure Payment
                 </span>
               </div>
             </Link>

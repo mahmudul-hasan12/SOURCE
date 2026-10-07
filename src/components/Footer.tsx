@@ -43,8 +43,8 @@ export function Footer() {
               <Award className="w-6 h-6" />
             </div>
             <div>
-              <h4 className="font-bold text-white text-sm">50% Advance Protocol</h4>
-              <p className="text-xs text-slate-400 mt-0.5">Pay 50% to initiate, balance upon BD arrival</p>
+              <h4 className="font-bold text-white text-sm">100% Secure Product Payment</h4>
+              <p className="text-xs text-slate-400 mt-0.5">Pay 100% goods price to order, delivery fee per kg upon arrival</p>
             </div>
           </div>
         </div>
