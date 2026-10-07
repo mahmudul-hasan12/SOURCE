@@ -36,23 +36,23 @@ export default function HomePage() {
               {/* Corridor Status Strip in Bengali & English */}
               <div className="inline-flex items-center gap-2 bg-cargo-900/90 border border-cargo-700 px-3.5 py-1.5 rounded-full text-xs font-mono shadow-xs backdrop-blur-md">
                 <span className="w-2 h-2 rounded-full bg-qc-emerald animate-pulse" />
-                <span className="text-freight-amber font-semibold">গুয়াংজু ওয়্যারহাউস লাইভ</span>
+                <span className="text-freight-amber font-semibold">লাইভ গ্লোবাল সোর্সিং</span>
                 <span className="text-slate-500">•</span>
-                <span className="text-slate-300">চীন থেকে সরাসরি পাইকারি আমদানি</span>
+                <span className="text-slate-300">আন্তর্জাতিক সরাসরি পাইকারি আমদানি</span>
               </div>
 
               {/* High-Impact Bengali Headline */}
               <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.18] text-white">
-                চীন থেকে সরাসরি{" "}
+                সরাসরি সেরা{" "}
                 <span className="text-freight-amber underline decoration-freight-amber/35 decoration-4 underline-offset-4">
-                  ফ্যাক্টরি রেটে
+                  পাইকারি মূল্যে
                 </span>{" "}
                 আমদানি করুন
               </h1>
 
               {/* Subtext in natural Bengali */}
               <p className="text-slate-300 text-xs sm:text-base leading-relaxed max-w-xl">
-                ১৬৮৮ (1688) বা তাওবাও (Taobao)-এর যেকোনো লিংক পেস্ট করুন — সাথে সাথে জানুন বাংলাদেশি টাকায় মোট মূল্য, এয়ার/সি ফ্রেইট ও ডেলিভারি সময়। কোনো লুকানো খরচ নেই।
+                যেকোনো পণ্যের লিংক পেস্ট করুন বা সার্চ করুন — সাথে সাথে জানুন বাংলাদেশি টাকায় মোট মূল্য, এয়ার/সি ফ্রেইট ও ডেলিভারি হিসাব। কোনো লুকানো চার্জ নেই।
               </p>
 
               {/* Universal Sourcing Omnibar */}
@@ -63,7 +63,7 @@ export default function HomePage() {
                       id="omnibar-input"
                       type="text"
                       name="url"
-                      placeholder="এখানে ১৬৮৮ বা তাওবাও পণ্যের লিংক পেস্ট করুন (Paste 1688/Taobao link)..."
+                      placeholder="যেকোনো পণ্যের লিংক পেস্ট করুন বা সার্চ করুন (Paste product link or search)..."
                       className="flex-1 px-3 py-2.5 bg-transparent text-white placeholder-slate-400 text-xs sm:text-sm focus:outline-none min-h-[44px]"
                     />
                     <button
@@ -75,28 +75,28 @@ export default function HomePage() {
                     </button>
                   </div>
 
-                  {/* Sample Ready-to-Test Links */}
+                  {/* Popular Sourcing Prompts */}
                   <div className="flex flex-wrap items-center gap-1.5 text-xs text-slate-400 pt-1">
-                    <span className="text-slate-500 font-mono text-[11px]">টেস্ট করার লিংক:</span>
+                    <span className="text-slate-500 font-mono text-[11px]">জনপ্রিয় সার্চ:</span>
                     <Link 
-                      href="/search?url=https%3A%2F%2Fdetail.1688.com%2Foffer%2F774556173956.html" 
-                      className="bg-cargo-800/90 hover:bg-cargo-750 px-2 py-0.5 rounded text-freight-amber transition border border-cargo-700/80 font-mono text-[11px] flex items-center gap-1"
+                      href="/search?q=jeans" 
+                      className="bg-cargo-800/90 hover:bg-cargo-750 px-2.5 py-0.5 rounded text-freight-amber transition border border-cargo-700/80 font-mono text-[11px] flex items-center gap-1"
                     >
-                      <span>রেট্রো ডেনিম জিন্স (#774556173956)</span>
+                      <span>ডেনিম জিন্স</span>
                       <ArrowRight className="w-3 h-3 text-freight-amber/70" />
                     </Link>
                     <Link 
-                      href="/search?url=https%3A%2F%2Fdetail.1688.com%2Foffer%2F1019859245819.html" 
-                      className="bg-cargo-800/90 hover:bg-cargo-750 px-2 py-0.5 rounded text-freight-amber transition border border-cargo-700/80 font-mono text-[11px] flex items-center gap-1"
+                      href="/search?q=earbuds" 
+                      className="bg-cargo-800/90 hover:bg-cargo-750 px-2.5 py-0.5 rounded text-freight-amber transition border border-cargo-700/80 font-mono text-[11px] flex items-center gap-1"
                     >
-                      <span>গুয়াংজু স্ট্রেট জিন্স (#1019859245819)</span>
+                      <span>ব্লুটুথ ইয়ারবাডস</span>
                       <ArrowRight className="w-3 h-3 text-freight-amber/70" />
                     </Link>
                     <Link 
-                      href="/search?url=https%3A%2F%2Fdetail.1688.com%2Foffer%2F895199300568.html" 
-                      className="bg-cargo-800/90 hover:bg-cargo-750 px-2 py-0.5 rounded text-freight-amber transition border border-cargo-700/80 font-mono text-[11px] flex items-center gap-1"
+                      href="/search?q=backpack" 
+                      className="bg-cargo-800/90 hover:bg-cargo-750 px-2.5 py-0.5 rounded text-freight-amber transition border border-cargo-700/80 font-mono text-[11px] flex items-center gap-1"
                     >
-                      <span>কটন ওয়ার্কস্যুট</span>
+                      <span>ট্রাভেল ব্যাকপ্যাক</span>
                       <ArrowRight className="w-3 h-3 text-freight-amber/70" />
                     </Link>
                   </div>

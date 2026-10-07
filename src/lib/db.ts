@@ -161,12 +161,6 @@ export class StorageService {
     if (db) {
       try {
         const col = db.collection<Product>("products");
-        const count = await col.countDocuments();
-        if (count === 0) {
-          // Auto-seed cloud database on first run
-          await col.insertMany(SEED_PRODUCTS as any);
-          return SEED_PRODUCTS;
-        }
         const docs = await col.find({}, { projection: { _id: 0 } }).sort({ createdAt: -1 }).toArray();
         return docs as Product[];
       } catch (err) {

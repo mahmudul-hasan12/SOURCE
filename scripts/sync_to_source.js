@@ -38,7 +38,7 @@ try {
   execSync(`"${gitPath}" config user.email "riode520@gmail.com"`, { cwd: destDir, stdio: 'inherit' });
   execSync(`"${gitPath}" add .`, { cwd: destDir, stdio: 'inherit' });
   try {
-    execSync(`"${gitPath}" commit -m "Deploy full SkySourcing BD codebase to Vercel"`, { cwd: destDir, stdio: 'inherit' });
+    execSync(`"${gitPath}" commit -m "Clean catalog, white-label UI, verified extension importer and error-free build"`, { cwd: destDir, stdio: 'inherit' });
   } catch (e) {
     console.log('Commit note: already up to date or nothing new to commit.');
   }

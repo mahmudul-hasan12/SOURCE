@@ -109,9 +109,9 @@ export function HeroLogisticsCard() {
 export function FeatureBannersBengali() {
   const features = [
     {
-      titleBn: "সরাসরি ফ্যাক্টরি পাইকারি রেট",
-      titleEn: "1688 Direct Factory Rates",
-      descBn: "চীন কারখানার আসল এক্স-ফ্যাক্টরি রেটে পণ্য কিনুন। কোনো মধ্যস্বত্বভোগী বা হিডেন মার্জিন নেই।",
+      titleBn: "সরাসরি পাইকারি রেট",
+      titleEn: "Direct Wholesale Rates",
+      descBn: "সরাসরি আসল পাইকারি মূল্যে পণ্য কিনুন। কোনো মধ্যস্বত্বভোগী বা লুকানো ফি নেই।",
       icon: Layers,
       color: "text-freight-amber",
       bg: "bg-amber-500/10 border-amber-500/30"
@@ -196,22 +196,22 @@ export function HowItWorksBengali() {
     {
       num: "০১",
       titleBn: "লিংক কপি ও পেস্ট করুন",
-      titleEn: "Paste 1688 / Taobao Link",
-      descBn: "১৬৮৮ বা তাওবাও অ্যাপ/ওয়েবসাইট থেকে যেকোনো পণ্যের লিংক কপি করে সার্চ বারে পেস্ট করুন।",
-      badge: "স্বয়ংক্রিয় অনুবাদ"
+      titleEn: "Paste Product Link or Search",
+      descBn: "যেকোনো আন্তর্জাতিক পণ্যের লিংক কপি করে সার্চ বারে পেস্ট করুন বা প্রোডাক্ট লিখে খুঁজুন।",
+      badge: "স্বয়ংক্রিয় হিসাব"
     },
     {
       num: "০২",
       titleBn: "তাত্ক্ষণিক বিডিটি রেট দেখুন",
       titleEn: "Instant BDT & Freight Quote",
-      descBn: "আমাদের সিস্টেম সরাসরি চীনা কারখানার আসল দাম, হোলসেল টায়ার ও ফ্রেইট রেট টাকায় হিসাব করে দেবে।",
+      descBn: "আমাদের সিস্টেম সরাসরি আসল পাইকারি দাম, হোলসেল টায়ার ও ফ্রেইট রেট টাকায় হিসাব করে দেবে।",
       badge: "কোনো হিডেন ফি নেই"
     },
     {
       num: "০৩",
       titleBn: "৫০% অগ্রিমে কনফার্ম করুন",
       titleEn: "50% Advance Order Booking",
-      descBn: "বিকাশ, নগদ বা ব্যাংক ট্রান্সফারের মাধ্যমে ৫০% অগ্রিম দিয়ে অর্ডার লক করুন। পণ্য চীনে বুক হবে।",
+      descBn: "বিকাশ, নগদ বা ব্যাংক ট্রান্সফারের মাধ্যমে ৫০% অগ্রিম দিয়ে অর্ডার লক করুন। পণ্য প্রসেসিং শুরু হবে।",
       badge: "নিরাপদ পেমেন্ট"
     },
     {
@@ -231,10 +231,10 @@ export function HowItWorksBengali() {
             সহজ ৪ ধাপের প্রসেস
           </span>
           <h2 className="text-2xl sm:text-3xl font-black text-cargo-900 tracking-tight">
-            কীভাবে চীন থেকে পণ্য অর্ডার করবেন?
+            কীভাবে সরাসরি পাইকারি মূল্যে পণ্য অর্ডার করবেন?
           </h2>
           <p className="text-xs sm:text-sm text-slate-500">
-            কোনো জটিলতা ছাড়াই মাত্র কয়েকটি ক্লিকে ১৬৮৮ বা তাওবাও থেকে পণ্য আপনার কাছে পৌঁছাবে
+            কোনো জটিলতা ছাড়াই মাত্র কয়েকটি ক্লিকে আন্তর্জাতিক পাইকারি পণ্য আপনার ঠিকানায় পৌঁছাবে
           </p>
         </div>
 

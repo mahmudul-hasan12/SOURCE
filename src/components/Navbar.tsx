@@ -204,7 +204,7 @@ export function Navbar() {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Paste 1688 / Taobao link or search wholesale goods..."
+                    placeholder="Paste product link or search wholesale goods..."
                     className="w-full py-2.5 pl-4 pr-3 text-sm text-slate-800 placeholder-slate-400 bg-transparent focus:outline-none"
                   />
                   
@@ -238,7 +238,7 @@ export function Navbar() {
                   <div className="flex items-center gap-2 text-[11px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-lg border border-emerald-200 mt-1 shadow-xs animate-pulse">
                     <span className="w-2 h-2 rounded-full bg-qc-emerald" />
                     <span>
-                      {searchQuery.includes("1688.com") || /^\d{8,14}$/.test(searchQuery.trim()) ? "1688 Direct Factory Listing Detected" : "Taobao / Tmall Listing Detected"} • Press Enter to Auto-Resolve
+                      Product Link Detected • Press Enter to Inspect & Calculate BDT
                     </span>
                   </div>
                 )}
@@ -285,7 +285,7 @@ export function Navbar() {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Paste 1688 / Taobao link or search..."
+                  placeholder="Paste product link or search..."
                   className="flex-1 py-2 px-3 text-xs text-slate-800 placeholder-slate-400 bg-transparent focus:outline-none"
                 />
                 
@@ -320,7 +320,7 @@ export function Navbar() {
                 <div className="flex items-center gap-1.5 text-[10px] font-mono font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200 animate-pulse">
                   <span className="w-2 h-2 rounded-full bg-qc-emerald" />
                   <span>
-                    {searchQuery.includes("1688.com") ? "1688 Direct Factory Link" : "Taobao / Tmall Link"} • Tap Inspect
+                    Product Link Detected • Tap Inspect
                   </span>
                 </div>
               )}

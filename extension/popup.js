@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-  badgeEl.innerText = is1688 ? "1688 Factory Detected" : "Taobao Active";
+  badgeEl.innerText = is1688 ? "1688 Product Detected" : "Taobao Active";
   badgeEl.style.color = "#f59e0b";
 
   // Load saved settings

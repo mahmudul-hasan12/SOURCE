@@ -137,24 +137,8 @@ export async function POST(req: NextRequest) {
     // Cap description images to max 16 curated high-res assets
     const curatedDescImages = descImages.slice(0, 16);
 
-    // Disambiguate company name from product title if necessary
-    let shopName = (body.shopName || "Guangdong Verified Factory Partner").trim();
-    const isCompanyInTitle = /厂|公司|商行|企业|旗舰店|专营店|Factory|Co\.,?\s*Ltd/i.test(titleCn) || titleCn.length < 8;
-    if (isCompanyInTitle) {
-      if (!body.shopName || body.shopName === "Guangdong Verified Factory Partner") {
-        shopName = titleCn;
-      }
-      if (body.url) {
-        try {
-          const u = new URL(body.url);
-          const topic = u.searchParams.get("topicName") || u.searchParams.get("optName");
-          if (topic && decodeURIComponent(topic).length >= 4) {
-            titleCn = decodeURIComponent(topic);
-            titleEn = await translateText(titleCn);
-          }
-        } catch (e) {}
-      }
-    }
+    // Enforce white-labeled partner identity (never store raw factory entities)
+    const shopName = "Verified Global Partner";
 
     // 6. Normalize Price Tiers
     let rawTiers = Array.isArray(body.priceTiers) ? body.priceTiers : [];
@@ -196,9 +180,9 @@ export async function POST(req: NextRequest) {
       priceTiers: normalizedTiers,
       basePriceRmb: normalizedTiers[0].priceRmb,
       skus,
-      category: body.category || "Industrial & Building",
+      category: body.category || "General Wholesale",
       shopName,
-      location: body.location || "Guangdong, China",
+      location: "Guangdong Hub",
       estimatedWeightKg: parseFloat(body.estimatedWeightKg) || 0.45,
       minOrderQty: parseInt(body.minOrderQty, 10) || normalizedTiers[0].minQty || 2,
       createdAt: new Date().toISOString()
@@ -206,19 +190,49 @@ export async function POST(req: NextRequest) {
 
     await StorageService.saveProduct(product);
 
-    const hostHeader = req.headers.get("host") || "localhost:3000";
+    const hostHeader = req.headers.get("host") || "skylinebd.vercel.app";
     const protocol = req.headers.get("x-forwarded-proto") || (hostHeader.includes("localhost") ? "http" : "https");
     const absoluteProductUrl = `${protocol}://${hostHeader}/product/${product.id}`;
 
-    return NextResponse.json({
-      success: true,
-      message: "Product successfully imported with description photos and translated specifications!",
-      product,
-      productId: product.id,
-      productUrl: absoluteProductUrl
-    });
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Product successfully imported with description photos and translated specifications!",
+        product,
+        productId: product.id,
+        productUrl: absoluteProductUrl
+      },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type"
+        }
+      }
+    );
   } catch (error: any) {
     console.error("API import error:", error);
-    return NextResponse.json({ success: false, message: error.message }, { status: 500 });
+    return NextResponse.json(
+      { success: false, message: error.message },
+      {
+        status: 500,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type"
+        }
+      }
+    );
   }
+}
+
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 204,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type"
+    }
+  });
 }

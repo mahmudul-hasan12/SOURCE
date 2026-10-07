@@ -191,27 +191,16 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
         <span className="text-cargo-900 font-semibold truncate max-w-sm">{product.titleEn}</span>
       </div>
 
-      {/* 1688 Verified Sourcing & Sync Action Bar */}
+      {/* Verified Wholesale Sourcing & Sync Action Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3 bg-cargo-900 text-white p-3 sm:p-4 rounded-2xl border border-cargo-750 shadow-xs text-xs font-mono">
         <div className="flex items-center gap-2.5 flex-wrap">
           <span className="w-2.5 h-2.5 rounded-full bg-qc-emerald animate-pulse" />
-          <span className="text-freight-amber font-bold">1688 Direct Factory Listing:</span>
-          <span className="text-slate-300">Offer #{product.sourceOfferId}</span>
+          <span className="text-freight-amber font-bold">Verified Wholesale Listing:</span>
+          <span className="text-slate-300">Ref #{product.sourceOfferId}</span>
           <span className="text-slate-500 hidden sm:inline">•</span>
-          <span className="text-slate-400 hidden sm:inline">Guangzhou Warehouse Pre-Shipment Inspection</span>
+          <span className="text-slate-400 hidden sm:inline">Pre-Shipment Quality Control Verified</span>
         </div>
         <div className="flex items-center gap-2">
-          {product.url && (
-            <a
-              href={product.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-cargo-800 hover:bg-cargo-700 text-slate-200 px-3 py-1.5 rounded-lg border border-cargo-650 transition flex items-center gap-1.5 btn-tactile"
-            >
-              <span>View on 1688</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-freight-amber" />
-            </a>
-          )}
           <button
             onClick={() => {
               setEditTitle(product.titleEn);
@@ -251,7 +240,7 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
             />
             <div className="absolute top-3 left-3 flex flex-col gap-1 items-start">
               <span className="bg-cargo-950 text-freight-amber font-mono font-bold text-xs px-2.5 py-1 rounded-md shadow-xs border border-cargo-800">
-                Direct Factory
+                Verified Wholesale
               </span>
               {product.isSensitiveCargo && (
                 <span className="bg-amber-600 text-white font-bold text-xs px-2.5 py-1 rounded-md shadow-xs">
@@ -290,7 +279,7 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
             <div className="flex items-center justify-between border-b border-slate-200 pb-2.5">
               <div className="flex items-center gap-2 text-cargo-900 font-bold">
                 <ShieldCheck className="w-4 h-4 text-qc-emerald" />
-                <span>Guangzhou Warehouse QC Protocol</span>
+                <span>Pre-Shipment Quality Protocol</span>
               </div>
               <button
                 onClick={() => setIsQcModalOpen(true)}
@@ -318,8 +307,8 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
               </div>
             </div>
             <div className="pt-2 border-t border-slate-200 flex justify-between items-center text-[11px]">
-              <span className="text-slate-500">Origin Warehouse:</span>
-              <span className="font-semibold text-cargo-900 font-mono">{product.location} Hub</span>
+              <span className="text-slate-500">Inspection Standard:</span>
+              <span className="font-semibold text-cargo-900 font-mono">100% Pre-Shipment Verified</span>
             </div>
           </div>
         </div>
@@ -328,9 +317,9 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
         <div className="lg:col-span-7 space-y-6">
           <div>
             <div className="flex items-center gap-2 text-xs font-mono text-slate-400 mb-1">
-              <span>LOT #{product.sourceOfferId}</span>
+              <span>REF #{product.sourceOfferId}</span>
               <span>•</span>
-              <span className="text-qc-emerald font-semibold">{product.shopName}</span>
+              <span className="text-qc-emerald font-semibold">Verified Global Supply</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-black text-cargo-900 leading-snug tracking-tight">
               {product.titleEn}
@@ -374,7 +363,7 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
                   >
                     <div className="text-[11px] font-semibold text-slate-500">{tier.range}</div>
                     <div className="text-lg sm:text-xl font-black text-cargo-900 mt-0.5 tabular-nums">৳{tierBdt}</div>
-                    <div className="text-[10px] text-slate-400">¥{tier.priceRmb.toFixed(1)} Ex-Factory</div>
+                    <div className="text-[10px] text-slate-400">¥{tier.priceRmb.toFixed(1)} Wholesale</div>
                   </div>
                 );
               })}
@@ -385,7 +374,7 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
           {Boolean(product.skus && product.skus.length > 0) && (
             <div className="space-y-2.5">
               <label className="text-xs font-bold text-cargo-900 flex justify-between">
-                <span>Select Factory Variant / Specification:</span>
+                <span>Select Product Variant / Specification:</span>
                 <span className="text-transit-air font-semibold">{selectedSku?.name || "Standard Model"}</span>
               </label>
               <div className="flex flex-wrap gap-2">
@@ -560,7 +549,7 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
                 </div>
               </div>
               <div className="text-right text-xs text-slate-400 font-mono tabular-nums">
-                <span>Ex-Factory: </span>
+                <span>Base Cost: </span>
                 <span className="text-freight-amber font-bold">¥{(unitPriceRmb * quantity).toFixed(1)} RMB</span>
               </div>
             </div>
@@ -575,7 +564,7 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
                   ৳{paymentBreakdown.advanceAmountBdt.toLocaleString()}
                 </div>
                 <p className="text-[11px] text-slate-300">
-                  Required to initiate factory manufacturing in China
+                  Required to initiate direct wholesale procurement & order processing
                 </p>
               </div>
 
@@ -610,25 +599,20 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
 
       {/* Product Overview & Translated Specifications */}
       <div className="space-y-8 pt-4">
-        {/* Description & Factory Grade Summary */}
+        {/* Description & Product Overview */}
         <div className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-xs space-y-3">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-6 bg-freight-amber rounded-full"></span>
             <h2 className="text-lg sm:text-xl font-bold text-cargo-900">
-              Factory Overview & Sourcing Notes
+              Product Overview & Sourcing Details
             </h2>
           </div>
           <p className="text-slate-600 text-sm leading-relaxed whitespace-pre-line">
-            {product.description || "Direct factory wholesale supply with verified pre-shipment quality inspection at Guangzhou Hub."}
+            {product.description || "Direct international wholesale supply with verified pre-shipment quality inspection."}
           </p>
-          {product.descriptionCn && product.descriptionCn !== product.description && (
-            <div className="pt-2 text-xs text-slate-400 font-mono border-t border-slate-100 line-clamp-2">
-              <span className="font-semibold text-slate-500">Origin Manufacturer Summary:</span> {product.descriptionCn}
-            </div>
-          )}
         </div>
 
-        {/* Factory Technical Specifications Matrix */}
+        {/* Technical Specifications Matrix */}
         {product.attributes && product.attributes.length > 0 && (
           <div className="bg-white border border-slate-200/90 rounded-3xl p-6 sm:p-8 shadow-xs space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-200 pb-4 gap-2">
@@ -636,11 +620,11 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
                 <div className="flex items-center gap-2">
                   <Layers className="w-5 h-5 text-freight-amber" />
                   <h2 className="text-lg sm:text-xl font-bold text-cargo-900">
-                    Verified Factory Technical Specifications
+                    Verified Technical Specifications
                   </h2>
                 </div>
                 <p className="text-xs text-slate-500 mt-0.5">
-                  Parameters extracted from manufacturer blueprint and translated to English
+                  Verified product specifications and material attributes
                 </p>
               </div>
               <span className="text-xs font-mono font-semibold text-qc-emerald bg-emerald-50 px-3 py-1 rounded-xl border border-emerald-200 self-start sm:self-auto">
@@ -658,21 +642,11 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
                     <span className="font-bold text-xs text-cargo-900 block">
                       {attr.keyEn || attr.keyCn}
                     </span>
-                    {attr.keyCn && attr.keyCn !== attr.keyEn && (
-                      <span className="text-[10px] text-slate-400 font-mono block">
-                        {attr.keyCn}
-                      </span>
-                    )}
                   </div>
                   <div className="text-right space-y-0.5">
                     <span className="font-semibold text-xs text-slate-800 font-mono block">
                       {attr.valueEn || attr.valueCn}
                     </span>
-                    {attr.valueCn && attr.valueCn !== attr.valueEn && (
-                      <span className="text-[10px] text-slate-400 font-mono block">
-                        {attr.valueCn}
-                      </span>
-                    )}
                   </div>
                 </div>
               ))}
@@ -680,7 +654,7 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
           </div>
         )}
 
-        {/* Factory Blueprint & Detailed Description Photos Gallery */}
+        {/* Detailed High-Resolution Media Gallery */}
         {(() => {
           const cleanDescImages = (product.descriptionImages || []).filter(
             (img) => typeof img === "string" && !img.includes("-tps-") && !img.includes("tps-") && !img.includes("tfs/") && !img.includes("blank.png")
@@ -696,11 +670,11 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
                   <div className="flex items-center gap-2">
                     <Camera className="w-5 h-5 text-transit-air" />
                     <h2 className="text-lg sm:text-xl font-bold text-cargo-900">
-                      Factory Blueprint & Inspection Photo Gallery
+                      High-Resolution Product & Inspection Gallery
                     </h2>
                   </div>
                   <p className="text-xs text-slate-500 mt-0.5">
-                    Manufacturer schematics, dimension blueprints, and workshop assembly photos ({cleanDescImages.length} verified photos)
+                    Detailed product views, materials, and dimension specifications ({cleanDescImages.length} verified photos)
                   </p>
                 </div>
                 <span className="text-xs text-slate-400 font-mono">
@@ -717,7 +691,7 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
                   >
                     <img
                       src={img}
-                      alt={`Factory Diagram ${idx + 1}`}
+                      alt={`Product View ${idx + 1}`}
                       loading="lazy"
                       decoding="async"
                       className="w-full h-auto object-cover group-hover:scale-[1.02] transition duration-300"
@@ -738,7 +712,7 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
                     onClick={() => setShowAllDescImages(!showAllDescImages)}
                     className="bg-slate-100 hover:bg-slate-200 text-cargo-900 font-bold px-5 py-2.5 rounded-xl text-xs transition flex items-center gap-2 btn-tactile"
                   >
-                    <span>{showAllDescImages ? "Collapse Blueprint Gallery" : `View All ${cleanDescImages.length} Inspection Photos & Schematics`}</span>
+                    <span>{showAllDescImages ? "Collapse Gallery" : `View All ${cleanDescImages.length} High-Resolution Photos & Specs`}</span>
                     <ChevronDown className={`w-4 h-4 transition duration-200 ${showAllDescImages ? "rotate-180" : ""}`} />
                   </button>
                 </div>
