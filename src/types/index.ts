@@ -172,3 +172,22 @@ export interface GlobalSettings {
   whatsappNumber: string; // e.g. +8801700000000
   announcementNotice?: string;
 }
+
+export interface RfqRequest {
+  id: string;
+  createdAt: string;
+  customerName: string;
+  phone: string;
+  district?: string;
+  productTitle: string;
+  description?: string;
+  targetQuantity: number;
+  targetPriceBdt?: number;
+  imageUrl?: string;
+  referenceLink?: string;
+  preferredShipping: "AIR" | "SEA";
+  status: "PENDING" | "QUOTED" | "ACCEPTED" | "CANCELLED";
+  adminNotes?: string;
+  quotedPriceBdt?: number;
+}
+

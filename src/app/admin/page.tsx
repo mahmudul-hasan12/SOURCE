@@ -27,14 +27,15 @@ import {
   MessageCircle,
   RefreshCw
 } from "lucide-react";
-import { GlobalSettings, Product, Order, OrderStatus } from "@/types";
+import { GlobalSettings, Product, Order, OrderStatus, RfqRequest } from "@/types";
 import { DEFAULT_SETTINGS } from "@/lib/pricing";
 
 export default function AdminPage() {
-  const [activeTab, setActiveTab] = useState<"ORDERS" | "SETTINGS" | "CATALOG">("ORDERS");
+  const [activeTab, setActiveTab] = useState<"ORDERS" | "SETTINGS" | "CATALOG" | "RFQ">("ORDERS");
   const [settings, setSettings] = useState<GlobalSettings>(DEFAULT_SETTINGS);
   const [products, setProducts] = useState<Product[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
+  const [rfqs, setRfqs] = useState<RfqRequest[]>([]);
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [copiedTrxId, setCopiedTrxId] = useState<string | null>(null);
@@ -76,6 +77,11 @@ export default function AdminPage() {
     fetch("/api/products")
       .then((r) => r.json())
       .then((data) => setProducts(data.products || []))
+      .catch(() => {});
+
+    fetch("/api/rfq")
+      .then((r) => r.json())
+      .then((data) => setRfqs(data.rfqs || []))
       .catch(() => {});
   };
 
@@ -252,6 +258,37 @@ export default function AdminPage() {
     }
   };
 
+  const handleUpdateRfqStatus = async (
+    rfqId: string,
+    status: RfqRequest["status"],
+    adminNotes?: string,
+    quotedPriceBdt?: number
+  ) => {
+    try {
+      const res = await fetch("/api/rfq", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: rfqId, status, adminNotes, quotedPriceBdt }),
+      });
+      if (res.ok) {
+        setRfqs((prev) =>
+          prev.map((r) =>
+            r.id === rfqId
+              ? {
+                  ...r,
+                  status,
+                  ...(adminNotes !== undefined ? { adminNotes } : {}),
+                  ...(quotedPriceBdt !== undefined ? { quotedPriceBdt } : {}),
+                }
+              : r
+          )
+        );
+      }
+    } catch (e: any) {
+      alert("Failed to update RFQ: " + e.message);
+    }
+  };
+
   // Filtered Orders
   const filteredOrders = orders.filter((o) => {
     const matchesSearch =
@@ -388,6 +425,23 @@ export default function AdminPage() {
         >
           <Package className="w-4 h-4 text-rose-600" />
           <span>Product Catalog ({products.length})</span>
+        </button>
+
+        <button
+          onClick={() => setActiveTab("RFQ")}
+          className={`pb-3 px-4 font-bold text-xs sm:text-sm flex items-center gap-2 border-b-2 transition ${
+            activeTab === "RFQ"
+              ? "border-freight-amber text-cargo-900"
+              : "border-transparent text-slate-500 hover:text-slate-800"
+          }`}
+        >
+          <Sparkles className="w-4 h-4 text-amber-500" />
+          <span>Custom Sourcing RFQs ({rfqs.length})</span>
+          {rfqs.filter((r) => r.status === "PENDING").length > 0 && (
+            <span className="bg-amber-500 text-cargo-950 font-mono text-[10px] px-1.5 py-0.2 rounded-full font-bold">
+              {rfqs.filter((r) => r.status === "PENDING").length} new
+            </span>
+          )}
         </button>
       </div>
 
@@ -899,6 +953,174 @@ export default function AdminPage() {
               </div>
             ))}
           </div>
+        </div>
+      )}
+
+      {/* TAB 4: CUSTOM SOURCING RFQS */}
+      {activeTab === "RFQ" && (
+        <div className="space-y-6">
+          <div className="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <h3 className="font-bold text-sm text-cargo-900 flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-amber-500" />
+                <span>Custom Sourcing & RFQ Inbox ({rfqs.length} Requests)</span>
+              </h3>
+              <p className="text-xs text-slate-500 mt-0.5">
+                কাস্টমারদের পাঠানো ছবি ও পণ্যের বিবরণ দেখুন, সরাসরি হোয়াটসঅ্যাপে কথা বলে পাইকারি রেট জানান।
+              </p>
+            </div>
+            <div className="text-xs font-mono text-slate-500 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl">
+              Pending: <strong className="text-amber-600 font-bold">{rfqs.filter((r) => r.status === "PENDING").length}</strong> | Quoted: <strong>{rfqs.filter((r) => r.status === "QUOTED").length}</strong>
+            </div>
+          </div>
+
+          {rfqs.length === 0 ? (
+            <div className="bg-white border border-slate-200/90 rounded-2xl p-12 text-center text-xs text-slate-400 space-y-2">
+              <Sparkles className="w-8 h-8 text-slate-300 mx-auto" />
+              <p className="font-semibold text-slate-600">কোনো কাস্টম সোর্সিং রিকোয়েস্ট পাওয়া যায়নি।</p>
+              <p className="text-[11px]">কাস্টমাররা /rfq পেজ থেকে ছবি বা বিবরণ আপলোড করলে এখানে রিয়েলটাইমে দেখতে পাবেন।</p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {rfqs.map((rfq) => {
+                const cleanPhone = rfq.phone.replace(/[^0-9]/g, "");
+                const waNumber = cleanPhone.startsWith("88") ? cleanPhone : `88${cleanPhone}`;
+                const waMsg = encodeURIComponent(
+                  `আসসালামু আলাইকুম ${rfq.customerName}! SkySourcing BD থেকে আপনার RFQ #${rfq.id} (${rfq.productTitle}, ${rfq.targetQuantity} pcs) এর ফ্যাক্টরি কোটেশন সম্পর্কিত আপডেট দিতে যোগাযোগ করছি।`
+                );
+
+                return (
+                  <div
+                    key={rfq.id}
+                    className="bg-white border border-slate-200/90 rounded-2xl p-5 shadow-xs hover:border-slate-300 transition space-y-4"
+                  >
+                    <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3 border-b border-slate-100 pb-3">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono font-bold text-xs bg-cargo-900 text-freight-amber px-2 py-0.5 rounded">
+                          {rfq.id}
+                        </span>
+                        <span className="text-xs text-slate-400 font-mono">
+                          {new Date(rfq.createdAt).toLocaleString("en-GB")}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span
+                          className={`text-xs font-bold px-2.5 py-1 rounded-full border ${
+                            rfq.status === "PENDING"
+                              ? "bg-amber-50 text-amber-700 border-amber-200"
+                              : rfq.status === "QUOTED"
+                              ? "bg-sky-50 text-sky-700 border-sky-200"
+                              : rfq.status === "ACCEPTED"
+                              ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                              : "bg-slate-50 text-slate-600 border-slate-200"
+                          }`}
+                        >
+                          {rfq.status}
+                        </span>
+
+                        <select
+                          value={rfq.status}
+                          onChange={(e) => handleUpdateRfqStatus(rfq.id, e.target.value as any)}
+                          className="text-xs font-semibold border rounded-lg px-2 py-1 bg-white text-slate-700 focus:outline-none"
+                        >
+                          <option value="PENDING">PENDING</option>
+                          <option value="QUOTED">QUOTED</option>
+                          <option value="ACCEPTED">ACCEPTED</option>
+                          <option value="CANCELLED">CANCELLED</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-start">
+                      {/* Image Thumbnail */}
+                      <div className="md:col-span-3">
+                        {rfq.imageUrl ? (
+                          <div className="relative group">
+                            <img
+                              src={rfq.imageUrl}
+                              alt="Customer Upload"
+                              className="w-full h-36 object-cover rounded-xl border border-slate-200"
+                            />
+                            <a
+                              href={rfq.imageUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="absolute inset-0 bg-cargo-950/50 text-white text-xs font-semibold flex items-center justify-center opacity-0 group-hover:opacity-100 transition rounded-xl"
+                            >
+                              View Full Size
+                            </a>
+                          </div>
+                        ) : (
+                          <div className="w-full h-36 bg-slate-100 rounded-xl border border-dashed border-slate-300 flex items-center justify-center text-xs text-slate-400">
+                            No Image Provided
+                          </div>
+                        )}
+                      </div>
+
+                      {/* RFQ Details */}
+                      <div className="md:col-span-6 space-y-2 text-xs">
+                        <h4 className="font-bold text-sm text-cargo-900">{rfq.productTitle}</h4>
+                        {rfq.description && (
+                          <p className="text-slate-600 leading-relaxed bg-slate-50 p-2.5 rounded-xl border border-slate-100">
+                            {rfq.description}
+                          </p>
+                        )}
+                        <div className="grid grid-cols-2 gap-2 text-slate-600 font-mono pt-1">
+                          <div>
+                            <span className="text-slate-400 font-sans">Target Qty: </span>
+                            <b>{rfq.targetQuantity} pcs</b>
+                          </div>
+                          <div>
+                            <span className="text-slate-400 font-sans">Target Unit: </span>
+                            <b>{rfq.targetPriceBdt ? `৳${rfq.targetPriceBdt}` : "Open"}</b>
+                          </div>
+                          <div>
+                            <span className="text-slate-400 font-sans">Shipping: </span>
+                            <b>{rfq.preferredShipping === "AIR" ? "Air Cargo" : "Sea Freight"}</b>
+                          </div>
+                          {rfq.referenceLink && (
+                            <div>
+                              <a
+                                href={rfq.referenceLink}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-transit-air underline flex items-center gap-1"
+                              >
+                                <span>Ref Link</span>
+                                <ExternalLink className="w-3 h-3" />
+                              </a>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Customer Info & WhatsApp Action */}
+                      <div className="md:col-span-3 bg-slate-50 border border-slate-200 rounded-xl p-3.5 space-y-3 text-xs">
+                        <div>
+                          <span className="text-slate-400 text-[11px] block">Customer:</span>
+                          <strong className="text-cargo-900 font-bold">{rfq.customerName}</strong>
+                          <div className="text-[11px] text-slate-500 font-mono mt-0.5">
+                            {rfq.phone} • {rfq.district || "BD"}
+                          </div>
+                        </div>
+
+                        <a
+                          href={`https://wa.me/${waNumber}?text=${waMsg}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-3 rounded-lg text-xs transition flex items-center justify-center gap-1.5 shadow-xs btn-tactile"
+                        >
+                          <MessageCircle className="w-3.5 h-3.5" />
+                          <span>WhatsApp Chat</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       )}
 

@@ -3,7 +3,7 @@
 import fs from "fs";
 import path from "path";
 import { MongoClient, Db } from "mongodb";
-import { Product, Order, GlobalSettings } from "@/types";
+import { Product, Order, GlobalSettings, RfqRequest } from "@/types";
 import { DEFAULT_SETTINGS } from "./pricing";
 import { SEED_PRODUCTS, SEED_ORDERS } from "./seed-data";
 
@@ -11,6 +11,7 @@ const DATA_DIR = path.join(process.cwd(), "data");
 const PRODUCTS_FILE = path.join(DATA_DIR, "products.json");
 const ORDERS_FILE = path.join(DATA_DIR, "orders.json");
 const SETTINGS_FILE = path.join(DATA_DIR, "settings.json");
+const RFQ_FILE = path.join(DATA_DIR, "rfq.json");
 
 const FALLBACK_MONGODB_URI = "mongodb+srv://riode520_db_user:Exmipf7swFA3aGPy@cluster0.all666i.mongodb.net/skysourcing?retryWrites=true&w=majority&appName=Cluster0";
 
@@ -152,6 +153,36 @@ function saveLocalSettings(settings: GlobalSettings): GlobalSettings {
     // Ignore read-only errors
   }
   return settings;
+}
+
+function getLocalRfqs(): RfqRequest[] {
+  try {
+    ensureDirectoryExists();
+    if (fs.existsSync(RFQ_FILE)) {
+      const data = fs.readFileSync(RFQ_FILE, "utf-8");
+      return JSON.parse(data);
+    }
+  } catch {
+    // Ignore read/write failures on serverless
+  }
+  return [];
+}
+
+function saveLocalRfq(rfq: RfqRequest): RfqRequest {
+  try {
+    ensureDirectoryExists();
+    const rfqs = getLocalRfqs();
+    const index = rfqs.findIndex((r) => r.id === rfq.id);
+    if (index >= 0) {
+      rfqs[index] = { ...rfqs[index], ...rfq };
+    } else {
+      rfqs.unshift(rfq);
+    }
+    fs.writeFileSync(RFQ_FILE, JSON.stringify(rfqs, null, 2));
+  } catch {
+    // Ignore read-only errors
+  }
+  return rfq;
 }
 
 export class StorageService {
@@ -340,5 +371,64 @@ export class StorageService {
       }
     }
     return saveLocalSettings(merged);
+  }
+
+  // RFQ (CUSTOM SOURCING REQUESTS)
+  static async getRfqs(): Promise<RfqRequest[]> {
+    const db = await getMongoDb();
+    if (db) {
+      try {
+        const col = db.collection<RfqRequest>("rfq_requests");
+        const docs = await col.find({}, { projection: { _id: 0 } }).sort({ createdAt: -1 }).toArray();
+        return docs as RfqRequest[];
+      } catch (err) {
+        console.error("[StorageService] Error fetching RFQs from MongoDB:", err);
+      }
+    }
+    return getLocalRfqs();
+  }
+
+  static async saveRfq(rfq: RfqRequest): Promise<RfqRequest> {
+    const db = await getMongoDb();
+    if (db) {
+      try {
+        const col = db.collection<RfqRequest>("rfq_requests");
+        await col.updateOne(
+          { id: rfq.id },
+          { $set: rfq },
+          { upsert: true }
+        );
+        return rfq;
+      } catch (err) {
+        console.error("[StorageService] Error saving RFQ to MongoDB:", err);
+      }
+    }
+    return saveLocalRfq(rfq);
+  }
+
+  static async updateRfqStatus(id: string, update: Partial<RfqRequest>): Promise<boolean> {
+    const db = await getMongoDb();
+    if (db) {
+      try {
+        const col = db.collection<RfqRequest>("rfq_requests");
+        const res = await col.updateOne({ id }, { $set: update });
+        return res.modifiedCount > 0;
+      } catch (err) {
+        console.error("[StorageService] Error updating RFQ in MongoDB:", err);
+      }
+    }
+    const rfqs = getLocalRfqs();
+    const index = rfqs.findIndex((r) => r.id === id);
+    if (index >= 0) {
+      rfqs[index] = { ...rfqs[index], ...update };
+      try {
+        ensureDirectoryExists();
+        fs.writeFileSync(RFQ_FILE, JSON.stringify(rfqs, null, 2));
+        return true;
+      } catch {
+        return false;
+      }
+    }
+    return false;
   }
 }

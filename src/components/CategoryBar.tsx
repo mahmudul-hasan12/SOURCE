@@ -11,11 +11,14 @@ import {
   Wrench, 
   Home, 
   Grid,
-  Sparkles
+  Sparkles,
+  Calculator
 } from "lucide-react";
 
 const CATEGORIES = [
   { id: "all", name: "সব পণ্য (All)", icon: Grid, href: "/" },
+  { id: "rfq", name: "ছবি দিয়ে খুঁজুন (RFQ)", icon: Sparkles, href: "/rfq" },
+  { id: "calculator", name: "শিপিং ক্যালকুলেটর", icon: Calculator, href: "/calculator" },
   { id: "fashion", name: "পোশাক (Apparel)", icon: Shirt, href: "/search?q=garments" },
   { id: "electronics", name: "ইলেকট্রনিক্স (Gadgets)", icon: Headphones, href: "/search?q=electronics" },
   { id: "bags", name: "ব্যাগ ও লাগেজ (Bags)", icon: Briefcase, href: "/search?q=bag" },

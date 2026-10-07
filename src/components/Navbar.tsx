@@ -134,6 +134,15 @@ export function Navbar() {
 
             <div className="flex items-center gap-3 text-slate-300 text-xs">
               <Link 
+                href="/rfq" 
+                className="hidden xs:flex items-center gap-1.5 bg-cargo-800 hover:bg-cargo-700 text-freight-amber border border-cargo-700 px-3 py-1 rounded-md font-bold transition text-xs btn-tactile"
+                title="কাস্টম সোর্সিং রিকোয়েস্ট (ছবি বা ডেসক্রিপশন দিন)"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-freight-amber" />
+                <span>কাস্টম সোর্সিং (RFQ)</span>
+              </Link>
+
+              <Link 
                 href="/orders/ord-8910/track" 
                 className="hidden sm:flex items-center gap-1.5 text-slate-300 hover:text-white transition"
               >

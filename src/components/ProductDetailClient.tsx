@@ -18,7 +18,8 @@ import {
   X,
   Maximize2,
   Camera,
-  ChevronDown
+  ChevronDown,
+  MessageCircle
 } from "lucide-react";
 import { DEFAULT_SETTINGS, calculateTierPriceBdt, calculateShippingFee, calculateTwoStagePayment } from "@/lib/pricing";
 import { getClientProductById } from "@/lib/seed-data";
@@ -583,7 +584,7 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
             </div>
 
             {/* Direct Checkout CTA */}
-            <div className="pt-2">
+            <div className="pt-2 space-y-2.5">
               <button
                 onClick={handleCheckout}
                 className="w-full bg-freight-amber hover:bg-freight-amberHover active:scale-[0.98] text-cargo-950 font-black py-4 px-6 rounded-2xl text-sm transition shadow-cargo flex items-center justify-center gap-2 btn-tactile"
@@ -592,6 +593,36 @@ export function ProductDetailClient({ productId, initialProduct }: ProductDetail
                 <span className="font-mono font-bold">• ৳{totalPriceBdt.toLocaleString()} BDT</span>
                 <ArrowRight className="w-4 h-4 text-cargo-950" />
               </button>
+
+              {/* WhatsApp Quick Sourcing Inquire */}
+              <a
+                href={`https://wa.me/${settings.whatsappNumber.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
+                  `আসসালামু আলাইকুম! আমি SkySourcing BD থেকে এই পণ্যটি আমদানি করতে আগ্রহী:\n\n` +
+                  `📦 পণ্য: ${product.titleEn}\n` +
+                  `🏷️ ভ্যারিয়েন্ট: ${selectedSku?.name || "Standard Model"}\n` +
+                  `🔢 পরিমাণ: ${quantity} pcs\n` +
+                  `💰 পণ্যের মূল্য: ৳${totalPriceBdt.toLocaleString()} BDT\n` +
+                  `🚚 শিপিং করিডোর: ${shippingMethod === "AIR" ? "এয়ার কার্গো" : "সি ফ্রেইট"}\n\n` +
+                  `দয়া করে বিস্তারিত ফ্যাক্টরি কনফার্মেশন জানান।`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white font-bold py-3 px-4 rounded-xl text-xs transition flex items-center justify-center gap-2 shadow-xs btn-tactile"
+              >
+                <MessageCircle className="w-4 h-4 text-emerald-200" />
+                <span>হোয়াটসঅ্যাপে এই পণ্যের পরামর্শ নিন (WhatsApp Chat)</span>
+              </a>
+
+              {/* Sample Order Protocol */}
+              <div className="bg-cargo-900/80 border border-cargo-750 rounded-xl p-3 flex items-start gap-2.5 text-xs text-slate-300">
+                <Sparkles className="w-4 h-4 text-freight-amber flex-shrink-0 mt-0.5" />
+                <div>
+                  <strong className="text-white font-semibold">স্যাম্পল সুবিধা:</strong>
+                  <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">
+                    বড় বাল্ক লট বুক করার আগে ফিনিশিং যাচাই করতে ১–২ পিস স্যাম্পল হিসেবে আনতে পারবেন। পরামর্শের জন্য হোয়াটসঅ্যাপে লিখুন।
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
