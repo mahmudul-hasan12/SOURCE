@@ -33,3 +33,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# temp data & cookies
+data/*cookies*
+data/*key*
+data/*temp*
+data/*.sqlite*
+data/sample_offer.html
+data/user_1688*
+*.sqlite*
+

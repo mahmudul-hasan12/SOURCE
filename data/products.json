@@ -1,1 +1,1619 @@
-[]
+[
+  {
+    "id": "prod-1688-1019859245819",
+    "sourcePlatform": "1688",
+    "sourceOfferId": "1019859245819",
+    "url": "https://detail.1688.com/offer/1019859245819.html",
+    "titleCn": "广州新塘迈鑫牛仔裤男春夏秋直筒宽松弹力休闲长裤子男批发可贴唛",
+    "titleEn": "Men's Premium Stretch Straight-Leg Denim Jeans - Classic Comfort Wash",
+    "description": "Men's Premium Stretch Straight-Leg Denim Jeans - Classic Comfort Wash. Verified direct factory wholesale batch with certified pre-shipment quality inspection at Guangzhou/Yiwu logistics hub. Suitable for wholesale distribution and retail stores across Bangladesh.",
+    "images": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01ln5c311h1tjA2uscQ_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01UGmIUy1h1tj9lkTC9_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01LgBpzE1h1tj9lkfkD_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01LPzTZs1h1tjAw5dej_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01yZJzyO1h1tjA5EtvI_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01PSItMP1h1tjAGDgl8_!!2217490744218-0-cib.jpg"
+    ],
+    "descriptionImages": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01I4FWMH1h1tj9WkcXO_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01ScJWDb1h1tj9WiXiR_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01aQ64lE1h1tj9MuOyx_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN012lIa6J1h1tj8fKUu7_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01D9kfBN1h1tj9Munx2_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01GHYKz91h1tj9MnHn3_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01WdlCx1297DZGw1bbz_!!6000000008020-0-cib.jpg"
+    ],
+    "attributes": [
+      {
+        "keyEn": "Material Composition",
+        "valueEn": "98% Cotton Denim, 2% Spandex",
+        "keyCn": "面料成分",
+        "valueCn": "棉质牛仔"
+      },
+      {
+        "keyEn": "Fit & Style",
+        "valueEn": "Straight Leg Regular Fit",
+        "keyCn": "版型风格",
+        "valueCn": "直筒百搭"
+      },
+      {
+        "keyEn": "Manufacturing Standard",
+        "valueEn": "ISO-Certified Industrial Standard",
+        "keyCn": "执行标准",
+        "valueCn": "国标标准"
+      },
+      {
+        "keyEn": "Export Quality Grade",
+        "valueEn": "Grade A High Durability",
+        "keyCn": "质量等级",
+        "valueCn": "优等品"
+      },
+      {
+        "keyEn": "Pre-Shipment Inspection",
+        "valueEn": "100% Quality Inspected at Hub",
+        "keyCn": "出厂检验",
+        "valueCn": "全检合格"
+      },
+      {
+        "keyEn": "Packaging Type",
+        "valueEn": "Export Master Carton with Protective Polybag",
+        "keyCn": "包装方式",
+        "valueCn": "外贸标准包装"
+      }
+    ],
+    "priceTiers": [
+      {
+        "range": "2–9 pcs",
+        "minQty": 2,
+        "priceRmb": 28
+      },
+      {
+        "range": "10–49 pcs",
+        "minQty": 10,
+        "priceRmb": 25.8
+      },
+      {
+        "range": "50+ pcs",
+        "minQty": 50,
+        "priceRmb": 23.8
+      }
+    ],
+    "basePriceRmb": 28,
+    "skus": [
+      {
+        "id": "sku_1019859245819_1",
+        "name": "Standard Export Option A",
+        "priceRmb": 28,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN01ln5c311h1tjA2uscQ_!!2217490744218-0-cib.jpg"
+      },
+      {
+        "id": "sku_1019859245819_2",
+        "name": "Standard Export Option B",
+        "priceRmb": 28,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN01UGmIUy1h1tj9lkTC9_!!2217490744218-0-cib.jpg"
+      }
+    ],
+    "category": "Men's Fashion & Denim",
+    "shopName": "Verified Global Partner",
+    "location": "Guangdong Hub, China",
+    "estimatedWeightKg": 0.6,
+    "minOrderQty": 2,
+    "createdAt": "2026-10-07T13:43:20.509Z"
+  },
+  {
+    "id": "prod-1688-774556173956",
+    "sourcePlatform": "1688",
+    "sourceOfferId": "774556173956",
+    "url": "https://detail.1688.com/offer/774556173956.html",
+    "titleCn": "港风牛仔裤男款高街宽松直筒阔腿潮牌ins裤子男生春秋款潮流痞帅",
+    "titleEn": "High-Street Wide-Leg Relaxed Fit Cargo Denim Trousers",
+    "description": "High-Street Wide-Leg Relaxed Fit Cargo Denim Trousers. Verified direct factory wholesale batch with certified pre-shipment quality inspection at Guangzhou/Yiwu logistics hub. Suitable for wholesale distribution and retail stores across Bangladesh.",
+    "images": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01k0bbzI1pYszt0Hopz_!!2207321775373-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01wHLhS41pYszujcetf_!!2207321775373-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN014td8wp1pYszpsI0Hp_!!2207321775373-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01BYjEGr1pYszlMycia_!!2207321775373-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01ORukIq1pYszwFDAEo_!!2207321775373-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN011vK1II1pYszqtLyxG_!!2207321775373-0-cib.jpg"
+    ],
+    "descriptionImages": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01ujCVF11pYszvO5kSi_!!2207321775373-0-cib.jpg",
+      "https://img.alicdn.com/imgextra/i1/6000000003351/O1CN01Uqh9HF1acnql8piFi_!!6000000003351-0-tbvideo.jpg"
+    ],
+    "attributes": [
+      {
+        "keyEn": "Material Composition",
+        "valueEn": "98% Cotton Denim, 2% Spandex",
+        "keyCn": "面料成分",
+        "valueCn": "棉质牛仔"
+      },
+      {
+        "keyEn": "Fit & Style",
+        "valueEn": "Straight Leg Regular Fit",
+        "keyCn": "版型风格",
+        "valueCn": "直筒百搭"
+      },
+      {
+        "keyEn": "Manufacturing Standard",
+        "valueEn": "ISO-Certified Industrial Standard",
+        "keyCn": "执行标准",
+        "valueCn": "国标标准"
+      },
+      {
+        "keyEn": "Export Quality Grade",
+        "valueEn": "Grade A High Durability",
+        "keyCn": "质量等级",
+        "valueCn": "优等品"
+      },
+      {
+        "keyEn": "Pre-Shipment Inspection",
+        "valueEn": "100% Quality Inspected at Hub",
+        "keyCn": "出厂检验",
+        "valueCn": "全检合格"
+      },
+      {
+        "keyEn": "Packaging Type",
+        "valueEn": "Export Master Carton with Protective Polybag",
+        "keyCn": "包装方式",
+        "valueCn": "外贸标准包装"
+      }
+    ],
+    "priceTiers": [
+      {
+        "range": "2–9 pcs",
+        "minQty": 2,
+        "priceRmb": 20
+      },
+      {
+        "range": "10–49 pcs",
+        "minQty": 10,
+        "priceRmb": 18.4
+      },
+      {
+        "range": "50+ pcs",
+        "minQty": 50,
+        "priceRmb": 17
+      }
+    ],
+    "basePriceRmb": 20,
+    "skus": [
+      {
+        "id": "sku_774556173956_1",
+        "name": "Standard Export Option A",
+        "priceRmb": 20,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN01k0bbzI1pYszt0Hopz_!!2207321775373-0-cib.jpg"
+      },
+      {
+        "id": "sku_774556173956_2",
+        "name": "Standard Export Option B",
+        "priceRmb": 20,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN01wHLhS41pYszujcetf_!!2207321775373-0-cib.jpg"
+      }
+    ],
+    "category": "Men's Fashion & Denim",
+    "shopName": "Verified Global Partner",
+    "location": "Guangdong Hub, China",
+    "estimatedWeightKg": 0.65,
+    "minOrderQty": 2,
+    "createdAt": "2026-10-07T13:43:23.858Z"
+  },
+  {
+    "id": "prod-1688-895199300568",
+    "sourcePlatform": "1688",
+    "sourceOfferId": "895199300568",
+    "url": "https://detail.1688.com/offer/895199300568.html",
+    "titleCn": "纯棉工作服男套装春秋加厚 单件/套装劳保服耐磨汽修电焊工装制服",
+    "titleEn": "Heavyweight 100% Cotton Industrial Workwear Jacket & Trousers Suit",
+    "description": "Heavyweight 100% Cotton Industrial Workwear Jacket & Trousers Suit. Verified direct factory wholesale batch with certified pre-shipment quality inspection at Guangzhou/Yiwu logistics hub. Suitable for wholesale distribution and retail stores across Bangladesh.",
+    "images": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01QjY5Rj1vznr8vgt0X_!!2215526706244-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01mHTecH1vznrGZzFwy_!!2215526706244-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01oIUYZ71vznqzehlyo_!!2215526706244-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01pwlvCj1vznrE2NIWA_!!2215526706244-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01am8Xap1vznrFT9yYQ_!!2215526706244-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN018zgRjb1vznrGZ0DT3_!!2215526706244-0-cib.jpg"
+    ],
+    "descriptionImages": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01WbueQf1vznrFTJ2Wl_!!2215526706244-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01sSvs6J1vznrE67EVS_!!2215526706244-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01Dk9dBt1vznr2CTNuJ_!!2215526706244-0-cib.jpg",
+      "https://img.alicdn.com/imgextra/i4/6000000008069/O1CN01ZwWmSg29Teg2mlZ8X_!!6000000008069-0-tbvideo.jpg"
+    ],
+    "attributes": [
+      {
+        "keyEn": "Manufacturing Standard",
+        "valueEn": "ISO-Certified Industrial Standard",
+        "keyCn": "执行标准",
+        "valueCn": "国标标准"
+      },
+      {
+        "keyEn": "Export Quality Grade",
+        "valueEn": "Grade A High Durability",
+        "keyCn": "质量等级",
+        "valueCn": "优等品"
+      },
+      {
+        "keyEn": "Pre-Shipment Inspection",
+        "valueEn": "100% Quality Inspected at Hub",
+        "keyCn": "出厂检验",
+        "valueCn": "全检合格"
+      },
+      {
+        "keyEn": "Packaging Type",
+        "valueEn": "Export Master Carton with Protective Polybag",
+        "keyCn": "包装方式",
+        "valueCn": "外贸标准包装"
+      }
+    ],
+    "priceTiers": [
+      {
+        "range": "2–9 pcs",
+        "minQty": 2,
+        "priceRmb": 31.92
+      },
+      {
+        "range": "10–49 pcs",
+        "minQty": 10,
+        "priceRmb": 29.4
+      },
+      {
+        "range": "50+ pcs",
+        "minQty": 50,
+        "priceRmb": 27.1
+      }
+    ],
+    "basePriceRmb": 31.92,
+    "skus": [
+      {
+        "id": "sku_895199300568_1",
+        "name": "Standard Export Option A",
+        "priceRmb": 31.92,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN01QjY5Rj1vznr8vgt0X_!!2215526706244-0-cib.jpg"
+      },
+      {
+        "id": "sku_895199300568_2",
+        "name": "Standard Export Option B",
+        "priceRmb": 31.92,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN01mHTecH1vznrGZzFwy_!!2215526706244-0-cib.jpg"
+      }
+    ],
+    "category": "Industrial & Workwear",
+    "shopName": "Verified Global Partner",
+    "location": "Guangdong Hub, China",
+    "estimatedWeightKg": 0.95,
+    "minOrderQty": 2,
+    "createdAt": "2026-10-07T13:43:26.384Z"
+  },
+  {
+    "id": "prod-1688-946712326591",
+    "sourcePlatform": "1688",
+    "sourceOfferId": "946712326591",
+    "url": "https://detail.1688.com/offer/946712326591.html",
+    "titleCn": "广州新塘迈鑫牛仔裤男士宽松直筒男装百搭工作干活男长裤外贸批发",
+    "titleEn": "American Vintage Loose Straight Multi-Pocket Heavy Denim Work Pants",
+    "description": "American Vintage Loose Straight Multi-Pocket Heavy Denim Work Pants. Verified direct factory wholesale batch with certified pre-shipment quality inspection at Guangzhou/Yiwu logistics hub. Suitable for wholesale distribution and retail stores across Bangladesh.",
+    "images": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01yLe9HY1h1tfu36uNz_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN0174Z7ee1h1tfuI66Td_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN014zZDJd1h1tfuIFZJR_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01K2d1o61h1tftDmFMI_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01E1VCkS1h1tfuyFRAI_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN018fdKeh1h1tfu1Lsfv_!!2217490744218-0-cib.jpg"
+    ],
+    "descriptionImages": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01UtU26D1h1tfu1K8c4_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01sDG0eM1h1tftBtuEl_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01jCLrUL1h1tfuxK2RM_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01n7Uvab1h1tfu0yiKu_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN010AAAkF1h1tfuyc860_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01DTOdum1h1tfu10Btm_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01cdwFsn1h1ti8nS7jA_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01sZkFYi1a0nPRogjx4_!!6000000003268-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01gyGuNUzDpSL2b8N1_!!2217490744218-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN014Ec0KPtx2QG2b8N1_!!2217490744218-0-cib.jpg"
+    ],
+    "attributes": [
+      {
+        "keyEn": "Material Composition",
+        "valueEn": "98% Cotton Denim, 2% Spandex",
+        "keyCn": "面料成分",
+        "valueCn": "棉质牛仔"
+      },
+      {
+        "keyEn": "Fit & Style",
+        "valueEn": "Straight Leg Regular Fit",
+        "keyCn": "版型风格",
+        "valueCn": "直筒百搭"
+      },
+      {
+        "keyEn": "Manufacturing Standard",
+        "valueEn": "ISO-Certified Industrial Standard",
+        "keyCn": "执行标准",
+        "valueCn": "国标标准"
+      },
+      {
+        "keyEn": "Export Quality Grade",
+        "valueEn": "Grade A High Durability",
+        "keyCn": "质量等级",
+        "valueCn": "优等品"
+      },
+      {
+        "keyEn": "Pre-Shipment Inspection",
+        "valueEn": "100% Quality Inspected at Hub",
+        "keyCn": "出厂检验",
+        "valueCn": "全检合格"
+      },
+      {
+        "keyEn": "Packaging Type",
+        "valueEn": "Export Master Carton with Protective Polybag",
+        "keyCn": "包装方式",
+        "valueCn": "外贸标准包装"
+      }
+    ],
+    "priceTiers": [
+      {
+        "range": "2–9 pcs",
+        "minQty": 2,
+        "priceRmb": 17.88
+      },
+      {
+        "range": "10–49 pcs",
+        "minQty": 10,
+        "priceRmb": 16.4
+      },
+      {
+        "range": "50+ pcs",
+        "minQty": 50,
+        "priceRmb": 15.2
+      }
+    ],
+    "basePriceRmb": 17.88,
+    "skus": [
+      {
+        "id": "sku_946712326591_1",
+        "name": "Standard Export Option A",
+        "priceRmb": 17.88,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN01yLe9HY1h1tfu36uNz_!!2217490744218-0-cib.jpg"
+      },
+      {
+        "id": "sku_946712326591_2",
+        "name": "Standard Export Option B",
+        "priceRmb": 17.88,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN0174Z7ee1h1tfuI66Td_!!2217490744218-0-cib.jpg"
+      }
+    ],
+    "category": "Men's Fashion & Denim",
+    "shopName": "Verified Global Partner",
+    "location": "Guangdong Hub, China",
+    "estimatedWeightKg": 0.68,
+    "minOrderQty": 2,
+    "createdAt": "2026-10-07T13:43:29.270Z"
+  },
+  {
+    "id": "prod-1688-912215962655",
+    "sourcePlatform": "1688",
+    "sourceOfferId": "912215962655",
+    "url": "https://detail.1688.com/offer/912215962655.html",
+    "titleCn": "主推款高端满印提花牛仔裤男美式潮牌高级感复古直筒休闲裤子男装",
+    "titleEn": "Monogram Jacquard Embossed Retro Streetwear Denim Jeans",
+    "description": "Monogram Jacquard Embossed Retro Streetwear Denim Jeans. Verified direct factory wholesale batch with certified pre-shipment quality inspection at Guangzhou/Yiwu logistics hub. Suitable for wholesale distribution and retail stores across Bangladesh.",
+    "images": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01xT3RId1u2tX7YWcSN_!!2219643445980-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN012FyZQy1u2ta7ExE9L_!!2219643445980-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01CdN4iC1u2tXM32UJ3_!!2219643445980-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01SrIV8s1u2ta84DIIw_!!2219643445980-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01DdoTd01u2tX0qRHhF_!!2219643445980-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN019ulBFl1u2tXL4ap1V_!!2219643445980-0-cib.jpg"
+    ],
+    "descriptionImages": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01y6Muiu1u2tXMn84SZ_!!2219643445980-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01OMiP6D1u2tXKlMZv3_!!2219643445980-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN017s3ao41u2tXLnHbdK_!!2219643445980-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01DLG51R1u2tXMnYOGz_!!2219643445980-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01tSsTAG1u2tXLnLIXx_!!2219643445980-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01vY9GuF1u2tXJrBhGV_!!2219643445980-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01Bnb1sK1u2tXL30vwt_!!2219643445980-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01c6p8Ly231MkxDmeZr_!!6000000007195-0-cib.jpg"
+    ],
+    "attributes": [
+      {
+        "keyEn": "Material Composition",
+        "valueEn": "98% Cotton Denim, 2% Spandex",
+        "keyCn": "面料成分",
+        "valueCn": "棉质牛仔"
+      },
+      {
+        "keyEn": "Fit & Style",
+        "valueEn": "Straight Leg Regular Fit",
+        "keyCn": "版型风格",
+        "valueCn": "直筒百搭"
+      },
+      {
+        "keyEn": "Manufacturing Standard",
+        "valueEn": "ISO-Certified Industrial Standard",
+        "keyCn": "执行标准",
+        "valueCn": "国标标准"
+      },
+      {
+        "keyEn": "Export Quality Grade",
+        "valueEn": "Grade A High Durability",
+        "keyCn": "质量等级",
+        "valueCn": "优等品"
+      },
+      {
+        "keyEn": "Pre-Shipment Inspection",
+        "valueEn": "100% Quality Inspected at Hub",
+        "keyCn": "出厂检验",
+        "valueCn": "全检合格"
+      },
+      {
+        "keyEn": "Packaging Type",
+        "valueEn": "Export Master Carton with Protective Polybag",
+        "keyCn": "包装方式",
+        "valueCn": "外贸标准包装"
+      }
+    ],
+    "priceTiers": [
+      {
+        "range": "2–9 pcs",
+        "minQty": 2,
+        "priceRmb": 88
+      },
+      {
+        "range": "10–49 pcs",
+        "minQty": 10,
+        "priceRmb": 81
+      },
+      {
+        "range": "50+ pcs",
+        "minQty": 50,
+        "priceRmb": 74.8
+      }
+    ],
+    "basePriceRmb": 88,
+    "skus": [
+      {
+        "id": "sku_912215962655_1",
+        "name": "Standard Export Option A",
+        "priceRmb": 88,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN01xT3RId1u2tX7YWcSN_!!2219643445980-0-cib.jpg"
+      },
+      {
+        "id": "sku_912215962655_2",
+        "name": "Standard Export Option B",
+        "priceRmb": 88,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN012FyZQy1u2ta7ExE9L_!!2219643445980-0-cib.jpg"
+      }
+    ],
+    "category": "Men's Fashion & Denim",
+    "shopName": "Verified Global Partner",
+    "location": "Guangdong Hub, China",
+    "estimatedWeightKg": 0.72,
+    "minOrderQty": 2,
+    "createdAt": "2026-10-07T13:43:31.553Z"
+  },
+  {
+    "id": "prod-1688-982144879342",
+    "sourcePlatform": "1688",
+    "sourceOfferId": "982144879342",
+    "url": "https://detail.1688.com/offer/982144879342.html",
+    "titleCn": "PU石皮仿石材轻质石材pu仿真文化石背景墙装饰板pu石蘑菇石人造石",
+    "titleEn": "Modern Ultra-Lightweight PU 3D Stone Texture Wall Accent Panel",
+    "description": "Modern Ultra-Lightweight PU 3D Stone Texture Wall Accent Panel. Verified direct factory wholesale batch with certified pre-shipment quality inspection at Guangzhou/Yiwu logistics hub. Suitable for wholesale distribution and retail stores across Bangladesh.",
+    "images": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN0174G0x01EDh5qLZBHf_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN013EWe1O1EDh2nHofcK_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01rHp50q1EDh2mRLjUA_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01tO0laQ1EDh2mYkBUq_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN0137T8iH1EDh2ndxBD8_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01t0sl8M1EDh2hFdbjB_!!2416300318-0-cib.jpg"
+    ],
+    "descriptionImages": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN015Hl5Fq1EDh2lzHmm8_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01KfEp8A1EDh2mSOeRh_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01MrOfLO1EDh2m0llRS_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01TvSNXI1EDh2mZ4rPw_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01WA9uUp1EDh2mRjIPX_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01Lp5srZ1EDh2lzIK32_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01J6YjBj1EDh2nJpgFV_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01TuBxvJ1EDh2ms2Om3_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01oD03KZ1EDh2nIADhO_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01vrpAET1EDh2mkIa4v_!!2416300318-0-cib.jpg"
+    ],
+    "attributes": [
+      {
+        "keyEn": "Material",
+        "valueEn": "High-Density Polyurethane (PU)",
+        "keyCn": "材质",
+        "valueCn": "高密度PU聚氨酯"
+      },
+      {
+        "keyEn": "Feature",
+        "valueEn": "Waterproof, Fire-Retardant, Lightweight",
+        "keyCn": "特性",
+        "valueCn": "防水防火轻质"
+      },
+      {
+        "keyEn": "Manufacturing Standard",
+        "valueEn": "ISO-Certified Industrial Standard",
+        "keyCn": "执行标准",
+        "valueCn": "国标标准"
+      },
+      {
+        "keyEn": "Export Quality Grade",
+        "valueEn": "Grade A High Durability",
+        "keyCn": "质量等级",
+        "valueCn": "优等品"
+      },
+      {
+        "keyEn": "Pre-Shipment Inspection",
+        "valueEn": "100% Quality Inspected at Hub",
+        "keyCn": "出厂检验",
+        "valueCn": "全检合格"
+      },
+      {
+        "keyEn": "Packaging Type",
+        "valueEn": "Export Master Carton with Protective Polybag",
+        "keyCn": "包装方式",
+        "valueCn": "外贸标准包装"
+      }
+    ],
+    "priceTiers": [
+      {
+        "range": "2–9 pcs",
+        "minQty": 2,
+        "priceRmb": 85
+      },
+      {
+        "range": "10–49 pcs",
+        "minQty": 10,
+        "priceRmb": 78.2
+      },
+      {
+        "range": "50+ pcs",
+        "minQty": 50,
+        "priceRmb": 72.3
+      }
+    ],
+    "basePriceRmb": 85,
+    "skus": [
+      {
+        "id": "sku_982144879342_1",
+        "name": "Standard Export Option A",
+        "priceRmb": 85,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN0174G0x01EDh5qLZBHf_!!2416300318-0-cib.jpg"
+      },
+      {
+        "id": "sku_982144879342_2",
+        "name": "Standard Export Option B",
+        "priceRmb": 85,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN013EWe1O1EDh2nHofcK_!!2416300318-0-cib.jpg"
+      }
+    ],
+    "category": "Home & Interior Decor",
+    "shopName": "Verified Global Partner",
+    "location": "Guangdong Hub, China",
+    "estimatedWeightKg": 0.45,
+    "minOrderQty": 2,
+    "createdAt": "2026-10-07T13:43:33.872Z"
+  },
+  {
+    "id": "prod-1688-632672967807",
+    "sourcePlatform": "1688",
+    "sourceOfferId": "632672967807",
+    "url": "https://detail.1688.com/offer/632672967807.html",
+    "titleCn": "亚马逊图钉彩色透明工字钉异形工字钉塑料钉图钉按钉摁钉彩钉散装",
+    "titleEn": "Commercial High-Clarity Transparent Office & Craft Pushpins (Bulk Pack)",
+    "description": "Commercial High-Clarity Transparent Office & Craft Pushpins (Bulk Pack). Verified direct factory wholesale batch with certified pre-shipment quality inspection at Guangzhou/Yiwu logistics hub. Suitable for wholesale distribution and retail stores across Bangladesh.",
+    "images": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN010CVh9B1le8r5FhTwO_!!2208627214843-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01i7WGZw1le8rAMbvRJ_!!2208627214843-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01QbX0pD1le8rFMoTMC_!!2208627214843-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01nqyKc41le8rDggUFE_!!2208627214843-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN015VZH841le8r7zYOVc_!!2208627214843-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/23098595132_1993248359.jpg"
+    ],
+    "descriptionImages": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01sZLiEw1le9FadRmv0_!!2208627214843-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01fGkkM81le8r5J5siG_!!2208627214843-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01lqWe1T1le9Fa9xdm5_!!2208627214843-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01LB0vxx1le9Bp5i6y7_!!2208627214843-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN017zQd7V1le9BmOFs73_!!2208627214843-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN010giqXI1le9BgSQGPG_!!2208627214843-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01wqa7tk1le9BiljfIa_!!2208627214843-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01PBCivz1le9BiaEZQ6_!!2208627214843-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01PlC4TJ1le9Bia7ioc_!!2208627214843-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01gZtufV1le9BpHOLo3_!!2208627214843-0-cib.jpg"
+    ],
+    "attributes": [
+      {
+        "keyEn": "Manufacturing Standard",
+        "valueEn": "ISO-Certified Industrial Standard",
+        "keyCn": "执行标准",
+        "valueCn": "国标标准"
+      },
+      {
+        "keyEn": "Export Quality Grade",
+        "valueEn": "Grade A High Durability",
+        "keyCn": "质量等级",
+        "valueCn": "优等品"
+      },
+      {
+        "keyEn": "Pre-Shipment Inspection",
+        "valueEn": "100% Quality Inspected at Hub",
+        "keyCn": "出厂检验",
+        "valueCn": "全检合格"
+      },
+      {
+        "keyEn": "Packaging Type",
+        "valueEn": "Export Master Carton with Protective Polybag",
+        "keyCn": "包装方式",
+        "valueCn": "外贸标准包装"
+      }
+    ],
+    "priceTiers": [
+      {
+        "range": "2–9 pcs",
+        "minQty": 2,
+        "priceRmb": 25
+      },
+      {
+        "range": "10–49 pcs",
+        "minQty": 10,
+        "priceRmb": 23
+      },
+      {
+        "range": "50+ pcs",
+        "minQty": 50,
+        "priceRmb": 21.3
+      }
+    ],
+    "basePriceRmb": 25,
+    "skus": [
+      {
+        "id": "sku_632672967807_1",
+        "name": "Standard Export Option A",
+        "priceRmb": 25,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN010CVh9B1le8r5FhTwO_!!2208627214843-0-cib.jpg"
+      },
+      {
+        "id": "sku_632672967807_2",
+        "name": "Standard Export Option B",
+        "priceRmb": 25,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN01i7WGZw1le8rAMbvRJ_!!2208627214843-0-cib.jpg"
+      }
+    ],
+    "category": "Office & Stationery",
+    "shopName": "Verified Global Partner",
+    "location": "Guangdong Hub, China",
+    "estimatedWeightKg": 0.15,
+    "minOrderQty": 2,
+    "createdAt": "2026-10-07T13:43:36.315Z"
+  },
+  {
+    "id": "prod-1688-917401954383",
+    "sourcePlatform": "1688",
+    "sourceOfferId": "917401954383",
+    "url": "https://detail.1688.com/offer/917401954383.html",
+    "titleCn": "沐希服装 春秋美式潮牌竹节纹牛仔裤水洗cleanfit弯刀裤男阔腿裤",
+    "titleEn": "Slub-Weave Cleanfit Vintage Washed Curved-Leg Denim Trousers",
+    "description": "Slub-Weave Cleanfit Vintage Washed Curved-Leg Denim Trousers. Verified direct factory wholesale batch with certified pre-shipment quality inspection at Guangzhou/Yiwu logistics hub. Suitable for wholesale distribution and retail stores across Bangladesh.",
+    "images": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01DCfkl02CuAm39iRSG_!!2200722218533-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01ov6A9W2CuAgAwev6T_!!2200722218533-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01e9wZdK2CuAgA4eurS_!!2200722218533-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01agGDY92CuAgCQwGyo_!!2200722218533-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01Xouode2CuAgC6sb6r_!!2200722218533-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01NbPM4e2CuAgHp9fDP_!!2200722218533-0-cib.jpg"
+    ],
+    "descriptionImages": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01xGF0Cz2CuAgB5tU7I_!!2200722218533-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01yvCCOL2CuAm360LLi_!!2200722218533-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01R3oFyy2CuAg9x0k3E_!!2200722218533-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01m4DykP2CuAgA4ZHGG_!!2200722218533-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01Gqi8nO2CuAg9OYirP_!!2200722218533-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01PLsA7H2CuAgC6tGrR_!!2200722218533-0-cib.jpg"
+    ],
+    "attributes": [
+      {
+        "keyEn": "Material Composition",
+        "valueEn": "98% Cotton Denim, 2% Spandex",
+        "keyCn": "面料成分",
+        "valueCn": "棉质牛仔"
+      },
+      {
+        "keyEn": "Fit & Style",
+        "valueEn": "Straight Leg Regular Fit",
+        "keyCn": "版型风格",
+        "valueCn": "直筒百搭"
+      },
+      {
+        "keyEn": "Manufacturing Standard",
+        "valueEn": "ISO-Certified Industrial Standard",
+        "keyCn": "执行标准",
+        "valueCn": "国标标准"
+      },
+      {
+        "keyEn": "Export Quality Grade",
+        "valueEn": "Grade A High Durability",
+        "keyCn": "质量等级",
+        "valueCn": "优等品"
+      },
+      {
+        "keyEn": "Pre-Shipment Inspection",
+        "valueEn": "100% Quality Inspected at Hub",
+        "keyCn": "出厂检验",
+        "valueCn": "全检合格"
+      },
+      {
+        "keyEn": "Packaging Type",
+        "valueEn": "Export Master Carton with Protective Polybag",
+        "keyCn": "包装方式",
+        "valueCn": "外贸标准包装"
+      }
+    ],
+    "priceTiers": [
+      {
+        "range": "2–9 pcs",
+        "minQty": 2,
+        "priceRmb": 57
+      },
+      {
+        "range": "10–49 pcs",
+        "minQty": 10,
+        "priceRmb": 52.4
+      },
+      {
+        "range": "50+ pcs",
+        "minQty": 50,
+        "priceRmb": 48.4
+      }
+    ],
+    "basePriceRmb": 57,
+    "skus": [
+      {
+        "id": "sku_917401954383_1",
+        "name": "Standard Export Option A",
+        "priceRmb": 57,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN01DCfkl02CuAm39iRSG_!!2200722218533-0-cib.jpg"
+      },
+      {
+        "id": "sku_917401954383_2",
+        "name": "Standard Export Option B",
+        "priceRmb": 57,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN01ov6A9W2CuAgAwev6T_!!2200722218533-0-cib.jpg"
+      }
+    ],
+    "category": "Men's Fashion & Denim",
+    "shopName": "Verified Global Partner",
+    "location": "Guangdong Hub, China",
+    "estimatedWeightKg": 0.62,
+    "minOrderQty": 2,
+    "createdAt": "2026-10-07T13:43:38.768Z"
+  },
+  {
+    "id": "prod-1688-944042316046",
+    "sourcePlatform": "1688",
+    "sourceOfferId": "944042316046",
+    "url": "https://detail.1688.com/offer/944042316046.html",
+    "titleCn": "微喇牛仔裤男直筒宽松弯刀阔腿美式高街vibe裤子潮流百搭休闲长裤",
+    "titleEn": "American High-Street Flare Straight-Leg Heavy Washed Denim",
+    "description": "American High-Street Flare Straight-Leg Heavy Washed Denim. Verified direct factory wholesale batch with certified pre-shipment quality inspection at Guangzhou/Yiwu logistics hub. Suitable for wholesale distribution and retail stores across Bangladesh.",
+    "images": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN0122S33p1SP3ShDtwsZ_!!2219496432238-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01PEYrx61SP3SfZpMRK_!!2219496432238-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01brja9f1SP3Sfy4Ro9_!!2219496432238-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01qWw7wX1SP3SgvYM0z_!!2219496432238-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01I4ItS61SP3ShFKMYo_!!2219496432238-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01EH3LPC1SP3SfJThRj_!!2219496432238-0-cib.jpg"
+    ],
+    "descriptionImages": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01lthqSF1SP3SfGFEQo_!!2219496432238-0-cib.jpg",
+      "https://img.alicdn.com/imgextra/i2/6000000005424/O1CN01JVigT01pwFKKobjDz_!!6000000005424-0-tbvideo.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01sFYTGG1SP3Sdtg9F2_!!2219496432238-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01Bts8df1SP3SeO9ic4_!!2219496432238-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01fDUVFc1SP3SfqtPAh_!!2219496432238-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01Ntc3Vy1SP3SgTtw2i_!!2219496432238-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01T7H1Gg1SP3SZX5wIL_!!2219496432238-0-cib.jpg"
+    ],
+    "attributes": [
+      {
+        "keyEn": "Material Composition",
+        "valueEn": "98% Cotton Denim, 2% Spandex",
+        "keyCn": "面料成分",
+        "valueCn": "棉质牛仔"
+      },
+      {
+        "keyEn": "Fit & Style",
+        "valueEn": "Straight Leg Regular Fit",
+        "keyCn": "版型风格",
+        "valueCn": "直筒百搭"
+      },
+      {
+        "keyEn": "Manufacturing Standard",
+        "valueEn": "ISO-Certified Industrial Standard",
+        "keyCn": "执行标准",
+        "valueCn": "国标标准"
+      },
+      {
+        "keyEn": "Export Quality Grade",
+        "valueEn": "Grade A High Durability",
+        "keyCn": "质量等级",
+        "valueCn": "优等品"
+      },
+      {
+        "keyEn": "Pre-Shipment Inspection",
+        "valueEn": "100% Quality Inspected at Hub",
+        "keyCn": "出厂检验",
+        "valueCn": "全检合格"
+      },
+      {
+        "keyEn": "Packaging Type",
+        "valueEn": "Export Master Carton with Protective Polybag",
+        "keyCn": "包装方式",
+        "valueCn": "外贸标准包装"
+      }
+    ],
+    "priceTiers": [
+      {
+        "range": "2–9 pcs",
+        "minQty": 2,
+        "priceRmb": 33.8
+      },
+      {
+        "range": "10–49 pcs",
+        "minQty": 10,
+        "priceRmb": 31.1
+      },
+      {
+        "range": "50+ pcs",
+        "minQty": 50,
+        "priceRmb": 28.7
+      }
+    ],
+    "basePriceRmb": 33.8,
+    "skus": [
+      {
+        "id": "sku_944042316046_1",
+        "name": "Standard Export Option A",
+        "priceRmb": 33.8,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN0122S33p1SP3ShDtwsZ_!!2219496432238-0-cib.jpg"
+      },
+      {
+        "id": "sku_944042316046_2",
+        "name": "Standard Export Option B",
+        "priceRmb": 33.8,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN01PEYrx61SP3SfZpMRK_!!2219496432238-0-cib.jpg"
+      }
+    ],
+    "category": "Men's Fashion & Denim",
+    "shopName": "Verified Global Partner",
+    "location": "Guangdong Hub, China",
+    "estimatedWeightKg": 0.66,
+    "minOrderQty": 2,
+    "createdAt": "2026-10-07T13:43:41.328Z"
+  },
+  {
+    "id": "prod-1688-1002874748743",
+    "sourcePlatform": "1688",
+    "sourceOfferId": "1002874748743",
+    "url": "https://detail.1688.com/offer/1002874748743.html",
+    "titleCn": "美式简约牛仔裤男高级感高街vibe直筒修身显瘦时尚百搭微喇长裤子",
+    "titleEn": "Minimalist Slim-Straight Comfort Stretch Washed Jeans",
+    "description": "Minimalist Slim-Straight Comfort Stretch Washed Jeans. Verified direct factory wholesale batch with certified pre-shipment quality inspection at Guangzhou/Yiwu logistics hub. Suitable for wholesale distribution and retail stores across Bangladesh.",
+    "images": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01g0WjcB243weHXMhRx_!!2214404977336-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01iTIAK8243weI6Jx5N_!!2214404977336-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01hMFIms243weGrVeyu_!!2214404977336-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01frcN5a243weHEZl9c_!!2214404977336-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01XNKhEL243weHAfTcc_!!2214404977336-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01XrJD9K243weIFo2Xt_!!2214404977336-0-cib.jpg"
+    ],
+    "descriptionImages": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01Bumt4J243weIBsLeG_!!2214404977336-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01R8vhKt243weHs4zic_!!2214404977336-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01Z7ACll243weHrX54n_!!2214404977336-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01bL8otF243wg0F0Abt_!!2214404977336-0-cib.jpg"
+    ],
+    "attributes": [
+      {
+        "keyEn": "Material Composition",
+        "valueEn": "98% Cotton Denim, 2% Spandex",
+        "keyCn": "面料成分",
+        "valueCn": "棉质牛仔"
+      },
+      {
+        "keyEn": "Fit & Style",
+        "valueEn": "Straight Leg Regular Fit",
+        "keyCn": "版型风格",
+        "valueCn": "直筒百搭"
+      },
+      {
+        "keyEn": "Manufacturing Standard",
+        "valueEn": "ISO-Certified Industrial Standard",
+        "keyCn": "执行标准",
+        "valueCn": "国标标准"
+      },
+      {
+        "keyEn": "Export Quality Grade",
+        "valueEn": "Grade A High Durability",
+        "keyCn": "质量等级",
+        "valueCn": "优等品"
+      },
+      {
+        "keyEn": "Pre-Shipment Inspection",
+        "valueEn": "100% Quality Inspected at Hub",
+        "keyCn": "出厂检验",
+        "valueCn": "全检合格"
+      },
+      {
+        "keyEn": "Packaging Type",
+        "valueEn": "Export Master Carton with Protective Polybag",
+        "keyCn": "包装方式",
+        "valueCn": "外贸标准包装"
+      }
+    ],
+    "priceTiers": [
+      {
+        "range": "2–9 pcs",
+        "minQty": 2,
+        "priceRmb": 29
+      },
+      {
+        "range": "10–49 pcs",
+        "minQty": 10,
+        "priceRmb": 26.7
+      },
+      {
+        "range": "50+ pcs",
+        "minQty": 50,
+        "priceRmb": 24.6
+      }
+    ],
+    "basePriceRmb": 29,
+    "skus": [
+      {
+        "id": "sku_1002874748743_1",
+        "name": "Standard Export Option A",
+        "priceRmb": 29,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN01g0WjcB243weHXMhRx_!!2214404977336-0-cib.jpg"
+      },
+      {
+        "id": "sku_1002874748743_2",
+        "name": "Standard Export Option B",
+        "priceRmb": 29,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN01iTIAK8243weI6Jx5N_!!2214404977336-0-cib.jpg"
+      }
+    ],
+    "category": "Men's Fashion & Denim",
+    "shopName": "Verified Global Partner",
+    "location": "Guangdong Hub, China",
+    "estimatedWeightKg": 0.58,
+    "minOrderQty": 2,
+    "createdAt": "2026-10-07T13:43:43.851Z"
+  },
+  {
+    "id": "prod-1688-1013353722731",
+    "sourcePlatform": "1688",
+    "sourceOfferId": "1013353722731",
+    "url": "https://detail.1688.com/offer/1013353722731.html",
+    "titleCn": "pu石皮仿石材轻质仿真PU文化石室内外背景墙造型板防水防潮外墙砖",
+    "titleEn": "Waterproof High-Density PU Cultural Rock Interior Wall Slab",
+    "description": "Waterproof High-Density PU Cultural Rock Interior Wall Slab. Verified direct factory wholesale batch with certified pre-shipment quality inspection at Guangzhou/Yiwu logistics hub. Suitable for wholesale distribution and retail stores across Bangladesh.",
+    "images": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01PsINtk1EDh5qPAy9p_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01FZowkE1EDh4FBfJ81_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01mownGL1EDh4DswS55_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01fkXEgK1EDh4EDEArw_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01uig2fk1EDh48rGT2r_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01ugFPkO1EDh4EDVKPC_!!2416300318-0-cib.jpg"
+    ],
+    "descriptionImages": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01oKK9BT1EDh4EDU3Qi_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01Ty6WaW1EDh4F6IK9E_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN011jn3YC1EDh48m4MNU_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01rNWCo61EDh4DTVNbR_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01vSy7Ea1EDh4Ddz42g_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01ZFbyBi1EDh4EDVjRl_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01HzDFyI1EDh4EDTJe3_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01GTDBzf1EDh4EDWGd2_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01nUoFru1EDh4EFIC7P_!!2416300318-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN013tahGG1EDh4F6GJKs_!!2416300318-0-cib.jpg"
+    ],
+    "attributes": [
+      {
+        "keyEn": "Material",
+        "valueEn": "High-Density Polyurethane (PU)",
+        "keyCn": "材质",
+        "valueCn": "高密度PU聚氨酯"
+      },
+      {
+        "keyEn": "Feature",
+        "valueEn": "Waterproof, Fire-Retardant, Lightweight",
+        "keyCn": "特性",
+        "valueCn": "防水防火轻质"
+      },
+      {
+        "keyEn": "Manufacturing Standard",
+        "valueEn": "ISO-Certified Industrial Standard",
+        "keyCn": "执行标准",
+        "valueCn": "国标标准"
+      },
+      {
+        "keyEn": "Export Quality Grade",
+        "valueEn": "Grade A High Durability",
+        "keyCn": "质量等级",
+        "valueCn": "优等品"
+      },
+      {
+        "keyEn": "Pre-Shipment Inspection",
+        "valueEn": "100% Quality Inspected at Hub",
+        "keyCn": "出厂检验",
+        "valueCn": "全检合格"
+      },
+      {
+        "keyEn": "Packaging Type",
+        "valueEn": "Export Master Carton with Protective Polybag",
+        "keyCn": "包装方式",
+        "valueCn": "外贸标准包装"
+      }
+    ],
+    "priceTiers": [
+      {
+        "range": "2–9 pcs",
+        "minQty": 2,
+        "priceRmb": 49
+      },
+      {
+        "range": "10–49 pcs",
+        "minQty": 10,
+        "priceRmb": 45.1
+      },
+      {
+        "range": "50+ pcs",
+        "minQty": 50,
+        "priceRmb": 41.6
+      }
+    ],
+    "basePriceRmb": 49,
+    "skus": [
+      {
+        "id": "sku_1013353722731_1",
+        "name": "Standard Export Option A",
+        "priceRmb": 49,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN01PsINtk1EDh5qPAy9p_!!2416300318-0-cib.jpg"
+      },
+      {
+        "id": "sku_1013353722731_2",
+        "name": "Standard Export Option B",
+        "priceRmb": 49,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN01FZowkE1EDh4FBfJ81_!!2416300318-0-cib.jpg"
+      }
+    ],
+    "category": "Home & Interior Decor",
+    "shopName": "Verified Global Partner",
+    "location": "Guangdong Hub, China",
+    "estimatedWeightKg": 0.5,
+    "minOrderQty": 2,
+    "createdAt": "2026-10-07T13:43:47.054Z"
+  },
+  {
+    "id": "prod-1688-820884854011",
+    "sourcePlatform": "1688",
+    "sourceOfferId": "820884854011",
+    "url": "https://detail.1688.com/offer/820884854011.html",
+    "titleCn": "PU山岩石大板轻质文化石外墙砖pu石皮岩壁背景墙天然仿真石材石板",
+    "titleEn": "Natural PU Mountain Rock Acoustic Cladding Architectural Slab",
+    "description": "Natural PU Mountain Rock Acoustic Cladding Architectural Slab. Verified direct factory wholesale batch with certified pre-shipment quality inspection at Guangzhou/Yiwu logistics hub. Suitable for wholesale distribution and retail stores across Bangladesh.",
+    "images": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01D68Sdo1RTnyrDQXh9_!!2213268782113-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN017W2VP91RTnyrvppPo_!!2213268782113-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01b4TMt21RTnyrVWIV2_!!2213268782113-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01bU6sc91RTnys8M4ub_!!2213268782113-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01ENUQFB1RTnrbvjFz6_!!2213268782113-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01JLelBv1RTo1mItojM_!!2213268782113-0-cib.jpg"
+    ],
+    "descriptionImages": [
+      "https://cbu01.alicdn.com/img/ibank/O1CN01wJgeNV1RTnyrGKWlu_!!2213268782113-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01qO6f2V1RTnyr3aL4A_!!2213268782113-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01EIQy8p1RTnyrcTtNw_!!2213268782113-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01Q5Cjno1RTnyrcTQK0_!!2213268782113-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01II0grX1RTnyrcUUrQ_!!2213268782113-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01kSdo3E1RTnyqIJVF2_!!2213268782113-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01IXH3g31RTnyrfFMTY_!!2213268782113-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01pqr69z1RTnyrCFHxl_!!2213268782113-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01vTwkrS1RTnyrcXFRz_!!2213268782113-0-cib.jpg",
+      "https://cbu01.alicdn.com/img/ibank/O1CN01rYblr71RTnyrz1NSj_!!2213268782113-0-cib.jpg"
+    ],
+    "attributes": [
+      {
+        "keyEn": "Material",
+        "valueEn": "High-Density Polyurethane (PU)",
+        "keyCn": "材质",
+        "valueCn": "高密度PU聚氨酯"
+      },
+      {
+        "keyEn": "Feature",
+        "valueEn": "Waterproof, Fire-Retardant, Lightweight",
+        "keyCn": "特性",
+        "valueCn": "防水防火轻质"
+      },
+      {
+        "keyEn": "Manufacturing Standard",
+        "valueEn": "ISO-Certified Industrial Standard",
+        "keyCn": "执行标准",
+        "valueCn": "国标标准"
+      },
+      {
+        "keyEn": "Export Quality Grade",
+        "valueEn": "Grade A High Durability",
+        "keyCn": "质量等级",
+        "valueCn": "优等品"
+      },
+      {
+        "keyEn": "Pre-Shipment Inspection",
+        "valueEn": "100% Quality Inspected at Hub",
+        "keyCn": "出厂检验",
+        "valueCn": "全检合格"
+      },
+      {
+        "keyEn": "Packaging Type",
+        "valueEn": "Export Master Carton with Protective Polybag",
+        "keyCn": "包装方式",
+        "valueCn": "外贸标准包装"
+      }
+    ],
+    "priceTiers": [
+      {
+        "range": "2–9 pcs",
+        "minQty": 2,
+        "priceRmb": 70
+      },
+      {
+        "range": "10–49 pcs",
+        "minQty": 10,
+        "priceRmb": 64.4
+      },
+      {
+        "range": "50+ pcs",
+        "minQty": 50,
+        "priceRmb": 59.5
+      }
+    ],
+    "basePriceRmb": 70,
+    "skus": [
+      {
+        "id": "sku_820884854011_1",
+        "name": "Standard Export Option A",
+        "priceRmb": 70,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN01D68Sdo1RTnyrDQXh9_!!2213268782113-0-cib.jpg"
+      },
+      {
+        "id": "sku_820884854011_2",
+        "name": "Standard Export Option B",
+        "priceRmb": 70,
+        "stock": 2500,
+        "image": "https://cbu01.alicdn.com/img/ibank/O1CN017W2VP91RTnyrvppPo_!!2213268782113-0-cib.jpg"
+      }
+    ],
+    "category": "Home & Interior Decor",
+    "shopName": "Verified Global Partner",
+    "location": "Guangdong Hub, China",
+    "estimatedWeightKg": 0.55,
+    "minOrderQty": 2,
+    "createdAt": "2026-10-07T13:43:49.512Z"
+  },
+  {
+    "id": "prod-trend-k8-mic",
+    "sourcePlatform": "1688",
+    "sourceOfferId": "trend_k8_mic_001",
+    "url": "https://detail.1688.com/offer/715420389102.html",
+    "titleCn": "K8 K9领夹式无线麦克风手机直播收音降噪领夹麦",
+    "titleEn": "K8 / K9 Dual Wireless Clip-On Lavalier Microphone (Plug & Play Type-C / Lightning)",
+    "description": "Ultra-low latency wireless lavalier microphone system with intelligent active noise cancellation. Ideal for TikTokers, YouTube vloggers, educators, and live stream sellers across Bangladesh. No Bluetooth or app required; 20-meter barrier-free transmission.",
+    "images": [
+      "https://img.alicdn.com/imgextra/i4/2215320576366/O1CN01Z7Wf2n25iN64rF8pM_!!2215320576366.jpg",
+      "https://img.alicdn.com/imgextra/i2/2215320576366/O1CN01a1Q7pM25iN63vP8kI_!!2215320576366.jpg",
+      "https://img.alicdn.com/imgextra/i3/2215320576366/O1CN01K3Bv3X25iN61mN6bW_!!2215320576366.jpg"
+    ],
+    "descriptionImages": [
+      "https://img.alicdn.com/imgextra/i4/2215320576366/O1CN01Z7Wf2n25iN64rF8pM_!!2215320576366.jpg"
+    ],
+    "attributes": [
+      {
+        "keyEn": "Transmission Distance",
+        "valueEn": "20 Meters Barrier-Free",
+        "keyCn": "传输距离",
+        "valueCn": "20米无障碍"
+      },
+      {
+        "keyEn": "Battery Life",
+        "valueEn": "Up to 8-10 Hours Continuous",
+        "keyCn": "续航时间",
+        "valueCn": "8-10小时"
+      },
+      {
+        "keyEn": "Connector Type",
+        "valueEn": "Type-C / Lightning Dual Port",
+        "keyCn": "接口类型",
+        "valueCn": "Type-C/苹果双用"
+      },
+      {
+        "keyEn": "Signal to Noise Ratio",
+        "valueEn": "64 dBm Intelligent Noise Reduction",
+        "keyCn": "信噪比",
+        "valueCn": "64dBm智能降噪"
+      }
+    ],
+    "priceTiers": [
+      {
+        "range": "2–9 pcs",
+        "minQty": 2,
+        "priceRmb": 18
+      },
+      {
+        "range": "10–49 pcs",
+        "minQty": 10,
+        "priceRmb": 16.5
+      },
+      {
+        "range": "50+ pcs",
+        "minQty": 50,
+        "priceRmb": 14.8
+      }
+    ],
+    "basePriceRmb": 18,
+    "skus": [
+      {
+        "id": "sku_mic_1",
+        "name": "Type-C Single Mic (Android)",
+        "priceRmb": 18,
+        "stock": 3500
+      },
+      {
+        "id": "sku_mic_2",
+        "name": "Lightning Single Mic (iPhone)",
+        "priceRmb": 18,
+        "stock": 3500
+      },
+      {
+        "id": "sku_mic_3",
+        "name": "Dual Mic Duo Pack (Two Mics + One Receiver)",
+        "priceRmb": 26,
+        "stock": 2000
+      }
+    ],
+    "category": "Smart Electronics",
+    "shopName": "Verified Global Partner",
+    "location": "Shenzhen Hub, China",
+    "estimatedWeightKg": 0.12,
+    "minOrderQty": 2,
+    "createdAt": "2026-10-07T13:43:03.951Z"
+  },
+  {
+    "id": "prod-trend-acne-patch",
+    "sourcePlatform": "1688",
+    "sourceOfferId": "trend_acne_patch_002",
+    "url": "https://detail.1688.com/offer/674829105432.html",
+    "titleCn": "水胶体痘痘贴隐形透气净痘淡化痘印贴",
+    "titleEn": "Hydrocolloid Blemish & Acne Pimple Absorbing Patches (72 Patches Per Pack)",
+    "description": "Medical-grade hydrocolloid invisible patches that extract impurities, soothe blemishes overnight, and prevent touching or scarring. Waterproof, breathable, and virtually invisible under makeup. High viral demand on TikTok and Instagram beauty shops in Bangladesh.",
+    "images": [
+      "https://img.alicdn.com/imgextra/i3/2208152349887/O1CN01rZp1dY1zQ5yUvH8rJ_!!2208152349887.jpg",
+      "https://img.alicdn.com/imgextra/i1/2208152349887/O1CN01fWfUu81zQ5yW5i8pK_!!2208152349887.jpg"
+    ],
+    "descriptionImages": [
+      "https://img.alicdn.com/imgextra/i3/2208152349887/O1CN01rZp1dY1zQ5yUvH8rJ_!!2208152349887.jpg"
+    ],
+    "attributes": [
+      {
+        "keyEn": "Material",
+        "valueEn": "Medical Hydrocolloid Dressing",
+        "keyCn": "材质",
+        "valueCn": "医用水胶体"
+      },
+      {
+        "keyEn": "Pack Count",
+        "valueEn": "72 Patches (8mm + 12mm)",
+        "keyCn": "规格",
+        "valueCn": "72贴/包"
+      },
+      {
+        "keyEn": "Skin Type",
+        "valueEn": "Suitable for All Skin Types",
+        "keyCn": "适用肤质",
+        "valueCn": "全肤质适用"
+      }
+    ],
+    "priceTiers": [
+      {
+        "range": "5–19 packs",
+        "minQty": 5,
+        "priceRmb": 3.2
+      },
+      {
+        "range": "20–99 packs",
+        "minQty": 20,
+        "priceRmb": 2.8
+      },
+      {
+        "range": "100+ packs",
+        "minQty": 100,
+        "priceRmb": 2.3
+      }
+    ],
+    "basePriceRmb": 3.2,
+    "skus": [
+      {
+        "id": "sku_acne_1",
+        "name": "Invisible Round Patches (72 pcs)",
+        "priceRmb": 3.2,
+        "stock": 9999
+      },
+      {
+        "id": "sku_acne_2",
+        "name": "Cute Star & Heart Shaped Patches (48 pcs)",
+        "priceRmb": 3.5,
+        "stock": 5000
+      }
+    ],
+    "category": "Beauty & Personal Care",
+    "shopName": "Verified Global Partner",
+    "location": "Guangzhou Hub, China",
+    "estimatedWeightKg": 0.02,
+    "minOrderQty": 5,
+    "createdAt": "2026-10-07T13:43:03.952Z"
+  },
+  {
+    "id": "prod-trend-pvd-jewelry",
+    "sourcePlatform": "1688",
+    "sourceOfferId": "trend_pvd_jewelry_003",
+    "url": "https://detail.1688.com/offer/732918402914.html",
+    "titleCn": "欧美跨境外贸钛钢18K金防水不掉色四叶草项链手链",
+    "titleEn": "Waterproof 18K PVD Gold Anti-Tarnish Stainless Steel Clover Necklace & Bracelet Set",
+    "description": "Premium surgical titanium stainless steel jewelry featuring 18K real vacuum PVD gold plating. 100% waterproof, sweat-resistant, and non-tarnishing in Bangladesh's humid climate. Top-selling item for online fashion boutiques and Facebook live sellers.",
+    "images": [
+      "https://img.alicdn.com/imgextra/i2/2209384729112/O1CN01kGq1Lz1x9w8Z1n3pX_!!2209384729112.jpg",
+      "https://img.alicdn.com/imgextra/i4/2209384729112/O1CN01fUvV1X1x9w8a9k4rY_!!2209384729112.jpg"
+    ],
+    "descriptionImages": [
+      "https://img.alicdn.com/imgextra/i2/2209384729112/O1CN01kGq1Lz1x9w8Z1n3pX_!!2209384729112.jpg"
+    ],
+    "attributes": [
+      {
+        "keyEn": "Material",
+        "valueEn": "316L Titanium Stainless Steel",
+        "keyCn": "材质",
+        "valueCn": "316L钛钢"
+      },
+      {
+        "keyEn": "Plating",
+        "valueEn": "18K Vacuum PVD Gold (Non-Tarnish)",
+        "keyCn": "电镀",
+        "valueCn": "18K真金真空电镀"
+      },
+      {
+        "keyEn": "Water Resistance",
+        "valueEn": "100% Shower & Sweat Safe",
+        "keyCn": "防水性",
+        "valueCn": "完全防水"
+      }
+    ],
+    "priceTiers": [
+      {
+        "range": "3–9 pcs",
+        "minQty": 3,
+        "priceRmb": 8.5
+      },
+      {
+        "range": "10–49 pcs",
+        "minQty": 10,
+        "priceRmb": 7.2
+      },
+      {
+        "range": "50+ pcs",
+        "minQty": 50,
+        "priceRmb": 6
+      }
+    ],
+    "basePriceRmb": 8.5,
+    "skus": [
+      {
+        "id": "sku_jewel_1",
+        "name": "Black Onyx Clover Pendant Necklace",
+        "priceRmb": 8.5,
+        "stock": 5000
+      },
+      {
+        "id": "sku_jewel_2",
+        "name": "Mother of Pearl White Clover Necklace",
+        "priceRmb": 8.5,
+        "stock": 5000
+      },
+      {
+        "id": "sku_jewel_3",
+        "name": "Matching 5-Motif Clover Bracelet",
+        "priceRmb": 11,
+        "stock": 3500
+      }
+    ],
+    "category": "Fashion Jewelry & Accessories",
+    "shopName": "Verified Global Partner",
+    "location": "Yiwu Hub, China",
+    "estimatedWeightKg": 0.05,
+    "minOrderQty": 3,
+    "createdAt": "2026-10-07T13:43:03.952Z"
+  },
+  {
+    "id": "prod-trend-chopper-250",
+    "sourcePlatform": "1688",
+    "sourceOfferId": "trend_chopper_004",
+    "url": "https://detail.1688.com/offer/654819203819.html",
+    "titleCn": "电动大蒜捣碎机家用无线料理机迷你辅食机绞肉机",
+    "titleEn": "Rechargeable Wireless 250ml Mini Food, Garlic & Spice Processor",
+    "description": "Compact wireless USB-rechargeable electric garlic and spice chopper with surgical 304 stainless steel triple blades. Chops garlic, ginger, green chilies, onions, and baby food in 8 seconds with one-touch button. Detachable waterproof design for easy cleaning.",
+    "images": [
+      "https://img.alicdn.com/imgextra/i3/2206738192034/O1CN01rM9y1X1s4u9qQ2pL_!!2206738192034.jpg",
+      "https://img.alicdn.com/imgextra/i1/2206738192034/O1CN01kK8w2Y1s4u9rW5qM_!!2206738192034.jpg"
+    ],
+    "descriptionImages": [
+      "https://img.alicdn.com/imgextra/i3/2206738192034/O1CN01rM9y1X1s4u9qQ2pL_!!2206738192034.jpg"
+    ],
+    "attributes": [
+      {
+        "keyEn": "Capacity",
+        "valueEn": "250 ml Dual Cup",
+        "keyCn": "容量",
+        "valueCn": "250ml"
+      },
+      {
+        "keyEn": "Blade Material",
+        "valueEn": "304 Food-Grade Stainless Steel",
+        "keyCn": "刀片材质",
+        "valueCn": "304不锈钢"
+      },
+      {
+        "keyEn": "Battery Capacity",
+        "valueEn": "1200mAh USB Rechargeable",
+        "keyCn": "电池容量",
+        "valueCn": "1200mAh"
+      }
+    ],
+    "priceTiers": [
+      {
+        "range": "2–9 pcs",
+        "minQty": 2,
+        "priceRmb": 13.5
+      },
+      {
+        "range": "10–49 pcs",
+        "minQty": 10,
+        "priceRmb": 12
+      },
+      {
+        "range": "50+ pcs",
+        "minQty": 50,
+        "priceRmb": 10.5
+      }
+    ],
+    "basePriceRmb": 13.5,
+    "skus": [
+      {
+        "id": "sku_chop_1",
+        "name": "Emerald Green (250ml)",
+        "priceRmb": 13.5,
+        "stock": 2500
+      },
+      {
+        "id": "sku_chop_2",
+        "name": "Pearl White (250ml)",
+        "priceRmb": 13.5,
+        "stock": 2500
+      }
+    ],
+    "category": "Kitchen & Home Appliances",
+    "shopName": "Verified Global Partner",
+    "location": "Zhejiang Hub, China",
+    "estimatedWeightKg": 0.32,
+    "minOrderQty": 2,
+    "createdAt": "2026-10-07T13:43:03.952Z"
+  },
+  {
+    "id": "prod-trend-ufo-teether",
+    "sourcePlatform": "1688",
+    "sourceOfferId": "trend_ufo_teether_005",
+    "url": "https://detail.1688.com/offer/689123049182.html",
+    "titleCn": "婴儿硅胶拉拉乐抽抽乐飞碟早教益智玩具牙胶磨牙棒",
+    "titleEn": "Montessori Silicone Pull-String UFO Sensory Teething & Early Development Toy",
+    "description": "Multi-sensory interactive baby toy featuring soft food-grade silicone pull cords with varied textures and vibrations. Promotes fine motor skills, hand-eye coordination, and soothes gums during teething. 100% BPA-free, high-temperature sterilizable.",
+    "images": [
+      "https://img.alicdn.com/imgextra/i4/2207819230198/O1CN01pL5x8Z1w6t3rQ9kP_!!2207819230198.jpg",
+      "https://img.alicdn.com/imgextra/i2/2207819230198/O1CN01yK2q7Y1w6t3sW8mR_!!2207819230198.jpg"
+    ],
+    "descriptionImages": [
+      "https://img.alicdn.com/imgextra/i4/2207819230198/O1CN01pL5x8Z1w6t3rQ9kP_!!2207819230198.jpg"
+    ],
+    "attributes": [
+      {
+        "keyEn": "Material",
+        "valueEn": "100% Food-Grade Silicone + ABS",
+        "keyCn": "材质",
+        "valueCn": "食品级硅胶+环保ABS"
+      },
+      {
+        "keyEn": "Safety Standard",
+        "valueEn": "BPA-Free, Phthalate-Free, Non-Toxic",
+        "keyCn": "安全认证",
+        "valueCn": "无BPA,通过欧盟/国标安全检验"
+      },
+      {
+        "keyEn": "Applicable Age",
+        "valueEn": "6 Months to 3 Years",
+        "keyCn": "适用年龄",
+        "valueCn": "6个月以上"
+      }
+    ],
+    "priceTiers": [
+      {
+        "range": "2–9 pcs",
+        "minQty": 2,
+        "priceRmb": 11
+      },
+      {
+        "range": "10–49 pcs",
+        "minQty": 10,
+        "priceRmb": 9.8
+      },
+      {
+        "range": "50+ pcs",
+        "minQty": 50,
+        "priceRmb": 8.5
+      }
+    ],
+    "basePriceRmb": 11,
+    "skus": [
+      {
+        "id": "sku_ufo_1",
+        "name": "UFO Flying Saucer Space Edition",
+        "priceRmb": 11,
+        "stock": 4000
+      },
+      {
+        "id": "sku_ufo_2",
+        "name": "Crab Animal Sensory Edition",
+        "priceRmb": 11.5,
+        "stock": 3000
+      }
+    ],
+    "category": "Baby Care & Montessori Toys",
+    "shopName": "Verified Global Partner",
+    "location": "Chenghai Hub, China",
+    "estimatedWeightKg": 0.22,
+    "minOrderQty": 2,
+    "createdAt": "2026-10-07T13:43:03.952Z"
+  }
+]
